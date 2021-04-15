@@ -90,6 +90,7 @@ class _InitialScreenState extends State<InitialScreen> {
             drawer: DrawerNavigation(),
             body: PageView(
               controller: pageController,
+              physics: NeverScrollableScrollPhysics(),
               onPageChanged: (index) {
                 setState(() {
                   pageIndex = index;
