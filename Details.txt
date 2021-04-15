@@ -1,0 +1,108 @@
+
+------------------Build APK------------------------------------------------------------------------------------------------
+flutter clean
+flutter build apk --release
+flutter build apk --release --target-platform android-arm
+flutter build apk --release --target-platform android-arm --analyze-size
+
+------------------About KeyStore------------------------------------------------------------------------------------------------
+keytool -genkey -v -keystore C:\Users\ABDERRAHIM\shifaa_pharmacy.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 100000 -alias shifaa
+password : 224680
+first and last name :  ABDERRAHIM AIT TATA
+organizational unit :  IT Department
+organization :  Golden Global Group
+City or Locality & State or Province :  MARRAKECH
+country : MA
+
+Storing C:\Users\ABDERRAHIM\shifaa_pharmacy.jks
+
+//SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
+
+ Row(
+   mainAxisAlignment: MainAxisAlignment.center,
+   children: [
+     ConnectionButton(
+       image: "facebook.png",
+       onTap: () {
+         Navigator.popAndPushNamed(context, RegisterScreen.id);
+       },
+     ),
+     SizedBox(width: 32),
+     ConnectionButton(
+       image: "gmail.png",
+       onTap: () {
+         Navigator.popAndPushNamed(context, RegisterScreen.id);
+       },
+     ),
+   ],
+ ),
+
+
+ child: SpinKitThreeBounce(
+   color: greenColor,
+   size: 64,
+   duration: Duration(milliseconds: 1500),
+ ),
+ child: AnimatedSplashScreen(
+   curve: Curves.linearToEaseOut,
+   splash: SpinKitThreeBounce(
+     color: greenColor,
+     size: 64,
+     duration: Duration(milliseconds: 1500),
+   ),
+   //nextScreen: Container(),
+   backgroundColor: Colors.transparent,
+   splashTransition: SplashTransition.slideTransition,
+   pageTransitionType: PageTransitionType.fade,
+   animationDuration: Duration(milliseconds: 1500),
+   splashIconSize: 64,
+ ),
+ child: SplashScreen(
+   seconds: 60,
+   navigateAfterSeconds: HomeScreen(),
+   title: Text('Welcome In SplashScreen'),
+   image: Image.asset('icons/app_icon.png'),
+   backgroundColor: Colors.white,
+   styleTextUnderTheLoader: new TextStyle(),
+   //photoSize: 250.0,
+   loaderColor: Colors.red,
+ ),
+
+ Future<bool> displayPrescriptionImage(context, Prescription prescription) {
+   return showDialog(
+     context: context,
+     builder: (context) => Container(
+       padding: EdgeInsets.all(5),
+       color: Colors.black12,
+       child: Stack(
+         children: [
+           Expanded(
+             child: Center(
+               child: FadeInImage.assetNetwork(
+                 placeholder: "assets/twirl.gif",
+                 image: "${prescription.picture}",
+               ),
+             ),
+           ),
+           Positioned(
+             bottom: 0,
+             left: 0,
+             right: 0,
+             child: Container(
+               color: Colors.black26,
+               padding: EdgeInsets.fromLTRB(5, 5, 5, 0),
+               constraints: BoxConstraints(maxHeight: 256),
+               child: SingleChildScrollView(
+                 physics: BouncingScrollPhysics(),
+                 child: Text(
+                   "${prescription.description}",
+                   style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                 ),
+               ),
+             ),
+           ),
+         ],
+       ),
+     ),
+   );
+ }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "555409426657",
+    "project_id": "shifaa-pharmacy",
+    "storage_bucket": "shifaa-pharmacy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:555409426657:android:f6bf524508a22a410acfa0",
+        "android_client_info": {
+          "package_name": "com.shifaa.shifaa_pharmacy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "555409426657-u6gscelkicctrlnl3f39gjvc837b40fm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhtxPpDXIzULeP9o8r89yDFfU21gesaoU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "555409426657-u6gscelkicctrlnl3f39gjvc837b40fm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

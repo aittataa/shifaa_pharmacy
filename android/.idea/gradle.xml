@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="testRunner" value="PLATFORM" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="$USER_HOME$/.gradle/gradle-6.7.1" />
+        <option name="gradleJvm" value="14" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/../../../../../../../src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-1.0.11/android" />
+            <option value="$PROJECT_DIR$/../../../../../../../src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.6.7+12/android" />
+            <option value="$PROJECT_DIR$/../../../../../../../src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/share-0.6.5+3/android" />
+            <option value="$PROJECT_DIR$/../../../../../../../src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.5.12+4/android" />
+            <option value="$PROJECT_DIR$/../../../../../../../src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-5.7.8/android" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+        <option name="useQualifiedModuleNames" value="true" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
