@@ -13,16 +13,32 @@ import 'package:shifaa_pharmacy/widget/body_shape.dart';
 import 'package:shifaa_pharmacy/widget/empty_box.dart';
 import 'package:shifaa_pharmacy/widget/function_button.dart';
 
-class FavoriteScreen extends StatelessWidget {
+class FavoriteScreen extends StatefulWidget {
   static const String id = "FavoriteScreen";
 
-  List<Product> myList;
+  final List<Product> myList;
   FavoriteScreen({this.myList});
 
+  @override
+  _FavoriteScreenState createState() => _FavoriteScreenState();
+}
+
+class _FavoriteScreenState extends State<FavoriteScreen> {
+  bool isNotEmpty;
+  List<Product> myList;
+  TextEditingController controller = TextEditingController();
   get setMyList {
     myList = favoriteProductsList.where((product) {
       return product.isFav == true;
     }).toList();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    myList = widget.myList;
+    isNotEmpty = myList.isNotEmpty;
+    setMyList;
   }
 
   @override
@@ -51,8 +67,20 @@ class FavoriteScreen extends StatelessWidget {
             ],
           ),
           body: BodyShape(
-            enable: myList.isNotEmpty,
-            child: myList.isNotEmpty
+            enable: isNotEmpty,
+            controller: controller,
+            onPressed: () {
+              setState(() {
+                controller.clear();
+                myList = widget.myList;
+              });
+            },
+            onChanged: (value) {
+              setState(() {
+                myList = findProduct(widget.myList, value);
+              });
+            },
+            child: isNotEmpty
                 ? GridView.builder(
                     padding: EdgeInsets.only(top: 5, right: 5, left: 5),
                     physics: BouncingScrollPhysics(),
@@ -82,23 +110,27 @@ class FavoriteScreen extends StatelessWidget {
                           );
                         },
                         onShopTap: (bool isLiked) async {
-                          if (isClientLogged) {
-                            onShopProductTap(product, context);
-                          } else {
-                            Navigator.popAndPushNamed(context, LoginScreen.id);
-                          }
-                          return isLiked;
+                          setState(() {
+                            if (isClientLogged) {
+                              onShopProductTap(product, context);
+                            } else {
+                              Navigator.popAndPushNamed(context, LoginScreen.id);
+                            }
+                            return isLiked;
+                          });
                         },
                         onFavTap: (bool isLiked) async {
-                          if (isClientLogged) {
-                            onFavProductTap(product);
-                            isFav = !isFav;
-                            productProvider.loadProducts;
-                            setMyList;
-                          } else {
-                            Navigator.popAndPushNamed(context, LoginScreen.id);
-                          }
-                          return isFav;
+                          setState(() {
+                            if (isClientLogged) {
+                              onFavProductTap(product);
+                              isFav = !isFav;
+                              productProvider.loadProducts;
+                              setMyList;
+                            } else {
+                              Navigator.popAndPushNamed(context, LoginScreen.id);
+                            }
+                            return isFav;
+                          });
                         },
                       );
                     },

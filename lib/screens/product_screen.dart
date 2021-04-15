@@ -14,12 +14,29 @@ import 'package:shifaa_pharmacy/widget/body_shape.dart';
 import 'package:shifaa_pharmacy/widget/empty_box.dart';
 import 'package:shifaa_pharmacy/widget/function_button.dart';
 
-class ProductScreen extends StatelessWidget {
+class ProductScreen extends StatefulWidget {
   static const String id = "ProductScreen";
-
   final String title;
   final List<Product> myList;
   ProductScreen({this.title, this.myList});
+
+  @override
+  _ProductScreenState createState() => _ProductScreenState();
+}
+
+class _ProductScreenState extends State<ProductScreen> {
+  bool isNotEmpty;
+  String title;
+  List<Product> myList;
+  TextEditingController controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    title = widget.title;
+    myList = widget.myList;
+    isNotEmpty = myList.isNotEmpty;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +78,20 @@ class ProductScreen extends StatelessWidget {
             ],
           ),
           body: BodyShape(
-            child: myList.isNotEmpty
+            enable: isNotEmpty,
+            controller: controller,
+            onPressed: () {
+              setState(() {
+                controller.clear();
+                myList = widget.myList;
+              });
+            },
+            onChanged: (value) {
+              setState(() {
+                myList = findProduct(widget.myList, value);
+              });
+            },
+            child: isNotEmpty
                 ? GridView.builder(
                     padding: EdgeInsets.only(top: 5, right: 5, left: 5),
                     physics: BouncingScrollPhysics(),

@@ -55,6 +55,13 @@ void nextPage(index) {
 }
 
 //TextEditingController searchController = TextEditingController();
+///Find Product
+findProduct(List<Product> myList, String value) {
+  return myList.where((product) {
+    return product.name.toLowerCase().contains(value.toLowerCase()) ||
+        product.price.toString().toLowerCase().contains(value.toLowerCase());
+  }).toList();
+}
 
 ///Error Snack Bar
 errorSnackBar(BuildContext context, {String title, String message}) {

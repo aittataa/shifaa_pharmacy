@@ -39,15 +39,8 @@ class _InitialScreenState extends State<InitialScreen> {
   Widget build(BuildContext context) {
     return Consumer5<CategoriesProvider, ProductsProvider, OrdersProvider, ContainsProvider,
         PrescriptionsProvider>(
-      builder: (
-        context,
-        categoryProvider,
-        productProvider,
-        orderProvider,
-        containProvider,
-        prescriptionProvider,
-        child,
-      ) {
+      builder: (context, categoryProvider, productProvider, orderProvider, containProvider,
+          prescriptionProvider, child) {
         categoryProvider.loadCategories;
         productProvider.loadProducts;
         orderProvider.loadOrders;

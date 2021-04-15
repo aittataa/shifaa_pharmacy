@@ -98,7 +98,7 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
                     children: [
                       Container(
                         padding: EdgeInsets.all(5),
-                        height: 46,
+                        height: 45,
                         child: ListView.builder(
                           physics: BouncingScrollPhysics(),
                           scrollDirection: Axis.horizontal,

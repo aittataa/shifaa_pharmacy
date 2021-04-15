@@ -463,7 +463,7 @@ displayProductsForSliderBar({
 }
 
 displayCategories({
-  dynamic item,
+  var item,
   BoxFit fit,
   Function onTap,
 }) {
@@ -511,13 +511,14 @@ displaySubCategories({
   return GestureDetector(
     onTap: onTap,
     child: AnimatedContainer(
-      duration: Duration(milliseconds: 1000),
-      curve: Curves.linearToEaseOut,
+      duration: Duration(milliseconds: 500),
+      curve: Curves.fastOutSlowIn,
       alignment: Alignment.center,
       padding: EdgeInsets.symmetric(horizontal: 10),
+      margin: EdgeInsets.symmetric(horizontal: 5),
       decoration: BoxDecoration(
         color: option ? mainColor : Colors.transparent,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(25),
       ),
       child: Text(
         "${category.title}",
