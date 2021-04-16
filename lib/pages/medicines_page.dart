@@ -40,9 +40,7 @@ class _MedicinesPageState extends State<MedicinesPage> {
             },
             onChanged: (value) {
               setState(() {
-                myList = medicinesList.where((medicine) {
-                  return medicine.title.toLowerCase().contains(value.toLowerCase());
-                }).toList();
+                myList = findCategory(medicinesList, value);
               });
             },
             child: GridView.builder(
@@ -65,7 +63,7 @@ class _MedicinesPageState extends State<MedicinesPage> {
                         builder: (context) => ProductScreen(
                           title: medicine.title,
                           myList: productsList.where((product) {
-                            return product.medicine_category_title == medicine.title;
+                            return product.medicineTitle == medicine.title;
                           }).toList(),
                         ),
                       ),

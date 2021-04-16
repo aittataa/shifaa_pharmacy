@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shifaa_pharmacy/classes/categories.dart';
 import 'package:shifaa_pharmacy/classes/product.dart';
 import 'package:shifaa_pharmacy/classes/sub_categories.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
@@ -22,8 +21,8 @@ class SubCategoriesScreen extends StatefulWidget {
   static const String id = "SubCategoriesScreen";
 
   final List<SubCategories> myList;
-  final Categories category;
-  SubCategoriesScreen({this.myList, this.category});
+  final String title;
+  SubCategoriesScreen({this.myList, this.title});
 
   @override
   _SubCategoriesScreenState createState() => _SubCategoriesScreenState();
@@ -31,24 +30,28 @@ class SubCategoriesScreen extends StatefulWidget {
 
 class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
   List<SubCategories> myList;
-  Categories category;
+  String title;
 
   @override
   void initState() {
     super.initState();
+    title = widget.title;
     myList = widget.myList;
-    category = widget.category;
     subIndex = 0;
-    if (myList.isNotEmpty) getProductList(myList[subIndex], subIndex);
+    if (myList.isNotEmpty) {
+      myListProduct = getProductList(myList[subIndex], subIndex);
+      searchProductList = myListProduct;
+    }
   }
 
-  int subIndex = 0;
-  List<Product> productList = [];
+  int subIndex;
+  List<Product> myListProduct = [];
+  List<Product> searchProductList = [];
+  TextEditingController controller = TextEditingController();
 
-  getProductList(category, index) {
-    subIndex = index;
-    productList = productsList.where((product) {
-      return product.subcategory_title == category.title;
+  getProductList(subcategory, index) {
+    return productsList.where((product) {
+      return product.subcategoryID == subcategory.id;
     }).toList();
   }
 
@@ -61,7 +64,7 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
         return Scaffold(
           appBar: AppBar(
             elevation: 1,
-            title: Text("${category.title}", style: TextStyle(fontWeight: FontWeight.bold)),
+            title: Text("$title", style: TextStyle(fontWeight: FontWeight.bold)),
             leading: BackIconButton(),
             actions: [
               FunctionIconButton(
@@ -79,22 +82,35 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
               FunctionIconButton(
                 icon: Icons.favorite,
                 onPressed: () async {
-                  var myList = favoriteProductsList.where((product) {
-                    return product.isFav == true;
-                  }).toList();
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => FavoriteScreen(myList: myList),
+                      builder: (context) => FavoriteScreen(
+                        myList: favoriteProductsList.where((product) {
+                          return product.isFav == true;
+                        }).toList(),
+                      ),
                     ),
                   );
                 },
               ),
             ],
           ),
-          body: BodyShape(
-            child: myList.isNotEmpty
-                ? Column(
+          body: myList.isNotEmpty
+              ? BodyShape(
+                  controller: controller,
+                  onPressed: () {
+                    setState(() {
+                      controller.clear();
+                      searchProductList = myListProduct;
+                    });
+                  },
+                  onChanged: (value) {
+                    setState(() {
+                      searchProductList = findProduct(myListProduct, value);
+                    });
+                  },
+                  child: Column(
                     children: [
                       Container(
                         padding: EdgeInsets.all(5),
@@ -104,12 +120,15 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
                           scrollDirection: Axis.horizontal,
                           itemCount: myList.length,
                           itemBuilder: (context, index) {
-                            var category = myList[index];
+                            SubCategories subCategory = myList[index];
                             return displaySubCategories(
-                              category: category,
+                              subCategory: subCategory,
                               option: subIndex == index,
                               onTap: () {
-                                setState(() => getProductList(category, index));
+                                setState(() {
+                                  subIndex = index;
+                                  myListProduct = getProductList(subCategory, index);
+                                });
                               },
                             );
                           },
@@ -117,7 +136,7 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
                       ),
                       DividerLine(value: 10),
                       Expanded(
-                        child: productList.isNotEmpty
+                        child: searchProductList.isNotEmpty
                             ? GridView.builder(
                                 padding: EdgeInsets.only(top: 25, right: 5, left: 5),
                                 physics: BouncingScrollPhysics(),
@@ -125,11 +144,10 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
                                   crossAxisCount: 2,
                                   mainAxisSpacing: 5,
                                   crossAxisSpacing: 5,
-                                  childAspectRatio: 1,
                                 ),
-                                itemCount: productList.length,
+                                itemCount: searchProductList.length,
                                 itemBuilder: (context, index) {
-                                  Product product = productList[index];
+                                  Product product = searchProductList[index];
                                   bool isFav = isProductFavorite(product);
                                   return displayProduct(
                                     product: product,
@@ -139,28 +157,32 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) => ProductDetails(
-                                            myList: productList,
+                                            myList: myListProduct,
                                             initialIndex: index,
                                           ),
                                         ),
                                       );
                                     },
                                     onShopTap: (bool isLiked) async {
-                                      if (isClientLogged) {
-                                        onShopProductTap(product, context);
-                                      } else {
-                                        Navigator.popAndPushNamed(context, LoginScreen.id);
-                                      }
-                                      return isLiked;
+                                      setState(() {
+                                        if (isClientLogged) {
+                                          onShopProductTap(product, context);
+                                        } else {
+                                          Navigator.popAndPushNamed(context, LoginScreen.id);
+                                        }
+                                        return isLiked;
+                                      });
                                     },
                                     onFavTap: (bool isLiked) async {
-                                      if (isClientLogged) {
-                                        onFavProductTap(product);
-                                        isFav = !isFav;
-                                      } else {
-                                        Navigator.popAndPushNamed(context, LoginScreen.id);
-                                      }
-                                      return isFav;
+                                      setState(() {
+                                        if (isClientLogged) {
+                                          onFavProductTap(product);
+                                          isFav = !isFav;
+                                        } else {
+                                          Navigator.popAndPushNamed(context, LoginScreen.id);
+                                        }
+                                        return isFav;
+                                      });
                                     },
                                   );
                                 },
@@ -168,9 +190,9 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
                             : EmptyBox(),
                       )
                     ],
-                  )
-                : EmptyBox(),
-          ),
+                  ),
+                )
+              : EmptyBox(),
         );
       },
     );

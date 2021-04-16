@@ -11,7 +11,6 @@ import 'package:shifaa_pharmacy/screens/product_details.dart';
 import 'package:shifaa_pharmacy/screens/shopping_screen.dart';
 import 'package:shifaa_pharmacy/widget/back_icon.dart';
 import 'package:shifaa_pharmacy/widget/body_shape.dart';
-import 'package:shifaa_pharmacy/widget/empty_box.dart';
 import 'package:shifaa_pharmacy/widget/function_button.dart';
 
 class ProductScreen extends StatefulWidget {
@@ -78,7 +77,6 @@ class _ProductScreenState extends State<ProductScreen> {
             ],
           ),
           body: BodyShape(
-            enable: isNotEmpty,
             controller: controller,
             onPressed: () {
               setState(() {
@@ -91,55 +89,52 @@ class _ProductScreenState extends State<ProductScreen> {
                 myList = findProduct(widget.myList, value);
               });
             },
-            child: isNotEmpty
-                ? GridView.builder(
-                    padding: EdgeInsets.only(top: 5, right: 5, left: 5),
-                    physics: BouncingScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 5,
-                      crossAxisSpacing: 5,
-                      childAspectRatio: 1,
-                    ),
-                    itemCount: myList.length,
-                    itemBuilder: (context, index) {
-                      Product product = myList[index];
-                      bool isFav = isProductFavorite(product);
-                      return displayProduct(
-                        product: product,
-                        isFav: isFav,
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ProductDetails(
-                                myList: myList,
-                                initialIndex: index,
-                              ),
-                            ),
-                          );
-                        },
-                        onShopTap: (bool isLiked) async {
-                          if (isClientLogged) {
-                            onShopProductTap(product, context);
-                          } else {
-                            Navigator.popAndPushNamed(context, LoginScreen.id);
-                          }
-                          return isLiked;
-                        },
-                        onFavTap: (bool isLiked) async {
-                          if (isClientLogged) {
-                            onFavProductTap(product);
-                            isFav = !isFav;
-                          } else {
-                            Navigator.popAndPushNamed(context, LoginScreen.id);
-                          }
-                          return isFav;
-                        },
-                      );
-                    },
-                  )
-                : EmptyBox(),
+            child: GridView.builder(
+              padding: EdgeInsets.all(5),
+              physics: BouncingScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 5,
+                crossAxisSpacing: 5,
+              ),
+              itemCount: myList.length,
+              itemBuilder: (context, index) {
+                Product product = myList[index];
+                bool isFav = isProductFavorite(product);
+                return displayProduct(
+                  product: product,
+                  isFav: isFav,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProductDetails(
+                          myList: myList,
+                          initialIndex: index,
+                        ),
+                      ),
+                    );
+                  },
+                  onShopTap: (bool isLiked) async {
+                    if (isClientLogged) {
+                      onShopProductTap(product, context);
+                    } else {
+                      Navigator.popAndPushNamed(context, LoginScreen.id);
+                    }
+                    return isLiked;
+                  },
+                  onFavTap: (bool isLiked) async {
+                    if (isClientLogged) {
+                      onFavProductTap(product);
+                      isFav = !isFav;
+                    } else {
+                      Navigator.popAndPushNamed(context, LoginScreen.id);
+                    }
+                    return isFav;
+                  },
+                );
+              },
+            ),
           ),
         );
       },

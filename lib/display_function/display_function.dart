@@ -139,7 +139,7 @@ displayProductDetails({
                     ),
                     subtitle: Text(
                       product.mainIngredient == null
-                          ? "${product.brand_title}"
+                          ? "${product.brandTitle}"
                           : "${product.mainIngredient}",
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -205,8 +205,7 @@ displayProductDetails({
                 SizedBox(
                   child: Row(
                     children: [
-                      if (product.subcategory_title != null ||
-                          product.medicine_category_title != null)
+                      if (product.subcategoryTitle != null || product.medicineTitle != null)
                         Expanded(
                           child: Padding(
                             padding: EdgeInsets.all(5),
@@ -220,9 +219,9 @@ displayProductDetails({
                                   ),
                                 ),
                                 Text(
-                                  product.medicine_category_title == null
-                                      ? "${product.subcategory_title}"
-                                      : "${product.medicine_category_title}",
+                                  product.medicineTitle == null
+                                      ? "${product.subcategoryTitle}"
+                                      : "${product.medicineTitle}",
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w900,
@@ -232,7 +231,7 @@ displayProductDetails({
                             ),
                           ),
                         ),
-                      if (product.quantity != 0 && product.dosage_form_type != null)
+                      if (product.quantity != 0 && product.dosageType != null)
                         Expanded(
                           child: Padding(
                             padding: EdgeInsets.all(5),
@@ -246,7 +245,7 @@ displayProductDetails({
                                   ),
                                 ),
                                 Text(
-                                  "${product.quantity} ${product.dosage_form_type}",
+                                  "${product.quantity} ${product.dosageType}",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: Colors.white,
@@ -504,7 +503,7 @@ displayCategories({
 }
 
 displaySubCategories({
-  SubCategories category,
+  SubCategories subCategory,
   bool option,
   Function onTap,
 }) {
@@ -514,14 +513,13 @@ displaySubCategories({
       duration: Duration(milliseconds: 500),
       curve: Curves.fastOutSlowIn,
       alignment: Alignment.center,
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      margin: EdgeInsets.symmetric(horizontal: 5),
+      padding: EdgeInsets.symmetric(horizontal: 15),
       decoration: BoxDecoration(
         color: option ? mainColor : Colors.transparent,
         borderRadius: BorderRadius.circular(25),
       ),
       child: Text(
-        "${category.title}",
+        "${subCategory.title}",
         style: TextStyle(
           color: option ? Colors.white : Colors.black26,
           fontWeight: FontWeight.bold,
@@ -609,7 +607,7 @@ displayContain({
         Expanded(
           flex: 3,
           child: Text(
-            "${contain.product_name}",
+            "${contain.productName}",
             softWrap: false,
             style: TextStyle(
               color: Colors.white,
@@ -618,7 +616,7 @@ displayContain({
           ),
         ),
         Text(
-          "${contain.product_price.toStringAsFixed(2)} DH",
+          "${contain.productPrice.toStringAsFixed(2)} DH",
           softWrap: false,
           style: TextStyle(
             color: Colors.white,

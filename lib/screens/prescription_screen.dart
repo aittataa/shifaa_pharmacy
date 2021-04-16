@@ -63,7 +63,7 @@ class PrescriptionScreen extends StatelessWidget {
                     itemBuilder: (context, index) {
                       Order order = myPrescriptionList[index];
                       List<Prescription> myList = prescriptionList.where((prescription) {
-                        return prescription.order_id == order.id;
+                        return prescription.orderID == order.id;
                       }).toList();
                       return ExpansionTile(
                         initiallyExpanded: !order.isValid,

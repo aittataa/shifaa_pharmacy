@@ -260,7 +260,7 @@ class DataBaseProvider extends ChangeNotifier {
     action["from"] = _FROM_APP;
     action["action"] = _ADD_ORDER;
     action["order_type"] = order.type;
-    action["client_id"] = order.client_id.toString();
+    action["client_id"] = order.clientID.toString();
     var response = await http.post(_api, body: action);
     if (response.statusCode == 200) {
       var map = jsonDecode(response.body);
@@ -306,8 +306,8 @@ class DataBaseProvider extends ChangeNotifier {
     var action = Map<String, dynamic>();
     action["from"] = _FROM_APP;
     action["action"] = _ADD_CONTAIN;
-    action["order_id"] = contain.order_id.toString();
-    action["product_id"] = contain.product_id.toString();
+    action["order_id"] = contain.orderID.toString();
+    action["product_id"] = contain.productID.toString();
     var response = await http.post(_api, body: action);
     if (response.statusCode == 200) {
       var map = jsonDecode(response.body);
@@ -356,7 +356,7 @@ class DataBaseProvider extends ChangeNotifier {
     action["image_file"] = prescription.file;
     action["image_name"] = prescription.picture;
     action["description"] = prescription.description;
-    action["order_id"] = prescription.order_id.toString();
+    action["order_id"] = prescription.orderID.toString();
     var response = await http.post(_api, body: action);
     if (response.statusCode == 200) {
       var map = jsonDecode(response.body);
@@ -402,8 +402,8 @@ class DataBaseProvider extends ChangeNotifier {
     var action = Map<String, dynamic>();
     action["from"] = _FROM_APP;
     action["action"] = _ADD_FAVORITE;
-    action["client_id"] = favorite.client_id.toString();
-    action["product_id"] = favorite.product_id.toString();
+    action["client_id"] = favorite.clientID.toString();
+    action["product_id"] = favorite.productID.toString();
     var response = await http.post(_api, body: action);
     if (response.statusCode == 200) {
       var map = jsonDecode(response.body);
@@ -417,8 +417,8 @@ class DataBaseProvider extends ChangeNotifier {
     var action = Map<String, dynamic>();
     action["from"] = _FROM_APP;
     action["action"] = _UPDATE_FAVORITE;
-    action["client_id"] = favorite.client_id.toString();
-    action["product_id"] = favorite.product_id.toString();
+    action["client_id"] = favorite.clientID.toString();
+    action["product_id"] = favorite.productID.toString();
     action["favorite_status"] = favorite.status.toString();
     var response = await http.post(_api, body: action);
     if (response.statusCode == 200) {

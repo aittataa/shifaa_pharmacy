@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shifaa_pharmacy/classes/brand.dart';
-import 'package:shifaa_pharmacy/classes/product.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
 import 'package:shifaa_pharmacy/display_function/display_function.dart';
 import 'package:shifaa_pharmacy/screens/product_screen.dart';
@@ -15,11 +14,14 @@ class BrandsBar extends StatelessWidget {
     if (myBrandList.isNotEmpty) {
       return Column(
         children: [
-          SplitTitle(title: "Brands", onPressed: onPressed),
-          Container(
+          SplitTitle(
+            title: "Brands",
+            onPressed: onPressed,
+          ),
+          SizedBox(
             height: screenHeight * 0.2,
-            padding: EdgeInsets.only(left: 5, top: 5, bottom: 5),
             child: GridView.builder(
+              padding: EdgeInsets.all(5),
               physics: BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -29,9 +31,6 @@ class BrandsBar extends StatelessWidget {
               itemCount: myBrandList.length,
               itemBuilder: (context, index) {
                 Brand brand = myBrandList[index];
-                List<Product> myList = productsList.where((product) {
-                  return product.brand_title == brand.title;
-                }).toList();
                 return displayCategories(
                   item: brand,
                   fit: BoxFit.fill,
@@ -41,7 +40,9 @@ class BrandsBar extends StatelessWidget {
                       MaterialPageRoute(
                         builder: (context) => ProductScreen(
                           title: brand.title,
-                          myList: myList,
+                          myList: productsList.where((product) {
+                            return product.brandID == brand.id;
+                          }).toList(),
                         ),
                       ),
                     );

@@ -4,7 +4,7 @@ class Order {
   final bool isValid;
   final double total;
   final String type;
-  final int client_id;
+  final int clientID;
 
   Order({
     this.id,
@@ -12,7 +12,7 @@ class Order {
     this.isValid = false,
     this.type,
     this.total,
-    this.client_id,
+    this.clientID,
   });
 
   factory Order.fromJson(Map<String, dynamic> data) {

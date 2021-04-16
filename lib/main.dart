@@ -24,7 +24,6 @@ import 'package:shifaa_pharmacy/screens/profile_screen.dart';
 import 'package:shifaa_pharmacy/screens/register_screen.dart';
 import 'package:shifaa_pharmacy/screens/shopping_screen.dart';
 import 'package:shifaa_pharmacy/screens/subcategories_screen.dart';
-import 'package:shifaa_pharmacy/screens/treatment_screen.dart';
 import 'package:shifaa_pharmacy/widget/splash_screen.dart';
 
 void main() => runApp(ShifaaPharmacy());
@@ -96,7 +95,6 @@ class ShifaaPharmacy extends StatelessWidget {
             PrescriptionScreen.id: (context) => PrescriptionScreen(),
             OrderAddress.id: (context) => OrderAddress(),
             PrescriptionManager.id: (context) => PrescriptionManager(),
-            TreatmentScreen.id: (context) => TreatmentScreen(),
             FavoriteScreen.id: (context) => FavoriteScreen(),
             AboutScreen.id: (context) => AboutScreen(),
             ProfileScreen.id: (context) => ProfileScreen(),

@@ -1,25 +1,25 @@
 class Contain {
   final int id;
-  final int product_id;
-  final String product_name;
-  final double product_price;
-  final int order_id;
+  final int productID;
+  final String productName;
+  final double productPrice;
+  final int orderID;
 
   Contain({
     this.id,
-    this.product_id,
-    this.product_name,
-    this.product_price,
-    this.order_id,
+    this.productID,
+    this.productName,
+    this.productPrice,
+    this.orderID,
   });
 
   factory Contain.fromJson(Map<String, dynamic> data) {
     return Contain(
       id: int.parse(data["id_contain"]),
-      product_id: int.parse(data["product_id"]),
-      product_name: data["name"],
-      product_price: double.parse(data["price"]),
-      order_id: int.parse(data["order_id"]),
+      productID: int.parse(data["product_id"]),
+      productName: data["name"],
+      productPrice: double.parse(data["price"]),
+      orderID: int.parse(data["order_id"]),
     );
   }
 }

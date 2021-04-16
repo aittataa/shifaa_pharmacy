@@ -26,7 +26,7 @@ class SplashScreen extends StatelessWidget {
               ],
             ),
           ),
-          SpinKitThreeBounceIndicator(),
+          SpinIndicator(),
           ListTile(
             contentPadding: EdgeInsets.zero,
             minVerticalPadding: 0,

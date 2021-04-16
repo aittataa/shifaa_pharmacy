@@ -32,7 +32,7 @@ class AboutScreen extends StatelessWidget {
                 Column(
                   children: [
                     Container(
-                      margin: EdgeInsets.only(top: 10, bottom: 10),
+                      margin: EdgeInsets.symmetric(vertical: 10),
                       height: screenHeight * 0.25,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
@@ -49,6 +49,7 @@ class AboutScreen extends StatelessWidget {
                       ),
                     ),
                     Container(
+                      margin: EdgeInsets.symmetric(vertical: 5),
                       decoration: BoxDecoration(
                         color: mainColor,
                         borderRadius: BorderRadius.circular(10),
@@ -99,7 +100,7 @@ class AboutScreen extends StatelessWidget {
                   },
                 ),
                 Container(
-                  width: double.infinity,
+                  //width: double.infinity,
                   decoration: BoxDecoration(
                     color: mainColor,
                     borderRadius: BorderRadius.circular(5),

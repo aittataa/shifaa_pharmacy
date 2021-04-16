@@ -13,7 +13,7 @@ class ModalProgressIndicator extends StatelessWidget {
     return ModalProgressHUD(
       inAsyncCall: inAsyncCall,
       opacity: opacity,
-      progressIndicator: SpinKitThreeBounceIndicator(),
+      progressIndicator: SpinIndicator(),
       child: child,
     );
   }

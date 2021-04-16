@@ -6,7 +6,7 @@ class Prescription {
   final String file;
   final String description;
   final DateTime date;
-  final int order_id;
+  final int orderID;
 
   Prescription({
     this.id,
@@ -14,7 +14,7 @@ class Prescription {
     this.file,
     this.description,
     this.date,
-    this.order_id,
+    this.orderID,
   });
 
   factory Prescription.fromJson(Map<String, dynamic> data) {
@@ -23,7 +23,7 @@ class Prescription {
       picture: "$URL_SERVER/images/prescriptions/${data["prescription_picture"]}",
       description: data["prescription_description"],
       date: DateTime.parse(data["prescription_date"]),
-      order_id: int.parse(data["order_id"]),
+      orderID: int.parse(data["order_id"]),
     );
   }
 }

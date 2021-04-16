@@ -54,12 +54,18 @@ void nextPage(index) {
   pageController.jumpToPage(index);
 }
 
-//TextEditingController searchController = TextEditingController();
 ///Find Product
 findProduct(List<Product> myList, String value) {
   return myList.where((product) {
     return product.name.toLowerCase().contains(value.toLowerCase()) ||
         product.price.toString().toLowerCase().contains(value.toLowerCase());
+  }).toList();
+}
+
+///Find Category
+findCategory(List<dynamic> myList, String value) {
+  return myList.where((item) {
+    return item.title.toLowerCase().contains(value.toLowerCase());
   }).toList();
 }
 
@@ -89,21 +95,13 @@ Future<bool> isWillPop(context) {
     builder: (context) => CupertinoAlertDialog(
       title: Text(
         "$appTitle",
-        style: TextStyle(
-          color: mainColor,
-          fontWeight: FontWeight.w900,
-          fontSize: 20,
-        ),
+        style: TextStyle(color: mainColor, fontWeight: FontWeight.w900, fontSize: 20),
       ),
       content: Container(
         padding: EdgeInsets.only(top: 10, bottom: 10),
         child: Text(
           "Are You Sure You Want To Exit ?",
-          style: TextStyle(
-            color: Colors.white60,
-            fontWeight: FontWeight.bold,
-            fontSize: 15,
-          ),
+          style: TextStyle(color: Colors.white60, fontWeight: FontWeight.bold, fontSize: 15),
         ),
       ),
       actions: <Widget>[
@@ -155,8 +153,8 @@ void onShopProductTap(Product product, context) async {
     lastOrder = listOfOrders.first;
     if (!lastOrder.isValid) {
       bool state = await containProvider.addContain(Contain(
-        order_id: lastOrder.id,
-        product_id: product.id,
+        orderID: lastOrder.id,
+        productID: product.id,
       ));
       if (state) {
         await orderProvider.loadOrders;
@@ -165,15 +163,15 @@ void onShopProductTap(Product product, context) async {
       bool state = await orderProvider.addOrder(
         Order(
           type: "NORMAL",
-          client_id: id,
+          clientID: id,
         ),
       );
       if (state) {
         listOfOrders = await orderProvider.getNormalOrder(id);
         if (listOfOrders.isNotEmpty) {
           bool state = await containProvider.addContain(Contain(
-            order_id: listOfOrders.first.id,
-            product_id: product.id,
+            orderID: listOfOrders.first.id,
+            productID: product.id,
           ));
           if (state) {
             await orderProvider.loadOrders;
@@ -185,15 +183,15 @@ void onShopProductTap(Product product, context) async {
     bool state = await orderProvider.addOrder(
       Order(
         type: "NORMAL",
-        client_id: id,
+        clientID: id,
       ),
     );
     if (state) {
       listOfOrders = await orderProvider.getNormalOrder(id);
       if (listOfOrders.isNotEmpty) {
         bool state = await containProvider.addContain(Contain(
-          order_id: listOfOrders.first.id,
-          product_id: product.id,
+          orderID: listOfOrders.first.id,
+          productID: product.id,
         ));
         if (state) {
           await orderProvider.loadOrders;
@@ -226,8 +224,8 @@ void onFavProductTap(Product product) async {
   if (isFav == false) {
     bool state = await productProvider.addFavorite(
       Favorite(
-        client_id: clientID,
-        product_id: productID,
+        clientID: clientID,
+        productID: productID,
       ),
     );
     if (state) {
@@ -236,8 +234,8 @@ void onFavProductTap(Product product) async {
   } else if (product.isFav) {
     bool state = await productProvider.updateFavorite(
       Favorite(
-        client_id: clientID,
-        product_id: productID,
+        clientID: clientID,
+        productID: productID,
         status: 0,
       ),
     );
@@ -247,8 +245,8 @@ void onFavProductTap(Product product) async {
   } else {
     bool state = await productProvider.updateFavorite(
       Favorite(
-        client_id: clientID,
-        product_id: productID,
+        clientID: clientID,
+        productID: productID,
         status: 1,
       ),
     );

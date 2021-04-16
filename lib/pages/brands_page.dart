@@ -40,9 +40,7 @@ class _BrandsPageState extends State<BrandsPage> {
             },
             onChanged: (value) {
               setState(() {
-                myList = brandsList.where((brand) {
-                  return brand.title.toLowerCase().contains(value.toLowerCase());
-                }).toList();
+                myList = findCategory(brandsList, value);
               });
             },
             child: GridView.builder(
@@ -67,7 +65,7 @@ class _BrandsPageState extends State<BrandsPage> {
                         builder: (context) => ProductScreen(
                           title: brand.title,
                           myList: productsList.where((product) {
-                            return product.brand_title == brand.title;
+                            return product.brandTitle == brand.title;
                           }).toList(),
                         ),
                       ),

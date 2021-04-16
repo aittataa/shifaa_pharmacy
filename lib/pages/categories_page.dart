@@ -40,9 +40,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
             },
             onChanged: (value) {
               setState(() {
-                myList = categoriesList.where((category) {
-                  return category.title.toLowerCase().contains(value.toLowerCase());
-                }).toList();
+                myList = findCategory(categoriesList, value);
               });
             },
             child: GridView.builder(
@@ -64,9 +62,9 @@ class _CategoriesPageState extends State<CategoriesPage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => SubCategoriesScreen(
-                          category: category,
+                          title: category.title,
                           myList: subcategoriesList.where((subcategory) {
-                            return subcategory.category_id == category.id;
+                            return subcategory.categoryID == category.id;
                           }).toList(),
                         ),
                       ),

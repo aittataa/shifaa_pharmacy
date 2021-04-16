@@ -9,35 +9,28 @@ class ContainerDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: mainColor,
-          borderRadius: BorderRadius.circular(5),
+    return Container(
+      decoration: BoxDecoration(
+        color: mainColor,
+        borderRadius: BorderRadius.circular(5),
+      ),
+      margin: EdgeInsets.symmetric(vertical: 3),
+      child: ListTile(
+        onTap: onTap,
+        dense: true,
+        leading: Icon(icon, color: Colors.white, size: 30),
+        title: Text(
+          "$text",
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w900,
+          ),
         ),
-        margin: EdgeInsets.only(top: 5, bottom: 1),
-        padding: EdgeInsets.only(left: 10, top: 5, bottom: 5, right: 5),
-        child: Row(
-          children: [
-            Icon(icon, color: Colors.white, size: 30),
-            SizedBox(width: 20),
-            Expanded(
-              child: Text(
-                "$text",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w900,
-                ),
-              ),
-            ),
-            Image.asset(
-              "images/right.png",
-              width: 25,
-              height: 25,
-            ),
-          ],
+        trailing: Image.asset(
+          "images/right.png",
+          color: Colors.white,
+          width: 25,
+          height: 25,
         ),
       ),
     );

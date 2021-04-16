@@ -171,7 +171,7 @@ class _PrescriptionManagerState extends State<PrescriptionManager> {
                                       picture: picture,
                                       file: imageString,
                                       description: description.text.trim(),
-                                      order_id: lastOrder.id,
+                                      orderID: lastOrder.id,
                                     ),
                                   );
                                   if (state) {
@@ -180,7 +180,7 @@ class _PrescriptionManagerState extends State<PrescriptionManager> {
                                   }
                                 } else {
                                   bool state = await orderProvider.addOrder(
-                                    Order(type: "PRESCRIPTION", client_id: id),
+                                    Order(type: "PRESCRIPTION", clientID: id),
                                   );
                                   if (state) {
                                     listOfPrescriptions =
@@ -192,7 +192,7 @@ class _PrescriptionManagerState extends State<PrescriptionManager> {
                                           picture: picture,
                                           file: imageString,
                                           description: description.text.trim(),
-                                          order_id: lastOrder.id,
+                                          orderID: lastOrder.id,
                                         ),
                                       );
                                       if (state) {
@@ -204,7 +204,7 @@ class _PrescriptionManagerState extends State<PrescriptionManager> {
                                 }
                               } else {
                                 bool state = await orderProvider.addOrder(
-                                  Order(type: "PRESCRIPTION", client_id: id),
+                                  Order(type: "PRESCRIPTION", clientID: id),
                                 );
                                 if (state) {
                                   listOfPrescriptions =
@@ -216,7 +216,7 @@ class _PrescriptionManagerState extends State<PrescriptionManager> {
                                         picture: picture,
                                         file: imageString,
                                         description: description.text.trim(),
-                                        order_id: lastOrder.id,
+                                        orderID: lastOrder.id,
                                       ),
                                     );
                                     if (state) {

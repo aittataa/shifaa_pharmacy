@@ -15,13 +15,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int slideIndex;
   @override
   void initState() {
     super.initState();
     slideIndex = 0;
   }
 
-  int slideIndex;
   @override
   Widget build(BuildContext context) {
     return Consumer2<CategoriesProvider, ProductsProvider>(
@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             MedicineBar(
-              myMedList: medicinesList,
+              myList: medicinesList,
               onPressed: () {
                 setState(() {
                   pageIndex = 0;
@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
               myList: productsList,
             ),
             CategoriesBar(
-              myCatList: categoriesList,
+              myList: categoriesList,
               onPressed: () {
                 setState(() {
                   pageIndex = 1;

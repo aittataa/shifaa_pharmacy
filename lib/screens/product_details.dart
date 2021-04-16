@@ -79,30 +79,39 @@ class _ProductDetailsState extends State<ProductDetails> {
                 product: product,
                 isFav: isFav,
                 onShopTap: (bool isLiked) async {
-                  if (isClientLogged) {
-                    onShopProductTap(product, context);
-                  } else {
-                    Navigator.pushNamed(context, LoginScreen.id);
-                  }
-                  return isLiked;
+                  setState(() {
+                    if (isClientLogged) {
+                      onShopProductTap(product, context);
+                    } else {
+                      Navigator.pushNamed(context, LoginScreen.id);
+                    }
+                    return isLiked;
+                  });
+
                 },
                 onBuyTap: () {
-                  if (isClientLogged) {
-                    onShopProductTap(product, context);
-                    productProvider.loadProducts;
-                    Navigator.pushNamed(context, ShoppingScreen.id);
-                  } else {
-                    Navigator.pushNamed(context, LoginScreen.id);
-                  }
+                  setState(() {
+                    if (isClientLogged) {
+                      onShopProductTap(product, context);
+                      productProvider.loadProducts;
+                      Navigator.pushNamed(context, ShoppingScreen.id);
+                    } else {
+                      Navigator.pushNamed(context, LoginScreen.id);
+                    }
+                  });
+
                 },
                 onFavTap: (bool isLiked) async {
-                  if (isClientLogged) {
-                    onFavProductTap(product);
-                    isFav = !isFav;
-                  } else {
-                    Navigator.pushNamed(context, LoginScreen.id);
-                  }
-                  return isFav;
+                  setState(() {
+                    if (isClientLogged) {
+                      onFavProductTap(product);
+                      isFav = !isFav;
+                    } else {
+                      Navigator.pushNamed(context, LoginScreen.id);
+                    }
+                    return isFav;
+                  });
+
                 },
               );
             },

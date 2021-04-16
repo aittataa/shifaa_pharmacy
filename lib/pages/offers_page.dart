@@ -9,7 +9,7 @@ class OffersPage extends StatelessWidget {
     return Consumer<CategoriesProvider>(
       builder: (context, categoryProvider, child) {
         categoryProvider.loadCategories;
-        if (false) {
+        if (true) {
           return Center(
             child: Text(
               "Offers !",

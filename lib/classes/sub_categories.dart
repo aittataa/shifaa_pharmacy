@@ -5,14 +5,14 @@ class SubCategories {
   final String title;
   final String picture;
   final String description;
-  final int category_id;
+  final int categoryID;
 
   SubCategories({
     this.id,
     this.title,
     this.picture,
     this.description,
-    this.category_id,
+    this.categoryID,
   });
 
   factory SubCategories.fromJson(Map<String, dynamic> data) {
@@ -21,7 +21,7 @@ class SubCategories {
       title: data["subcategory_title"],
       picture: "$URL_SERVER/images/${data["subcategory_picture"]}",
       description: data["subcategory_description"],
-      category_id: int.parse(data["category_id"]),
+      categoryID: int.parse(data["category_id"]),
     );
   }
 }

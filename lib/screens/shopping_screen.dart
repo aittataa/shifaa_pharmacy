@@ -62,7 +62,7 @@ class ShoppingScreen extends StatelessWidget {
                     itemBuilder: (context, index) {
                       Order order = myShoppingList[index];
                       List<Contain> myList = containList.where((contain) {
-                        return contain.order_id == order.id;
+                        return contain.orderID == order.id;
                       }).toList();
                       return ExpansionTile(
                         initiallyExpanded: !order.isValid,

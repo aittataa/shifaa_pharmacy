@@ -66,30 +66,28 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
               ),
             ],
           ),
-          body: BodyShape(
-            enable: isNotEmpty,
-            controller: controller,
-            onPressed: () {
-              setState(() {
-                controller.clear();
-                myList = widget.myList;
-              });
-            },
-            onChanged: (value) {
-              setState(() {
-                myList = findProduct(widget.myList, value);
-              });
-            },
-            child: isNotEmpty
-                ? GridView.builder(
-                    padding: EdgeInsets.only(top: 5, right: 5, left: 5),
+          body: isNotEmpty
+              ? BodyShape(
+                  controller: controller,
+                  onPressed: () {
+                    setState(() {
+                      controller.clear();
+                      myList = widget.myList;
+                    });
+                  },
+                  onChanged: (value) {
+                    setState(() {
+                      myList = findProduct(widget.myList, value);
+                    });
+                  },
+                  child: GridView.builder(
+                    padding: EdgeInsets.all(5),
                     physics: BouncingScrollPhysics(),
                     scrollDirection: Axis.vertical,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 5,
                       mainAxisSpacing: 5,
-                      childAspectRatio: 1,
                     ),
                     itemCount: myList.length,
                     itemBuilder: (context, index) {
@@ -134,9 +132,9 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                         },
                       );
                     },
-                  )
-                : EmptyBox(),
-          ),
+                  ),
+                )
+              : EmptyBox(),
         );
       },
     );

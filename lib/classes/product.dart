@@ -1,23 +1,26 @@
 import 'package:shifaa_pharmacy/constant/constant.dart';
 
 class Product {
-  int id;
-  String name;
-  String tradeName;
-  String mainIngredient;
-  String dose;
-  int quantity;
-  double price;
-  String picture;
-  bool featured;
-  bool status;
-  String description;
-  String dosage_form_type;
-  String medicine_category_title;
-  String subcategory_title;
-  String brand_title;
-  bool isFav;
-  int isShop;
+  final int id;
+  final String name;
+  final String tradeName;
+  final String mainIngredient;
+  final String dose;
+  final int quantity;
+  final double price;
+  final String picture;
+  final bool featured;
+  final bool status;
+  final String description;
+  final String dosageType;
+  final int medicineID;
+  final String medicineTitle;
+  final int subcategoryID;
+  final String subcategoryTitle;
+  final int brandID;
+  final String brandTitle;
+  final bool isFav;
+  final int isShop;
 
   Product({
     this.id,
@@ -31,10 +34,13 @@ class Product {
     this.featured,
     this.status,
     this.description,
-    this.dosage_form_type,
-    this.medicine_category_title,
-    this.subcategory_title,
-    this.brand_title,
+    this.dosageType,
+    this.medicineID,
+    this.medicineTitle,
+    this.subcategoryID,
+    this.subcategoryTitle,
+    this.brandID,
+    this.brandTitle,
     this.isFav,
     this.isShop,
   });
@@ -52,10 +58,13 @@ class Product {
       featured: data["featured"] == "1",
       status: data["status"] == "1",
       description: data["description"],
-      dosage_form_type: data["dosageform_type"] ?? null,
-      medicine_category_title: data["medcategory_title"] ?? null,
-      subcategory_title: data["subcategory_title"] ?? null,
-      brand_title: data["brand_title"] ?? null,
+      dosageType: data["dosageform_type"] ?? null,
+      medicineID: data["id_medcategory"] != null ? int.parse(data["id_medcategory"]) : 0,
+      medicineTitle: data["medcategory_title"] ?? null,
+      subcategoryID: data["id_subcategory"] != null ? int.parse(data["id_subcategory"]) : 0,
+      subcategoryTitle: data["subcategory_title"] ?? null,
+      brandID: data["id_subcategory"] != null ? int.parse(data["id_brand"]) : 0,
+      brandTitle: data["brand_title"] ?? null,
       isFav: data["favorite_status"] == "1" ?? false,
       isShop: int.parse(data["shop"]),
     );
