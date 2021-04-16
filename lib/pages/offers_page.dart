@@ -20,6 +20,7 @@ class OffersPage extends StatelessWidget {
               ),
             ),
           );
+          // ignore: dead_code
         } else {
           return EmptyBox();
         }

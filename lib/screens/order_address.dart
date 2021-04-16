@@ -12,11 +12,11 @@ import 'package:shifaa_pharmacy/widget/text_box.dart';
 class OrderAddress extends StatefulWidget {
   static const String id = "OrderAddress";
 
-  final int id_order;
-  final int id_client;
+  final int orderID;
+  final int clientID;
   OrderAddress({
-    this.id_order,
-    this.id_client,
+    this.orderID,
+    this.clientID,
   });
 
   @override
@@ -29,15 +29,15 @@ class _OrderAddressState extends State<OrderAddress> {
     super.initState();
     isAddressExist = signInClient.address.isNotEmpty;
 
-    id_client = widget.id_client;
-    id_order = widget.id_order;
+    clientID = widget.clientID;
+    orderID = widget.orderID;
     address.text = "";
     zipCode.text = "";
     city.text = "";
   }
 
-  int id_client;
-  int id_order;
+  int clientID;
+  int orderID;
   var address = TextEditingController();
   var zipCode = TextEditingController();
   var city = TextEditingController();
@@ -72,7 +72,7 @@ class _OrderAddressState extends State<OrderAddress> {
                       onPressed: () async {
                         FocusScope.of(context).unfocus();
                         setState(() => isAsyncCall = true);
-                        bool state = await orderProvider.updateOrder(id_order);
+                        bool state = await orderProvider.updateOrder(orderID);
                         if (state) {
                           isAsyncCall = false;
                           Navigator.pop(context);
@@ -147,14 +147,14 @@ class _OrderAddressState extends State<OrderAddress> {
                               int code = int.tryParse(zipCode.text.trim(), radix: 10);
                               bool state = await clientProvider.updateClientAddress(
                                 Client(
-                                  id: id_client,
+                                  id: clientID,
                                   address: address.text.trim().toUpperCase(),
                                   zipCode: code,
                                   city: city.text.trim().toUpperCase(),
                                 ),
                               );
                               if (state) {
-                                bool state = await orderProvider.updateOrder(id_order);
+                                bool state = await orderProvider.updateOrder(orderID);
                                 if (state) {
                                   isAsyncCall = false;
                                   Navigator.pop(context);

@@ -74,8 +74,8 @@ class ShoppingScreen extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => OrderAddress(
-                                  id_order: order.id,
-                                  id_client: signInClient.id,
+                                  orderID: order.id,
+                                  clientID: signInClient.id,
                                 ),
                               ),
                             );
