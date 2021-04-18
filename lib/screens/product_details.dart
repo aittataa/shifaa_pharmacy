@@ -54,15 +54,15 @@ class _ProductDetailsState extends State<ProductDetails> {
               ),
               FunctionIconButton(
                 icon: Icons.favorite,
-                color: mainColor,
-                onPressed: () async {
-                  var myList = favoriteProductsList.where((product) {
-                    return product.isFav == true;
-                  }).toList();
+                onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => FavoriteScreen(myList: myList),
+                      builder: (context) => FavoriteScreen(
+                        myList: favoriteProductsList.where((product) {
+                          return product.isFav == true;
+                        }).toList(),
+                      ),
                     ),
                   );
                 },
@@ -87,7 +87,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                     }
                     return isLiked;
                   });
-
                 },
                 onBuyTap: () {
                   setState(() {
@@ -99,7 +98,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                       Navigator.pushNamed(context, LoginScreen.id);
                     }
                   });
-
                 },
                 onFavTap: (bool isLiked) async {
                   setState(() {
@@ -111,7 +109,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                     }
                     return isFav;
                   });
-
                 },
               );
             },

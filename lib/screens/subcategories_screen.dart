@@ -81,7 +81,7 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
               ),
               FunctionIconButton(
                 icon: Icons.favorite,
-                onPressed: () async {
+                onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(

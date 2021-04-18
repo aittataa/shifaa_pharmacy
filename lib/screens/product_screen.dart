@@ -62,14 +62,15 @@ class _ProductScreenState extends State<ProductScreen> {
               ),
               FunctionIconButton(
                 icon: Icons.favorite,
-                onPressed: () async {
-                  var myList = favoriteProductsList.where((product) {
-                    return product.isFav == true;
-                  }).toList();
+                onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => FavoriteScreen(myList: myList),
+                      builder: (context) => FavoriteScreen(
+                        myList: favoriteProductsList.where((product) {
+                          return product.isFav == true;
+                        }).toList(),
+                      ),
                     ),
                   );
                 },

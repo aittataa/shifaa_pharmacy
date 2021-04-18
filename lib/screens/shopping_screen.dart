@@ -37,15 +37,15 @@ class ShoppingScreen extends StatelessWidget {
               ),
               FunctionIconButton(
                 icon: Icons.favorite,
-                onPressed: () async {
-                  var myList = favoriteProductsList.where((product) {
-                    return product.isFav == true;
-                  }).toList();
-                  Navigator.pop(context);
+                onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => FavoriteScreen(myList: myList),
+                      builder: (context) => FavoriteScreen(
+                        myList: favoriteProductsList.where((product) {
+                          return product.isFav == true;
+                        }).toList(),
+                      ),
                     ),
                   );
                 },

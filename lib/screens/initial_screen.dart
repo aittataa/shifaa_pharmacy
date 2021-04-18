@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:shifaa_pharmacy/classes/product.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
 import 'package:shifaa_pharmacy/pages/brands_page.dart';
 import 'package:shifaa_pharmacy/pages/categories_page.dart';
@@ -51,7 +50,8 @@ class _InitialScreenState extends State<InitialScreen> {
           child: Scaffold(
             appBar: AppBar(
               elevation: 1,
-              title: Text(listTitles[pageIndex], style: TextStyle(fontWeight: FontWeight.bold)),
+              title:
+                  Text("${listTitles[pageIndex]}", style: TextStyle(fontWeight: FontWeight.bold)),
               leading: MenuButtonBuilder(),
               actions: [
                 FunctionIconButton(
@@ -69,12 +69,15 @@ class _InitialScreenState extends State<InitialScreen> {
                 FunctionIconButton(
                   icon: Icons.favorite,
                   onPressed: () {
-                    List<Product> myList = favoriteProductsList.where((product) {
-                      return product.isFav == true;
-                    }).toList();
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => FavoriteScreen(myList: myList)),
+                      MaterialPageRoute(
+                        builder: (context) => FavoriteScreen(
+                          myList: favoriteProductsList.where((product) {
+                            return product.isFav == true;
+                          }).toList(),
+                        ),
+                      ),
                     );
                   },
                 ),

@@ -28,6 +28,7 @@ import 'package:shifaa_pharmacy/widget/splash_screen.dart';
 
 void main() => runApp(ShifaaPharmacy());
 
+//Today Update
 class ShifaaPharmacy extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -77,8 +78,6 @@ class ShifaaPharmacy extends StatelessWidget {
             },
             splash: SplashScreen(),
             curve: Curves.linearToEaseOut,
-            centered: false,
-            disableNavigation: false,
             backgroundColor: backColor,
             splashTransition: SplashTransition.fadeTransition,
             animationDuration: Duration(milliseconds: 1500),
