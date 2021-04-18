@@ -31,6 +31,7 @@ class _InitialScreenState extends State<InitialScreen> {
   @override
   void initState() {
     super.initState();
+    //SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   }
 
@@ -49,9 +50,11 @@ class _InitialScreenState extends State<InitialScreen> {
           onWillPop: () => isWillPop(context),
           child: Scaffold(
             appBar: AppBar(
-              elevation: 1,
-              title:
-                  Text("${listTitles[pageIndex]}", style: TextStyle(fontWeight: FontWeight.bold)),
+              elevation: 0,
+              title: Text(
+                "${listTitles[pageIndex]}",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
               leading: MenuButtonBuilder(),
               actions: [
                 FunctionIconButton(

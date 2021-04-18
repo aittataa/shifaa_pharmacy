@@ -511,7 +511,7 @@ displaySubCategories({
     onTap: onTap,
     child: AnimatedContainer(
       duration: Duration(milliseconds: 500),
-      curve: Curves.fastOutSlowIn,
+      curve: Curves.linearToEaseOut,
       alignment: Alignment.center,
       padding: EdgeInsets.symmetric(horizontal: 15),
       decoration: BoxDecoration(

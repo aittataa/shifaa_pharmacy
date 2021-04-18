@@ -28,7 +28,6 @@ import 'package:shifaa_pharmacy/widget/splash_screen.dart';
 
 void main() => runApp(ShifaaPharmacy());
 
-//Today Update
 class ShifaaPharmacy extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

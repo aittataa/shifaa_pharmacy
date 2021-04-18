@@ -63,7 +63,7 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
         productProvider.loadProducts;
         return Scaffold(
           appBar: AppBar(
-            elevation: 1,
+            elevation: 0,
             title: Text("$title", style: TextStyle(fontWeight: FontWeight.bold)),
             leading: BackIconButton(),
             actions: [

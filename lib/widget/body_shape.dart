@@ -21,45 +21,54 @@ class BodyShape extends StatelessWidget {
       children: [
         if (enable)
           Container(
-            margin: EdgeInsets.all(5),
+            margin: EdgeInsets.only(bottom: 5),
+            padding: EdgeInsets.only(left: 10, right: 10, bottom: 15),
             decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
+              color: mainColor,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(15),
+                bottomRight: Radius.circular(15),
+              ),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black12,
-                  blurRadius: 10,
-                  spreadRadius: 1,
+                  blurRadius: 90,
+                  spreadRadius: 10,
                 ),
               ],
             ),
-            child: Row(
-              children: [
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: Icon(Icons.search, color: mainColor),
-                ),
-                Expanded(
-                  child: TextField(
-                    onChanged: onChanged,
-                    controller: controller,
-                    textInputAction: TextInputAction.done,
-                    style: TextStyle(color: Colors.black54, fontWeight: FontWeight.bold),
-                    scrollPadding: EdgeInsets.zero,
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.zero,
-                      border: InputBorder.none,
-                      hintText: "Search...",
-                      hintStyle: TextStyle(color: Colors.black38, fontWeight: FontWeight.bold),
-                    ),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: ListTile(
+                dense: true,
+                contentPadding: EdgeInsets.zero.copyWith(left: 10),
+                minLeadingWidth: 0,
+                minVerticalPadding: 0,
+                horizontalTitleGap: 5,
+                leading: Icon(Icons.search, color: mainColor),
+                title: TextField(
+                  onChanged: onChanged,
+                  controller: controller,
+                  textInputAction: TextInputAction.done,
+                  style: TextStyle(color: Colors.black54, fontWeight: FontWeight.bold),
+                  cursorColor: mainColor,
+                  scrollPadding: EdgeInsets.zero,
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.zero,
+                    border: InputBorder.none,
+                    hintText: "Search...",
+                    hintStyle: TextStyle(color: Colors.black38, fontWeight: FontWeight.bold),
                   ),
                 ),
-                IconButton(
-                  color: Colors.red,
+                trailing: IconButton(
                   onPressed: onPressed,
-                  icon: Icon(Icons.close, color: Colors.black38),
+                  color: mainColor,
+                  icon: Icon(Icons.clear_outlined),
                 ),
-              ],
+              ),
             ),
           ),
         Expanded(

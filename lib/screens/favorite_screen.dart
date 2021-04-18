@@ -48,7 +48,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
         productProvider.loadProducts;
         return Scaffold(
           appBar: AppBar(
-            elevation: 1,
+            elevation: 0,
             title: Text("WishList", style: TextStyle(fontWeight: FontWeight.bold)),
             leading: BackIconButton(),
             actions: [
