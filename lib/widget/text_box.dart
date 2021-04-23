@@ -38,7 +38,6 @@ class TextBox extends StatelessWidget {
         obscureText: hintText.contains("Password") ? obscureText : false,
         style: TextStyle(color: Colors.black54, fontWeight: FontWeight.bold),
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.zero,
           border: InputBorder.none,
           icon: Icon(icon, color: Colors.white),
           suffixIcon: suffixIcon,
@@ -46,12 +45,6 @@ class TextBox extends StatelessWidget {
           hintStyle: TextStyle(
             color: Colors.black38,
             fontWeight: FontWeight.bold,
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.transparent),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.transparent),
           ),
         ),
       ),

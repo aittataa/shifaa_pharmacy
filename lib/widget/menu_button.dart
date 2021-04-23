@@ -11,7 +11,8 @@ class MenuButtonBuilder extends StatelessWidget {
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
           icon: Icon(
-            CupertinoIcons.text_justify,
+            CupertinoIcons.list_bullet_indent,
+            //CupertinoIcons.text_justify,
             //CupertinoIcons.text_alignright,
             //CupertinoIcons.list_dash,
             //CupertinoIcons.line_horizontal_3,

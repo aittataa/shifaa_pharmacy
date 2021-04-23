@@ -12,17 +12,20 @@ class ListTileDetails extends StatelessWidget {
     return ListTile(
       onTap: onTap,
       dense: true,
+      contentPadding: EdgeInsets.zero,
+      minLeadingWidth: 0,
+      minVerticalPadding: 0,
       leading: Container(
         decoration: BoxDecoration(color: mainColor, shape: BoxShape.circle),
         padding: EdgeInsets.all(5),
         child: Icon(icon, color: Colors.white, size: 30),
       ),
       title: Container(
+        padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: mainColor,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(5),
         ),
-        padding: EdgeInsets.all(10),
         child: Text(
           "$text",
           style: TextStyle(

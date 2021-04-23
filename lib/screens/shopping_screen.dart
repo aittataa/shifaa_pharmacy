@@ -10,7 +10,6 @@ import 'package:shifaa_pharmacy/screens/favorite_screen.dart';
 import 'package:shifaa_pharmacy/screens/order_address.dart';
 import 'package:shifaa_pharmacy/screens/prescription_screen.dart';
 import 'package:shifaa_pharmacy/widget/back_icon.dart';
-import 'package:shifaa_pharmacy/widget/body_shape.dart';
 import 'package:shifaa_pharmacy/widget/empty_box.dart';
 import 'package:shifaa_pharmacy/widget/function_button.dart';
 
@@ -52,54 +51,51 @@ class ShoppingScreen extends StatelessWidget {
               ),
             ],
           ),
-          body: BodyShape(
-            enable: false,
-            child: isNotEmpty
-                ? ListView.builder(
-                    padding: EdgeInsets.symmetric(horizontal: 5),
-                    physics: BouncingScrollPhysics(),
-                    itemCount: myShoppingList.length,
-                    itemBuilder: (context, index) {
-                      Order order = myShoppingList[index];
-                      List<Contain> myList = containList.where((contain) {
-                        return contain.orderID == order.id;
-                      }).toList();
-                      return ExpansionTile(
-                        initiallyExpanded: !order.isValid,
-                        tilePadding: EdgeInsets.zero,
-                        title: displayShippingList(
-                          order: order,
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => OrderAddress(
-                                  orderID: order.id,
-                                  clientID: signInClient.id,
-                                ),
+          body: isNotEmpty
+              ? ListView.builder(
+                  padding: EdgeInsets.symmetric(horizontal: 5),
+                  physics: BouncingScrollPhysics(),
+                  itemCount: myShoppingList.length,
+                  itemBuilder: (context, index) {
+                    Order order = myShoppingList[index];
+                    List<Contain> myList = containList.where((contain) {
+                      return contain.orderID == order.id;
+                    }).toList();
+                    return ExpansionTile(
+                      initiallyExpanded: !order.isValid,
+                      tilePadding: EdgeInsets.zero,
+                      title: displayShippingList(
+                        order: order,
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => OrderAddress(
+                                orderID: order.id,
+                                clientID: signInClient.id,
                               ),
-                            );
-                          },
-                        ),
-                        children: List.generate(myList.length, (index) {
-                          Contain contain = myList[index];
-                          return displayContain(
-                            contain: contain,
-                            isValid: order.isValid,
-                            onTap: () async {
-                              int id = contain.id;
-                              bool state = await containProvider.updateContain(id);
-                              if (state) {
-                                await containProvider.loadContains;
-                              }
-                            },
+                            ),
                           );
-                        }),
-                      );
-                    },
-                  )
-                : EmptyBox(),
-          ),
+                        },
+                      ),
+                      children: List.generate(myList.length, (index) {
+                        Contain contain = myList[index];
+                        return displayContain(
+                          contain: contain,
+                          isValid: order.isValid,
+                          onTap: () async {
+                            int id = contain.id;
+                            bool state = await containProvider.updateContain(id);
+                            if (state) {
+                              await containProvider.loadContains;
+                            }
+                          },
+                        );
+                      }),
+                    );
+                  },
+                )
+              : EmptyBox(),
         );
       },
     );
