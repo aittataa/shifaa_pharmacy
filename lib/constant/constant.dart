@@ -1,7 +1,6 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:share/share.dart';
 import 'package:shifaa_pharmacy/classes/brand.dart';
@@ -91,19 +90,18 @@ errorSnackBar(BuildContext context, {String title, String message}) {
 
 ///Exit Function
 Future<bool> isWillPop(context) {
-  return showDialog(
+  return showCupertinoModalPopup(
     context: context,
     builder: (context) => CupertinoAlertDialog(
+      insetAnimationDuration: Duration(milliseconds: 1000),
+      insetAnimationCurve: Curves.linearToEaseOut,
       title: Text(
         "$appTitle",
         style: TextStyle(color: mainColor, fontWeight: FontWeight.w900, fontSize: 20),
       ),
-      content: Container(
-        padding: EdgeInsets.only(top: 10, bottom: 10),
-        child: Text(
-          "Are You Sure You Want To Exit ?",
-          style: TextStyle(color: Colors.white60, fontWeight: FontWeight.bold, fontSize: 15),
-        ),
+      content: Text(
+        "Are You Sure You Want To Exit ?",
+        style: TextStyle(color: Colors.white60, fontWeight: FontWeight.bold, fontSize: 15),
       ),
       actions: <Widget>[
         CupertinoDialogAction(
@@ -114,8 +112,7 @@ Future<bool> isWillPop(context) {
         CupertinoDialogAction(
           child: Text("Yes"),
           textStyle: TextStyle(color: mainColor, fontWeight: FontWeight.bold),
-          //onPressed: () => Navigator.of(context).pop(true),
-          onPressed: () => exit(0),
+          onPressed: () => Navigator.of(context).pop(true),
         ),
       ],
     ),
@@ -127,7 +124,7 @@ void launchURL(String url) async {
   if (await canLaunch(url)) {
     await launch(url);
   } else {
-    print("Could not launch $url");
+    throw Exception("Couldn't Launch $url");
   }
 }
 
@@ -148,15 +145,16 @@ void onShopProductTap(Product product, context) async {
   ContainsProvider containProvider = ContainsProvider();
   int id = signInClient.id;
   listOfOrders = await orderProvider.getNormalOrder(id);
-
   Order lastOrder;
   if (listOfOrders.isNotEmpty) {
     lastOrder = listOfOrders.first;
     if (!lastOrder.isValid) {
-      bool state = await containProvider.addContain(Contain(
-        orderID: lastOrder.id,
-        productID: product.id,
-      ));
+      bool state = await containProvider.addContain(
+        Contain(
+          orderID: lastOrder.id,
+          productID: product.id,
+        ),
+      );
       if (state) {
         await orderProvider.loadOrders;
       }
@@ -170,10 +168,12 @@ void onShopProductTap(Product product, context) async {
       if (state) {
         listOfOrders = await orderProvider.getNormalOrder(id);
         if (listOfOrders.isNotEmpty) {
-          bool state = await containProvider.addContain(Contain(
-            orderID: listOfOrders.first.id,
-            productID: product.id,
-          ));
+          bool state = await containProvider.addContain(
+            Contain(
+              orderID: listOfOrders.first.id,
+              productID: product.id,
+            ),
+          );
           if (state) {
             await orderProvider.loadOrders;
           }
@@ -190,10 +190,12 @@ void onShopProductTap(Product product, context) async {
     if (state) {
       listOfOrders = await orderProvider.getNormalOrder(id);
       if (listOfOrders.isNotEmpty) {
-        bool state = await containProvider.addContain(Contain(
-          orderID: listOfOrders.first.id,
-          productID: product.id,
-        ));
+        bool state = await containProvider.addContain(
+          Contain(
+            orderID: listOfOrders.first.id,
+            productID: product.id,
+          ),
+        );
         if (state) {
           await orderProvider.loadOrders;
         }
