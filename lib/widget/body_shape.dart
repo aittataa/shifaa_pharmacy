@@ -33,7 +33,7 @@ class BodyShape extends StatelessWidget {
                 BoxShadow(
                   color: Colors.black12,
                   blurRadius: 90,
-                  spreadRadius: 10,
+                  spreadRadius: -15,
                 ),
               ],
             ),

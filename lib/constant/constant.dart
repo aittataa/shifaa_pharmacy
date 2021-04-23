@@ -21,7 +21,7 @@ import 'package:shifaa_pharmacy/provider/products_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 //const String URL_SERVER = "http://onlinewallpaper.online/aittataa/shifaa_pharmacy";
-const String URL_SERVER = "http://192.168.1.43/.shifaa_pharmacy";
+const String URL_SERVER = "http://192.168.1.33/.shifaa_pharmacy";
 
 const String appTitle = "Shifaa - شفاء";
 const String appDesc = "Pharmacy Delivery App";

@@ -1,5 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
@@ -26,7 +27,10 @@ import 'package:shifaa_pharmacy/screens/shopping_screen.dart';
 import 'package:shifaa_pharmacy/screens/subcategories_screen.dart';
 import 'package:shifaa_pharmacy/widget/splash_screen.dart';
 
-void main() => runApp(ShifaaPharmacy());
+void main() {
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+  runApp(ShifaaPharmacy());
+}
 
 class ShifaaPharmacy extends StatelessWidget {
   @override
@@ -54,23 +58,29 @@ class ShifaaPharmacy extends StatelessWidget {
           ),
           home: AnimatedSplashScreen.withScreenFunction(
             screenFunction: () async {
+              print("Start App");
               ClientsProvider clientProvider = ClientsProvider();
               clientProvider.loadClients;
               final session = await SharedPreferences.getInstance();
               int id = session.getInt("id");
               if (id != null) {
+                print("User Deja Exist");
                 signInClient = await clientProvider.getClientByID(id);
                 bool state = session.getBool("state");
                 if (state == false) {
+                  print("Not Remember");
                   return LoginScreen(mode: rememberMode.no);
                 } else {
+                  print("Remember");
                   return InitialScreen();
                 }
               } else {
                 bool skip = session.getBool("skip");
                 if (skip == true) {
+                  print("Skip");
                   return InitialScreen();
                 } else {
+                  print("First Time");
                   return LoginScreen();
                 }
               }
