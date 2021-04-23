@@ -20,7 +20,6 @@ import 'package:shifaa_pharmacy/provider/orders_provider.dart';
 import 'package:shifaa_pharmacy/provider/products_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-//const String URL_SERVER = "http://onlinewallpaper.online/aittataa/shifaa_pharmacy";
 const String URL_SERVER = "http://192.168.1.33/.shifaa_pharmacy";
 
 const String appTitle = "Shifaa - شفاء";
@@ -31,8 +30,8 @@ const List<String> listTitles = ["Medicines", "Categories", "$appTitle", "Brands
 const Color mainColor = Color(0xFF0EBE60);
 //const Color mainColor = Color(0xFF0FC864);
 //const Color mainColor = Color(0xFF01BE6E);
-////const Color mainColor = Color(0xFF10E874);
-////const Color mainColor = Color(0xFF00FF04);
+//const Color mainColor = Color(0xFF10E874);
+//const Color mainColor = Color(0xFF00FF04);
 //const Color mainColor = Color(0xFF01CC7D);
 //const Color mainColor = Color(0xFF0EBE60);
 //const Color mainColor = Color(0xFF10E874);

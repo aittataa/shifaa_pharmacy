@@ -11,6 +11,7 @@ class VerticalButton extends StatelessWidget {
     return ListTile(
       onTap: onTap,
       dense: true,
+      tileColor: title.contains("Home") ? Colors.black12 : Colors.transparent,
       contentPadding: EdgeInsets.zero.copyWith(left: 10),
       leading: Icon(icon),
       title: Text(

@@ -21,10 +21,10 @@ class DrawerNavigation extends StatelessWidget {
       builder: (context, clientProvider, child) {
         clientProvider.loadClients;
         return AnimatedContainer(
-          duration: Duration(milliseconds: 1500),
+          duration: Duration(milliseconds: 1000),
           curve: Curves.linearToEaseOut,
           color: mainColor,
-          width: screenWidth * 0.85,
+          width: screenWidth * 0.75,
           child: SafeArea(
             child: Column(
               children: [
@@ -46,14 +46,17 @@ class DrawerNavigation extends StatelessWidget {
                         boxShadow: [
                           BoxShadow(
                             color: Colors.black12,
-                            blurRadius: 10,
-                            spreadRadius: 1,
+                            blurRadius: 90,
+                            spreadRadius: -15,
                           ),
                         ],
                       ),
                     ),
                     ListTile(
                       dense: true,
+                      minLeadingWidth: 0,
+                      minVerticalPadding: 0,
+                      horizontalTitleGap: 0,
                       contentPadding: EdgeInsets.zero.copyWith(left: 10),
                       title: Text(
                         isClientLogged ? "${signInClient.fullname}" : appTitle,
@@ -117,8 +120,7 @@ class DrawerNavigation extends StatelessWidget {
                 ),
                 DividerLine(),
                 Expanded(
-                  child: ListView(
-                    physics: BouncingScrollPhysics(),
+                  child: Column(
                     children: [
                       VerticalButton(
                         icon: CupertinoIcons.house_alt_fill,

@@ -10,8 +10,7 @@ class DividerLine extends StatelessWidget {
       indent: value,
       endIndent: value,
       height: 5,
-      thickness: 1,
-      color: Colors.white70,
+      color: Colors.white,
     );
   }
 }
