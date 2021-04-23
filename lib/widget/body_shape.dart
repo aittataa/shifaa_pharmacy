@@ -21,7 +21,6 @@ class BodyShape extends StatelessWidget {
       children: [
         if (enable)
           Container(
-            margin: EdgeInsets.only(bottom: 5),
             padding: EdgeInsets.only(left: 10, right: 10, bottom: 15),
             decoration: BoxDecoration(
               color: mainColor,
