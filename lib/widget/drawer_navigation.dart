@@ -21,10 +21,10 @@ class DrawerNavigation extends StatelessWidget {
       builder: (context, clientProvider, child) {
         clientProvider.loadClients;
         return AnimatedContainer(
-          duration: Duration(milliseconds: 1000),
+          duration: Duration(milliseconds: 1500),
           curve: Curves.linearToEaseOut,
           color: mainColor,
-          width: screenWidth * 0.75,
+          width: screenWidth * 0.85,
           child: SafeArea(
             child: Column(
               children: [
@@ -60,6 +60,7 @@ class DrawerNavigation extends StatelessWidget {
                       contentPadding: EdgeInsets.zero.copyWith(left: 10),
                       title: Text(
                         isClientLogged ? "${signInClient.fullname}" : appTitle,
+                        softWrap: false,
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w900,
@@ -68,6 +69,7 @@ class DrawerNavigation extends StatelessWidget {
                       ),
                       subtitle: Text(
                         isClientLogged ? "${signInClient.email}" : appDesc,
+                        softWrap: false,
                         style: TextStyle(
                           color: Colors.black54,
                           fontWeight: FontWeight.bold,
@@ -151,7 +153,7 @@ class DrawerNavigation extends StatelessWidget {
                       },
                     ),
                     HorizontalButton(
-                      icon: isClientLogged ? Icons.logout : Icons.login,
+                      icon: CupertinoIcons.escape,
                       title: isClientLogged ? "Sign Out" : "Sign In",
                       onPressed: () {
                         clientProvider.clear;

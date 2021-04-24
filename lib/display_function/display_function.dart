@@ -534,7 +534,6 @@ dateShape(DateTime date) => DateFormat("MMM dd, HH:mm:ss").format(date);
 displayShippingList({
   Order order,
   Function onTap,
-  List<Contain> myContainList,
 }) {
   return Container(
     padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
@@ -544,33 +543,21 @@ displayShippingList({
     ),
     child: Row(
       children: [
-        Text(
-          "Order : ",
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
         Expanded(
           child: Text(
-            "${dateShape(order.dateOrder)}",
-            softWrap: false,
+            "Order : ${dateShape(order.dateOrder)}",
             style: TextStyle(
               color: Colors.white,
-              fontWeight: FontWeight.w900,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5),
-          child: Text(
-            "${order.total.toStringAsFixed(2)} DH",
-            textAlign: TextAlign.end,
-            softWrap: false,
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w900,
-            ),
+        Text(
+          "${order.total.toStringAsFixed(2)} DH",
+          softWrap: false,
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w900,
           ),
         ),
         Padding(
@@ -704,6 +691,7 @@ displayPrescription({
       child: Row(
         children: [
           Expanded(
+            flex: 2,
             child: Text(
               "${prescription.description}",
               softWrap: false,
@@ -713,12 +701,15 @@ displayPrescription({
               ),
             ),
           ),
-          Text(
-            "${dateShape(prescription.date)}",
-            softWrap: false,
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w900,
+          Expanded(
+            child: Text(
+              "${dateShape(prescription.date)}",
+              textAlign: TextAlign.end,
+              softWrap: false,
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w900,
+              ),
             ),
           ),
           Padding(

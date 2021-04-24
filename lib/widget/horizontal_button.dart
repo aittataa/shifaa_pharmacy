@@ -21,11 +21,8 @@ class HorizontalButton extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Icon(
-            icon,
-            size: 27,
-            color: Colors.white,
-          ),
+          Icon(icon, color: Colors.white),
+          SizedBox(height: 5),
           Text(
             "$title",
             style: TextStyle(
