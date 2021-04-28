@@ -61,7 +61,7 @@ double screenWidth = Device.screenWidth;
 double screenHeight = Device.screenHeight;
 
 ///Animation Jump
-int pageIndex = 4;
+int pageIndex = 0;
 PageController pageController = PageController(initialPage: pageIndex);
 void nextPage(index) {
   pageController.jumpToPage(index);
@@ -273,8 +273,6 @@ void onFavProductTap(Product product) async {
 }
 
 enum rememberMode { no }
-
-//Settings appSettings;
 
 Client signInClient;
 List<Client> myClientsList = [];

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
+import 'package:shifaa_pharmacy/controllers/categories_controller.dart';
 import 'package:shifaa_pharmacy/pages/brands_page.dart';
 import 'package:shifaa_pharmacy/pages/categories_page.dart';
 import 'package:shifaa_pharmacy/pages/home_page.dart';
@@ -22,6 +24,7 @@ class InitialScreen extends StatefulWidget {
 }
 
 class _InitialScreenState extends State<InitialScreen> {
+  final CategoriesController categoriesController = Get.put(CategoriesController());
   @override
   void initState() {
     super.initState();
@@ -81,11 +84,19 @@ class _InitialScreenState extends State<InitialScreen> {
             });
           },
           children: [
-            MedicinesPage(),
-            CategoriesPage(),
+            MedicinesPage(
+              controller: categoriesController,
+            ),
+            CategoriesPage(
+              controller: categoriesController,
+            ),
             HomePage(),
-            BrandsPage(),
-            OffersPage(),
+            BrandsPage(
+                // controller: categoriesController,
+                ),
+            OffersPage(
+                // controller: categoriesController,
+                ),
           ],
         ),
         floatingActionButton: ActionFloatingButton(),
