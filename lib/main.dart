@@ -1,6 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
@@ -11,7 +12,6 @@ import 'package:shifaa_pharmacy/provider/database_provider.dart';
 import 'package:shifaa_pharmacy/provider/orders_provider.dart';
 import 'package:shifaa_pharmacy/provider/prescriptions_provider.dart';
 import 'package:shifaa_pharmacy/provider/products_provider.dart';
-import 'package:shifaa_pharmacy/provider/settings_provider.dart';
 import 'package:shifaa_pharmacy/screens/about_screen.dart';
 import 'package:shifaa_pharmacy/screens/favorite_screen.dart';
 import 'package:shifaa_pharmacy/screens/initial_screen.dart';
@@ -38,7 +38,7 @@ class ShifaaPharmacy extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider.value(value: DataBaseProvider()),
-        ChangeNotifierProvider.value(value: SettingsProvider()),
+        //ChangeNotifierProvider.value(value: SettingsProvider()),
         ChangeNotifierProvider.value(value: ClientsProvider()),
         ChangeNotifierProvider.value(value: CategoriesProvider()),
         ChangeNotifierProvider.value(value: ProductsProvider()),
@@ -47,7 +47,7 @@ class ShifaaPharmacy extends StatelessWidget {
         ChangeNotifierProvider.value(value: PrescriptionsProvider()),
       ],
       builder: (context, child) {
-        return MaterialApp(
+        return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: "$appTitle",
           color: mainColor,

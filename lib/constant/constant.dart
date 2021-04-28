@@ -3,21 +3,34 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:share/share.dart';
-import 'package:shifaa_pharmacy/classes/brand.dart';
-import 'package:shifaa_pharmacy/classes/categories.dart';
-import 'package:shifaa_pharmacy/classes/client.dart';
-import 'package:shifaa_pharmacy/classes/contain.dart';
-import 'package:shifaa_pharmacy/classes/favorite.dart';
-import 'package:shifaa_pharmacy/classes/medicine.dart';
-import 'package:shifaa_pharmacy/classes/order.dart';
-import 'package:shifaa_pharmacy/classes/prescription.dart';
-import 'package:shifaa_pharmacy/classes/product.dart';
-import 'package:shifaa_pharmacy/classes/settings.dart';
-import 'package:shifaa_pharmacy/classes/sub_categories.dart';
-import 'package:shifaa_pharmacy/provider/contains_provider.dart';
-import 'package:shifaa_pharmacy/provider/orders_provider.dart';
-import 'package:shifaa_pharmacy/provider/products_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../classes/brand.dart';
+import '../classes/categories.dart';
+import '../classes/client.dart';
+import '../classes/contain.dart';
+import '../classes/favorite.dart';
+import '../classes/medicine.dart';
+import '../classes/order.dart';
+import '../classes/prescription.dart';
+import '../classes/product.dart';
+import '../classes/settings.dart';
+import '../classes/sub_categories.dart';
+import '../provider/contains_provider.dart';
+import '../provider/orders_provider.dart';
+import '../provider/products_provider.dart';
+
+class Constant {
+  static const String SERVER_URL = "http://192.168.1.33/.shifaa_pharmacy";
+
+  static gridDelegate(int crossAxisCount) {
+    return SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: crossAxisCount,
+      mainAxisSpacing: 5,
+      crossAxisSpacing: 5,
+    );
+  }
+}
 
 const String URL_SERVER = "http://192.168.1.33/.shifaa_pharmacy";
 
@@ -48,7 +61,7 @@ double screenWidth = Device.screenWidth;
 double screenHeight = Device.screenHeight;
 
 ///Animation Jump
-int pageIndex = 2;
+int pageIndex = 4;
 PageController pageController = PageController(initialPage: pageIndex);
 void nextPage(index) {
   pageController.jumpToPage(index);
@@ -261,7 +274,7 @@ void onFavProductTap(Product product) async {
 
 enum rememberMode { no }
 
-Settings appSettings;
+//Settings appSettings;
 
 Client signInClient;
 List<Client> myClientsList = [];

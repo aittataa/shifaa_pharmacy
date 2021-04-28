@@ -39,6 +39,8 @@ class _ProductScreenState extends State<ProductScreen> {
     isNotEmpty = myList.isNotEmpty;
   }
 
+  // var
+
   @override
   Widget build(BuildContext context) {
     return Consumer<ProductsProvider>(

@@ -15,12 +15,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int slideIndex;
   @override
   void initState() {
     super.initState();
     slideIndex = 0;
   }
+
+  int slideIndex;
 
   @override
   Widget build(BuildContext context) {
