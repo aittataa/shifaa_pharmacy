@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
 import 'package:shifaa_pharmacy/controllers/categories_controller.dart';
+import 'package:shifaa_pharmacy/controllers/products_controller.dart';
 import 'package:shifaa_pharmacy/pages/brands_page.dart';
 import 'package:shifaa_pharmacy/pages/categories_page.dart';
 import 'package:shifaa_pharmacy/pages/home_page.dart';
@@ -24,12 +25,14 @@ class InitialScreen extends StatefulWidget {
 }
 
 class _InitialScreenState extends State<InitialScreen> {
-  final CategoriesController categoriesController = Get.put(CategoriesController());
   @override
   void initState() {
     super.initState();
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   }
+
+  final CategoriesController categoriesController = Get.put(CategoriesController());
+  final ProductsController productsController = Get.put(ProductsController());
 
   @override
   Widget build(BuildContext context) {
@@ -92,11 +95,11 @@ class _InitialScreenState extends State<InitialScreen> {
             ),
             HomePage(),
             BrandsPage(
-                // controller: categoriesController,
-                ),
+              controller: categoriesController,
+            ),
             OffersPage(
-                // controller: categoriesController,
-                ),
+              controller: productsController,
+            ),
           ],
         ),
         floatingActionButton: ActionFloatingButton(),

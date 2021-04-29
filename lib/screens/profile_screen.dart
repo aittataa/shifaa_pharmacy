@@ -37,7 +37,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
-    fullname.text = signInClient.fullname;
+    fullname.text = signInClient.username;
     password.text = signInClient.password;
     phone.text = signInClient.phone;
 
@@ -187,7 +187,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             bool state = await clientProvider.updateClientInfo(
                               Client(
                                 id: signInClient.id,
-                                fullname: fullname.text.toUpperCase(),
+                                username: fullname.text.toUpperCase(),
                                 email: signInClient.email,
                                 password: password.text.trim(),
                                 phone: phone.text.trim(),

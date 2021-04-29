@@ -11,16 +11,6 @@ import 'package:shifaa_pharmacy/widget/empty_box.dart';
 class CategoriesPage extends StatelessWidget {
   final CategoriesController controller;
   const CategoriesPage({this.controller});
-  //bool isNotEmpty;
-  //List<Categories> myList = [];
-  //TextEditingController controller = TextEditingController();
-  //@override
-  //void initState() {
-  //  super.initState();
-  //  myList = categoriesList;
-  //  isNotEmpty = myList.isNotEmpty;
-  //}
-
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -28,42 +18,21 @@ class CategoriesPage extends StatelessWidget {
       bool isNotEmpty = myList.isNotEmpty;
       if (isNotEmpty) {
         return BodyShape(
-          //controller: controller,
-          //onPressed: () {
-          //  setState(() {
-          //    controller.clear();
-          //    myList = categoriesList;
-          //  });
-          //},
-          //onChanged: (value) {
-          //  setState(() {
-          //    myList = findCategory(categoriesList, value);
-          //  });
-          //},
           child: GridView.builder(
             padding: EdgeInsets.all(5),
             physics: BouncingScrollPhysics(),
             scrollDirection: Axis.vertical,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              crossAxisSpacing: 5,
-              mainAxisSpacing: 5,
-            ),
+            gridDelegate: Constant.gridDelegate(3),
             itemCount: myList.length,
             itemBuilder: (context, index) {
               Categories category = myList[index];
               return displayCategories(
                 item: category,
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => SubCategoriesScreen(
-                        title: category.title,
-                        myList: subcategoriesList.where((subcategory) {
-                          return subcategory.categoryID == category.id;
-                        }).toList(),
-                      ),
+                  Get.to(
+                    SubCategoriesScreen(
+                      controller: controller,
+                      category: category,
                     ),
                   );
                 },

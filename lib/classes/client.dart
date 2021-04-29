@@ -2,7 +2,7 @@ import 'package:shifaa_pharmacy/constant/constant.dart';
 
 class Client {
   final int id;
-  final String fullname;
+  final String username;
   final String email;
   final String password;
   final String phone;
@@ -14,7 +14,7 @@ class Client {
 
   Client({
     this.id,
-    this.fullname,
+    this.username,
     this.email,
     this.password,
     this.phone,
@@ -28,7 +28,7 @@ class Client {
   factory Client.fromJson(Map<String, dynamic> data) {
     return Client(
       id: int.parse(data["id"]),
-      fullname: data["full_name"],
+      username: data["full_name"],
       email: data["email"],
       password: data["password"],
       phone: data["phone"],

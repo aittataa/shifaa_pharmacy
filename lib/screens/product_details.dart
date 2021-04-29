@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:shifaa_pharmacy/classes/product.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
+import 'package:shifaa_pharmacy/controllers/products_controller.dart';
 import 'package:shifaa_pharmacy/display_function/display_function.dart';
 import 'package:shifaa_pharmacy/provider/products_provider.dart';
 import 'package:shifaa_pharmacy/screens/favorite_screen.dart';
@@ -13,26 +14,32 @@ import 'package:shifaa_pharmacy/widget/function_button.dart';
 
 class ProductDetails extends StatefulWidget {
   static const String id = "ProductDetailsScreen";
+  final ProductsController controller;
+  final int index;
   final List<Product> myList;
-  final int initialIndex;
-  ProductDetails({this.myList, this.initialIndex});
+  ProductDetails({
+    this.controller,
+    this.index,
+    this.myList,
+  });
   @override
   _ProductDetailsState createState() => _ProductDetailsState();
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
+  ProductsController controller;
   List<Product> myList;
-  int initialIndex;
+  int index;
   @override
   void initState() {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     super.initState();
     myList = widget.myList;
-    initialIndex = widget.initialIndex;
-    controller = PageController(initialPage: initialIndex);
+    index = widget.index;
+    pageController = PageController(initialPage: index);
   }
 
-  PageController controller;
+  PageController pageController;
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +77,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             ],
           ),
           body: PageView.builder(
-            controller: controller,
+            controller: pageController,
             itemCount: myList.length,
             itemBuilder: (context, index) {
               Product product = myList[index];

@@ -23,6 +23,20 @@ import '../provider/products_provider.dart';
 class Constant {
   static const String SERVER_URL = "http://192.168.1.33/.shifaa_pharmacy";
 
+  static bool get isClientLogged => signInClient != null;
+
+  static getProductList(id, controller) {
+    return controller.productsList.where((product) {
+      return product.subcategoryID == id;
+    }).toList();
+  }
+
+  static getSubCategories(int id, dynamic controller) {
+    return controller.subcategoriesList.where((subcategory) {
+      return subcategory.categoryID == id;
+    }).toList();
+  }
+
   static gridDelegate(int crossAxisCount) {
     return SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: crossAxisCount,
@@ -61,7 +75,7 @@ double screenWidth = Device.screenWidth;
 double screenHeight = Device.screenHeight;
 
 ///Animation Jump
-int pageIndex = 0;
+int pageIndex = 1;
 PageController pageController = PageController(initialPage: pageIndex);
 void nextPage(index) {
   pageController.jumpToPage(index);

@@ -102,7 +102,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                             MaterialPageRoute(
                               builder: (context) => ProductDetails(
                                 myList: myList,
-                                initialIndex: index,
+                                index: index,
                               ),
                             ),
                           );

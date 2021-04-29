@@ -9,7 +9,7 @@ class BodyShape extends StatelessWidget {
   final TextEditingController controller;
   BodyShape({
     @required this.child,
-    this.enable = true,
+    this.enable = false,
     this.controller,
     this.onChanged,
     this.onPressed,

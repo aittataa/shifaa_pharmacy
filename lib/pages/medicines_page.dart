@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shifaa_pharmacy/classes/medicine.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
-import 'package:shifaa_pharmacy/controllers/categories_controller.dart';
 import 'package:shifaa_pharmacy/display_function/display_function.dart';
 import 'package:shifaa_pharmacy/screens/product_screen.dart';
 import 'package:shifaa_pharmacy/widget/body_shape.dart';
@@ -10,7 +9,7 @@ import 'package:shifaa_pharmacy/widget/empty_box.dart';
 
 class MedicinesPage extends StatelessWidget {
   // final CategoriesController categoriesController = Get.put(CategoriesController());
-  final CategoriesController controller;
+  final controller;
   const MedicinesPage({this.controller});
 
   //bool isNotEmpty = true;

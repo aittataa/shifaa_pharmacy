@@ -38,10 +38,10 @@ class CategoriesBar extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => SubCategoriesScreen(
-                          title: category.title,
-                          myList: subcategoriesList.where((subcategory) {
-                            return subcategory.categoryID == category.id;
-                          }).toList(),
+                          category: category,
+                          //myList: subcategoriesList.where((subcategory) {
+                          //  return subcategory.categoryID == category.id;
+                          //}).toList(),
                         ),
                       ),
                     );

@@ -143,7 +143,7 @@ class DataBaseProvider extends ChangeNotifier {
     var action = Map<String, dynamic>();
     action["from"] = _FROM_APP;
     action["action"] = _ADD_CLIENT;
-    action["full_name"] = client.fullname;
+    action["full_name"] = client.username;
     action["email"] = client.email;
     action["password"] = client.password;
     action["phone"] = client.phone;
@@ -161,7 +161,7 @@ class DataBaseProvider extends ChangeNotifier {
     action["from"] = _FROM_APP;
     action["action"] = _UPDATE_CLIENT_INFO;
     action["id_client"] = client.id.toString();
-    action["full_name"] = client.fullname;
+    action["full_name"] = client.username;
     action["password"] = client.password;
     action["phone"] = client.phone;
     action["picture"] = client.picture;

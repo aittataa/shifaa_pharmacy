@@ -39,8 +39,6 @@ class _ProductScreenState extends State<ProductScreen> {
     isNotEmpty = myList.isNotEmpty;
   }
 
-  // var
-
   @override
   Widget build(BuildContext context) {
     return Consumer<ProductsProvider>(
@@ -115,7 +113,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       MaterialPageRoute(
                         builder: (context) => ProductDetails(
                           myList: myList,
-                          initialIndex: index,
+                          index: index,
                         ),
                       ),
                     );

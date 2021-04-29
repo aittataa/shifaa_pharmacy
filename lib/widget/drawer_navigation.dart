@@ -59,7 +59,7 @@ class DrawerNavigation extends StatelessWidget {
                       horizontalTitleGap: 0,
                       contentPadding: EdgeInsets.zero.copyWith(left: 10),
                       title: Text(
-                        isClientLogged ? "${signInClient.fullname}" : appTitle,
+                        isClientLogged ? "${signInClient.username}" : appTitle,
                         softWrap: false,
                         style: TextStyle(
                           color: Colors.white,

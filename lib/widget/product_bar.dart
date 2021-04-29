@@ -54,7 +54,7 @@ class ProductBar extends StatelessWidget {
                       MaterialPageRoute(
                         builder: (context) => ProductDetails(
                           myList: myList,
-                          initialIndex: index,
+                          index: index,
                         ),
                       ),
                     );
