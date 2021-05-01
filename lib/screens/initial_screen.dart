@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
 import 'package:shifaa_pharmacy/controllers/categories_controller.dart';
+import 'package:shifaa_pharmacy/controllers/clients_controller.dart';
 import 'package:shifaa_pharmacy/controllers/products_controller.dart';
 import 'package:shifaa_pharmacy/pages/brands_page.dart';
 import 'package:shifaa_pharmacy/pages/categories_page.dart';
@@ -25,12 +25,7 @@ class InitialScreen extends StatefulWidget {
 }
 
 class _InitialScreenState extends State<InitialScreen> {
-  @override
-  void initState() {
-    super.initState();
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.transparent));
-  }
-
+  final ClientsController clientsController = Get.put(ClientsController());
   final CategoriesController categoriesController = Get.put(CategoriesController());
   final ProductsController productsController = Get.put(ProductsController());
 
@@ -50,33 +45,26 @@ class _InitialScreenState extends State<InitialScreen> {
             FunctionIconButton(
               icon: Icons.shopping_cart,
               onPressed: () {
-                Navigator.pushNamed(context, ShoppingScreen.id);
+                Get.to(ShoppingScreen());
               },
             ),
             FunctionIconButton(
               icon: Icons.receipt_long,
               onPressed: () {
-                Navigator.pushNamed(context, PrescriptionScreen.id);
+                Get.to(PrescriptionScreen());
               },
             ),
             FunctionIconButton(
               icon: Icons.favorite,
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => FavoriteScreen(
-                      myList: favoriteProductsList.where((product) {
-                        return product.isFav == true;
-                      }).toList(),
-                    ),
-                  ),
-                );
+                Get.to(FavoriteScreen());
               },
             ),
           ],
         ),
-        drawer: DrawerNavigation(),
+        drawer: DrawerNavigation(
+          controller: clientsController,
+        ),
         body: PageView(
           controller: pageController,
           physics: NeverScrollableScrollPhysics(),

@@ -7,7 +7,7 @@ class ContainsProvider extends ChangeNotifier {
   get loadContains async {
     isClientLogged;
     if (isClientLogged) {
-      int id = signInClient.id;
+      int id = Constant.signInClient.id;
       containList = await DataBaseProvider.getContain(id);
     } else {
       containList = [];

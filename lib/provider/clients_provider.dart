@@ -38,7 +38,7 @@ class ClientsProvider extends ChangeNotifier {
   get clear async {
     final session = await SharedPreferences.getInstance();
     session.clear();
-    signInClient = null;
+    Constant.signInClient = null;
     isClientLogged;
     loadClients;
     notifyListeners();

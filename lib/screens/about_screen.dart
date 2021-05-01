@@ -22,7 +22,7 @@ class AboutScreen extends StatelessWidget {
         leading: BackIconButton(),
       ),
       body: Obx(() {
-        Settings appSettings = settingsController.appSettings.value;
+        final Settings appSettings = settingsController.appSettings.value;
         return ListView(
           padding: EdgeInsets.symmetric(horizontal: 5),
           physics: BouncingScrollPhysics(),

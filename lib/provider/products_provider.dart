@@ -8,7 +8,7 @@ class ProductsProvider extends ChangeNotifier {
     productsList = await DataBaseProvider.getAllProduct;
     isClientLogged;
     if (isClientLogged) {
-      int id = signInClient.id;
+      int id = Constant.signInClient.id;
       favoriteProductsList = await DataBaseProvider.getFavorite(id);
     } else {
       favoriteProductsList = [];

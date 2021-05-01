@@ -15,36 +15,27 @@ import 'package:shifaa_pharmacy/widget/text_box.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = "LoginScreen";
-  final dynamic controller;
-  final rememberMode mode;
   final bool state;
-  LoginScreen({
-    this.controller,
-    this.state,
-    this.mode,
-  });
+  LoginScreen({this.state = false});
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
   final ClientsController controller = Get.put(ClientsController());
+  final TextEditingController email = TextEditingController();
+  final TextEditingController password = TextEditingController();
   bool state;
-  rememberMode mode;
 
   @override
   void initState() {
     super.initState();
     state = widget.state;
-    mode = widget.mode;
 
     /// TODO : Initialisation
-    email.text = mode == rememberMode.no ? signInClient.email : "aittataa@gmail.com";
-    password.text = mode == rememberMode.no ? signInClient.password : "1234567890";
+    email.text = state ? Constant.signInClient.email : "aittataa@gmail.com";
+    password.text = state ? Constant.signInClient.password : "0123456789";
   }
-
-  var email = TextEditingController();
-  var password = TextEditingController();
 
   bool rememberMe = true;
   bool obscureText = true;
@@ -85,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () => setState(() => obscureText = !obscureText),
                         icon: Icon(
                           Icons.remove_red_eye,
-                          color: obscureText ? Colors.black12 : Colors.white,
+                          color: obscureText ? Colors.black26 : Colors.white,
                         ),
                       ),
                     ),
@@ -99,7 +90,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     onChanged: (value) {
                       setState(() {
                         rememberMe = value;
-                        print(rememberMe);
                       });
                     },
                   ),
@@ -111,71 +101,69 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 10,
-                        child: RegistrationButton(
-                          text: "Login",
-                          textColor: Colors.white,
-                          backColor: mainColor,
-                          onPressed: () async {
-                            FocusScope.of(context).unfocus();
-                            setState(() => isAsyncCall = true);
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 10,
+                      child: RegistrationButton(
+                        text: "Login",
+                        textColor: Colors.white,
+                        backColor: mainColor,
+                        onPressed: () async {
+                          FocusScope.of(context).unfocus();
+                          setState(() => isAsyncCall = true);
 
-                            bool isEmail = GetUtils.isEmail(email.text.trim());
-                            bool isPassword = GetUtils.isLengthGreaterThan(password.text.trim(), 8);
-                            if (isPassword && isEmail) {
-                              try {
-                                signInClient = await controller.getClientByInfo(
-                                  Client(
-                                    email: email.text.trim(),
-                                    password: password.text.trim(),
-                                  ),
-                                );
-                                bool state = Constant.isClientLogged;
-                                if (state) {
-                                  final session = await SharedPreferences.getInstance();
-                                  session.setInt("id", signInClient.id);
-                                  session.setBool("state", rememberMe);
-                                  Get.off(InitialScreen());
-                                }
-                              } catch (e) {
-                                errorSnackBar(
-                                  context,
-                                  title: "Identification Incorrect",
-                                  message: "Email or Password is Incorrect, Please Try Again",
-                                );
+                          bool isEmail = GetUtils.isEmail(email.text.trim());
+                          bool isPassword = GetUtils.isLengthGreaterThan(password.text.trim(), 8);
+                          if (isPassword && isEmail) {
+                            try {
+                              Constant.signInClient = await controller.getClientByInfo(
+                                Client(
+                                  email: email.text.trim(),
+                                  password: password.text.trim(),
+                                ),
+                              );
+                              bool state = Constant.isClientLogged;
+                              if (state) {
+                                final session = await SharedPreferences.getInstance();
+                                session.setInt("id", Constant.signInClient.id);
+                                session.setBool("state", rememberMe);
+                                Get.off(InitialScreen());
                               }
-                            } else {
+                            } catch (e) {
                               errorSnackBar(
                                 context,
                                 title: "Identification Incorrect",
-                                message: "Check Your Email or Password",
+                                message: "Email or Password is Incorrect, Please Try Again",
                               );
                             }
+                          } else {
+                            errorSnackBar(
+                              context,
+                              title: "Identification Incorrect",
+                              message: "Check Your Email or Password",
+                            );
+                          }
 
-                            setState(() => isAsyncCall = false);
-                          },
-                        ),
+                          setState(() => isAsyncCall = false);
+                        },
                       ),
-                      Expanded(child: SizedBox(width: 1)),
-                      Expanded(
-                        flex: 10,
-                        child: RegistrationButton(
-                          text: "Skip",
-                          textColor: mainColor,
-                          backColor: Colors.white,
-                          onPressed: () async {
-                            final session = await SharedPreferences.getInstance();
-                            session.setBool("skip", true);
-                            Navigator.popAndPushNamed(context, InitialScreen.id);
-                          },
-                        ),
+                    ),
+                    Expanded(child: SizedBox(width: 1)),
+                    Expanded(
+                      flex: 10,
+                      child: RegistrationButton(
+                        text: "Skip",
+                        textColor: mainColor,
+                        backColor: Colors.white,
+                        onPressed: () async {
+                          final session = await SharedPreferences.getInstance();
+                          session.setBool("skip", true);
+                          Get.off(InitialScreen());
+                        },
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 5),
@@ -189,7 +177,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 BottomButton(
                   title: "Create New Account",
-                  route: RegisterScreen.id,
+                  screen: RegisterScreen(),
                 ),
               ],
             ),

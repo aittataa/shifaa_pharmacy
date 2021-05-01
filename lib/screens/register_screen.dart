@@ -21,6 +21,11 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final ClientsController controller = Get.put(ClientsController());
+  final TextEditingController username = TextEditingController();
+  final TextEditingController email = TextEditingController();
+  final TextEditingController password = TextEditingController();
+  final TextEditingController phone = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -31,11 +36,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   bool obscureText = false;
-
-  TextEditingController username = TextEditingController();
-  TextEditingController email = TextEditingController();
-  TextEditingController password = TextEditingController();
-  TextEditingController phone = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -131,7 +131,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   ),
                                 );
                                 if (state) {
-                                  signInClient = await controller.getClientByInfo(
+                                  Constant.signInClient = await controller.getClientByInfo(
                                     Client(
                                       email: email.text.trim(),
                                       password: password.text.trim(),
@@ -140,7 +140,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   bool state = Constant.isClientLogged;
                                   if (state) {
                                     final session = await SharedPreferences.getInstance();
-                                    session.setInt("id", signInClient.id);
+                                    session.setInt("id", Constant.signInClient.id);
                                     session.setBool("state", true);
                                     Get.off(InitialScreen());
                                   } else {
@@ -167,31 +167,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             } else {
                               String title = "";
                               String message = "";
-                              //if (!isFullnameNotEmpty) {
-                              //  title = "Name Empty";
-                              //  message = "Name is Required";
-                              //} else if (!isFullNameValid) {
-                              //  title = "Name Invalid";
-                              //  message = "Name Must Contain Least 5 Characters";
-                              //} else if (!isEmailNotEmpty) {
-                              //  title = "Email Empty";
-                              //  message = "Email is Required";
-                              //} else if (!isEmailValid) {
-                              //  title = "Email Invalid";
-                              //  message = "Type Valid Email";
-                              //} else if (!isPasswordNotEmpty) {
-                              //  title = "Password Empty";
-                              //  message = "Password is Required";
-                              //} else if (!isPasswordValid) {
-                              //  title = "Password Invalid";
-                              //  message = "Password Must Contain at Least 8 Characters";
-                              //} else if (!isPhoneNotEmpty) {
-                              //  title = "Phone Empty";
-                              //  message = "Phone Number is Required";
-                              //} else if (!isPhoneValid) {
-                              //  title = "Phone Number Invalid";
-                              //  message = "Phone Number must contain 10 Numbers";
-                              //}
+                              if (!isUsername) {
+                                title = "Name To Short";
+                                message = "Name Must Contain Least 5 Characters";
+                              } else if (!isEmail) {
+                                title = "Invalid Email";
+                                message = "Invalid Email Format";
+                              } else if (!isPassword) {
+                                title = "Password To Short";
+                                message = "Password Must Contain at Least 8 Characters";
+                              } else if (!isPhoneNumber) {
+                                title = "Invalid Phone Number";
+                                message = "Phone Number must contain 10 Numbers";
+                              }
                               errorSnackBar(
                                 context,
                                 title: title,
@@ -222,7 +210,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 BottomButton(
                   title: "Already Have Account",
-                  route: LoginScreen.id,
+                  screen: LoginScreen(),
                 ),
               ],
             ),

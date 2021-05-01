@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 import 'package:shifaa_pharmacy/classes/product.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
+import 'package:shifaa_pharmacy/controllers/products_controller.dart';
 import 'package:shifaa_pharmacy/display_function/display_function.dart';
-import 'package:shifaa_pharmacy/provider/products_provider.dart';
-import 'package:shifaa_pharmacy/screens/login_screen.dart';
 import 'package:shifaa_pharmacy/screens/prescription_screen.dart';
 import 'package:shifaa_pharmacy/screens/product_details.dart';
 import 'package:shifaa_pharmacy/screens/shopping_screen.dart';
@@ -13,130 +12,89 @@ import 'package:shifaa_pharmacy/widget/body_shape.dart';
 import 'package:shifaa_pharmacy/widget/empty_box.dart';
 import 'package:shifaa_pharmacy/widget/function_button.dart';
 
-class FavoriteScreen extends StatefulWidget {
+class FavoriteScreen extends StatelessWidget {
   static const String id = "FavoriteScreen";
-
-  final List<Product> myList;
-  FavoriteScreen({this.myList});
-
-  @override
-  _FavoriteScreenState createState() => _FavoriteScreenState();
-}
-
-class _FavoriteScreenState extends State<FavoriteScreen> {
-  bool isNotEmpty;
-  List<Product> myList;
-  TextEditingController controller = TextEditingController();
-  get setMyList {
-    myList = favoriteProductsList.where((product) {
-      return product.isFav == true;
-    }).toList();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    myList = widget.myList;
-    isNotEmpty = myList.isNotEmpty;
-    setMyList;
-  }
+  final ProductsController controller = Get.put(ProductsController());
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ProductsProvider>(
-      builder: (context, productProvider, child) {
-        productProvider.loadProducts;
-        return Scaffold(
-          appBar: AppBar(
-            elevation: 0,
-            title: Text("WishList", style: TextStyle(fontWeight: FontWeight.bold)),
-            leading: BackIconButton(),
-            actions: [
-              FunctionIconButton(
-                icon: Icons.shopping_cart,
-                onPressed: () {
-                  Navigator.popAndPushNamed(context, ShoppingScreen.id);
-                },
-              ),
-              FunctionIconButton(
-                icon: Icons.receipt_long,
-                onPressed: () {
-                  Navigator.popAndPushNamed(context, PrescriptionScreen.id);
-                },
-              ),
-            ],
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        title: Text("WishList", style: TextStyle(fontWeight: FontWeight.bold)),
+        leading: BackIconButton(),
+        actions: [
+          FunctionIconButton(
+            icon: Icons.shopping_cart,
+            onPressed: () {
+              Get.to(ShoppingScreen());
+            },
           ),
-          body: isNotEmpty
-              ? BodyShape(
-                  controller: controller,
-                  onPressed: () {
-                    setState(() {
-                      controller.clear();
-                      myList = widget.myList;
-                    });
+          FunctionIconButton(
+            icon: Icons.receipt_long,
+            onPressed: () {
+              Get.to(PrescriptionScreen());
+            },
+          ),
+        ],
+      ),
+      body: Obx(() {
+        final List<Product> myList = controller.favoriteProductsList.where((product) {
+          return product.isFav == true;
+        }).toList();
+        final bool isNotEmpty = myList.isNotEmpty;
+        if (isNotEmpty) {
+          return BodyShape(
+            child: GridView.builder(
+              padding: EdgeInsets.all(5),
+              physics: BouncingScrollPhysics(),
+              scrollDirection: Axis.vertical,
+              gridDelegate: Constant.gridDelegate(2),
+              itemCount: myList.length,
+              itemBuilder: (context, index) {
+                Product product = myList[index];
+                bool isFav = isProductFavorite(product);
+                return displayProduct(
+                  product: product,
+                  isFav: isFav,
+                  onTap: () {
+                    Get.to(
+                      ProductDetails(
+                        myList: myList,
+                        index: index,
+                      ),
+                    );
                   },
-                  onChanged: (value) {
-                    setState(() {
-                      myList = findProduct(widget.myList, value);
-                    });
+                  /*
+                  onShopTap: (value) async {
+                    if (isClientLogged) {
+                      onShopProductTap(product, context);
+                    } else {
+                      Get.offAll(LoginScreen());
+                    }
+                    return value;
                   },
-                  child: GridView.builder(
-                    padding: EdgeInsets.all(5),
-                    physics: BouncingScrollPhysics(),
-                    scrollDirection: Axis.vertical,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 5,
-                      mainAxisSpacing: 5,
-                    ),
-                    itemCount: myList.length,
-                    itemBuilder: (context, index) {
-                      Product product = myList[index];
-                      bool isFav = isProductFavorite(product);
-                      return displayProduct(
-                        product: product,
-                        isFav: isFav,
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ProductDetails(
-                                myList: myList,
-                                index: index,
-                              ),
-                            ),
-                          );
-                        },
-                        onShopTap: (bool isLiked) async {
-                          setState(() {
-                            if (isClientLogged) {
-                              onShopProductTap(product, context);
-                            } else {
-                              Navigator.popAndPushNamed(context, LoginScreen.id);
-                            }
-                            return isLiked;
-                          });
-                        },
-                        onFavTap: (bool isLiked) async {
-                          setState(() {
-                            if (isClientLogged) {
-                              onFavProductTap(product);
-                              isFav = !isFav;
-                              productProvider.loadProducts;
-                              setMyList;
-                            } else {
-                              Navigator.popAndPushNamed(context, LoginScreen.id);
-                            }
-                            return isFav;
-                          });
-                        },
-                      );
-                    },
-                  ),
-                )
-              : EmptyBox(),
-        );
-      },
+                  */
+
+                  /*
+                  onFavTap: (value) async {
+                    if (isClientLogged) {
+                      onFavProductTap(product);
+                      isFav = !isFav;
+                    } else {
+                      Get.offAll(LoginScreen());
+                    }
+                    return isFav;
+                  },
+                  */
+                );
+              },
+            ),
+          );
+        } else {
+          return EmptyBox();
+        }
+      }),
     );
   }
 }

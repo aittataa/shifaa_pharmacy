@@ -1,173 +1,162 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:shifaa_pharmacy/classes/product.dart';
-import 'package:shifaa_pharmacy/constant/constant.dart';
-import 'package:shifaa_pharmacy/provider/clients_provider.dart';
-import 'package:shifaa_pharmacy/screens/about_screen.dart';
-import 'package:shifaa_pharmacy/screens/favorite_screen.dart';
-import 'package:shifaa_pharmacy/screens/login_screen.dart';
-import 'package:shifaa_pharmacy/screens/prescription_screen.dart';
-import 'package:shifaa_pharmacy/screens/profile_screen.dart';
-import 'package:shifaa_pharmacy/screens/shopping_screen.dart';
-import 'package:shifaa_pharmacy/widget/divider_line.dart';
-import 'package:shifaa_pharmacy/widget/horizontal_button.dart';
-import 'package:shifaa_pharmacy/widget/vertical_button.dart';
+import 'package:get/get.dart';
+import 'package:shifaa_pharmacy/controllers/clients_controller.dart';
+
+import '../constant/constant.dart';
+import '../screens/about_screen.dart';
+import '../screens/favorite_screen.dart';
+import '../screens/login_screen.dart';
+import '../screens/prescription_screen.dart';
+import '../screens/profile_screen.dart';
+import '../screens/shopping_screen.dart';
+import 'divider_line.dart';
+import 'horizontal_button.dart';
+import 'vertical_button.dart';
 
 class DrawerNavigation extends StatelessWidget {
+  final ClientsController controller;
+  const DrawerNavigation({this.controller});
   @override
   Widget build(BuildContext context) {
-    return Consumer<ClientsProvider>(
-      builder: (context, clientProvider, child) {
-        clientProvider.loadClients;
-        return AnimatedContainer(
-          duration: Duration(milliseconds: 1500),
-          curve: Curves.linearToEaseOut,
-          color: mainColor,
-          width: screenWidth * 0.85,
-          child: SafeArea(
-            child: Column(
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 1500),
+      curve: Curves.linearToEaseOut,
+      color: mainColor,
+      width: screenWidth * 0.85,
+      child: SafeArea(
+        child: Column(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.all(10),
-                      width: screenHeight * 0.15,
-                      height: screenHeight * 0.15,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: isClientLogged
-                              ? NetworkImage("${signInClient.picture}")
-                              : AssetImage("icons/icon_round.png"),
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 90,
-                            spreadRadius: -15,
-                          ),
-                        ],
-                      ),
+                Container(
+                  margin: EdgeInsets.all(10),
+                  width: screenHeight * 0.15,
+                  height: screenHeight * 0.15,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: isClientLogged
+                          ? NetworkImage("${Constant.signInClient.picture}")
+                          : AssetImage("icons/icon_round.png"),
                     ),
-                    ListTile(
-                      dense: true,
-                      minLeadingWidth: 0,
-                      minVerticalPadding: 0,
-                      horizontalTitleGap: 0,
-                      contentPadding: EdgeInsets.zero.copyWith(left: 10),
-                      title: Text(
-                        isClientLogged ? "${signInClient.username}" : appTitle,
-                        softWrap: false,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w900,
-                          fontSize: 20,
-                        ),
-                      ),
-                      subtitle: Text(
-                        isClientLogged ? "${signInClient.email}" : appDesc,
-                        softWrap: false,
-                        style: TextStyle(
-                          color: Colors.black54,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                        ),
-                      ),
-                      trailing: IconButton(
-                        onPressed: () => Navigator.popAndPushNamed(
-                          context,
-                          isClientLogged ? ProfileScreen.id : LoginScreen.id,
-                        ),
-                        icon: Icon(Icons.edit, color: Colors.white, size: 30),
-                      ),
-                    ),
-                  ],
-                ),
-                DividerLine(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    HorizontalButton(
-                      icon: Icons.shopping_cart,
-                      title: "Shopping",
-                      onPressed: () {
-                        Navigator.popAndPushNamed(context, ShoppingScreen.id);
-                      },
-                    ),
-                    HorizontalButton(
-                      icon: Icons.receipt_long,
-                      title: "Prescription",
-                      onPressed: () {
-                        Navigator.popAndPushNamed(context, PrescriptionScreen.id);
-                      },
-                    ),
-                    HorizontalButton(
-                      icon: Icons.favorite,
-                      title: "WishList",
-                      onPressed: () {
-                        List<Product> myList = productsList.where((product) {
-                          return product.isFav == true;
-                        }).toList();
-                        Navigator.pop(context);
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => FavoriteScreen(myList: myList)),
-                        );
-                      },
-                    ),
-                  ],
-                ),
-                DividerLine(),
-                Expanded(
-                  child: Column(
-                    children: [
-                      VerticalButton(
-                        icon: CupertinoIcons.house_alt_fill,
-                        title: "Home",
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                      ),
-                      VerticalButton(
-                        icon: CupertinoIcons.gear_alt_fill,
-                        title: "Settings",
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 90,
+                        spreadRadius: -15,
                       ),
                     ],
                   ),
                 ),
-                DividerLine(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    HorizontalButton(
-                      icon: Icons.info,
-                      title: "About Us",
-                      onPressed: () {
-                        Navigator.popAndPushNamed(context, AboutScreen.id);
-                      },
+                ListTile(
+                  dense: true,
+                  minLeadingWidth: 0,
+                  minVerticalPadding: 0,
+                  horizontalTitleGap: 0,
+                  contentPadding: EdgeInsets.zero.copyWith(left: 10),
+                  title: Text(
+                    isClientLogged ? "${Constant.signInClient.username}" : appTitle,
+                    softWrap: false,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 20,
                     ),
-                    HorizontalButton(
-                      icon: CupertinoIcons.escape,
-                      title: isClientLogged ? "Sign Out" : "Sign In",
-                      onPressed: () {
-                        clientProvider.clear;
-                        Navigator.pop(context);
-                        Navigator.popAndPushNamed(context, LoginScreen.id);
-                      },
+                  ),
+                  subtitle: Text(
+                    isClientLogged ? "${Constant.signInClient.email}" : appDesc,
+                    softWrap: false,
+                    style: TextStyle(
+                      color: Colors.black54,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
                     ),
-                  ],
+                  ),
+                  trailing: IconButton(
+                    onPressed: () => Navigator.popAndPushNamed(
+                      context,
+                      isClientLogged ? ProfileScreen.id : LoginScreen.id,
+                    ),
+                    icon: Icon(Icons.edit, color: Colors.white, size: 30),
+                  ),
                 ),
               ],
             ),
-          ),
-        );
-      },
+            DividerLine(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                HorizontalButton(
+                  icon: Icons.shopping_cart,
+                  title: "Shopping",
+                  onPressed: () {
+                    Get.off(ShoppingScreen());
+                  },
+                ),
+                HorizontalButton(
+                  icon: Icons.receipt_long,
+                  title: "Prescription",
+                  onPressed: () {
+                    Get.off(PrescriptionScreen());
+                  },
+                ),
+                HorizontalButton(
+                  icon: Icons.favorite,
+                  title: "WishList",
+                  onPressed: () {
+                    Get.off(FavoriteScreen());
+                  },
+                ),
+              ],
+            ),
+            DividerLine(),
+            Expanded(
+              child: Column(
+                children: [
+                  VerticalButton(
+                    icon: CupertinoIcons.house_alt_fill,
+                    title: "Home",
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  VerticalButton(
+                    icon: CupertinoIcons.gear_alt_fill,
+                    title: "Settings",
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                ],
+              ),
+            ),
+            DividerLine(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                HorizontalButton(
+                  icon: Icons.info,
+                  title: "About Us",
+                  onPressed: () {
+                    Navigator.popAndPushNamed(context, AboutScreen.id);
+                  },
+                ),
+                HorizontalButton(
+                  icon: CupertinoIcons.escape,
+                  title: isClientLogged ? "Sign Out" : "Sign In",
+                  onPressed: () {
+                    controller.clear;
+                    Get.offAll(LoginScreen());
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

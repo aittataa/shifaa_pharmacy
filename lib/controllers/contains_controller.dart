@@ -14,19 +14,22 @@ class ContainsController extends GetxController {
   get loadContains async {
     bool state = Constant.isClientLogged;
     if (state) {
-      int id = signInClient.id;
+      int id = Constant.signInClient.id;
       var contains = await DataBaseProvider.getContain(id);
       if (contains != null) containList.value = contains;
     }
+    update();
   }
 
   addContain(Contain contain) async {
     bool state = await DataBaseProvider.addContain(contain);
+    update();
     return state;
   }
 
   updateContain(int id) async {
     bool state = await DataBaseProvider.updateContain(id);
+    update();
     return state;
   }
 }

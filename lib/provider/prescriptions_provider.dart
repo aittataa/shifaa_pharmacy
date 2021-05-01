@@ -7,7 +7,7 @@ class PrescriptionsProvider extends ChangeNotifier {
   get loadPrescriptions async {
     isClientLogged;
     if (isClientLogged) {
-      int id = signInClient.id;
+      int id = Constant.signInClient.id;
       prescriptionList = await DataBaseProvider.getPrescription(id);
     } else {
       prescriptionList = [];

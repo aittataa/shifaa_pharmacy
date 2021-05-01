@@ -16,7 +16,7 @@ import 'package:shifaa_pharmacy/classes/sub_categories.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
 
 class DataBaseProvider extends ChangeNotifier {
-  static Uri _api = Uri.parse("$URL_SERVER/api.php");
+  static Uri _api = Uri.parse("${Constant.SERVER_URL}/api.php");
 
   static const String _FROM_APP = "FROM_APP";
   static const String _GET_ALL_PRODUCT = "GET_ALL_PRODUCT";

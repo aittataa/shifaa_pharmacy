@@ -4,6 +4,7 @@ import 'package:shifaa_pharmacy/classes/categories.dart';
 import 'package:shifaa_pharmacy/classes/product.dart';
 import 'package:shifaa_pharmacy/classes/sub_categories.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
+import 'package:shifaa_pharmacy/controllers/categories_controller.dart';
 import 'package:shifaa_pharmacy/controllers/products_controller.dart';
 import 'package:shifaa_pharmacy/display_function/display_function.dart';
 import 'package:shifaa_pharmacy/screens/favorite_screen.dart';
@@ -20,21 +21,19 @@ import 'login_screen.dart';
 
 class SubCategoriesScreen extends StatefulWidget {
   static const String id = "SubCategoriesScreen";
-  final dynamic controller;
   final Categories category;
-  SubCategoriesScreen({this.controller, this.category});
+  SubCategoriesScreen({this.category});
   @override
   _SubCategoriesScreenState createState() => _SubCategoriesScreenState();
 }
 
 class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
-  dynamic controller;
+  final CategoriesController controller = Get.put(CategoriesController());
   Categories category;
 
   @override
   void initState() {
     super.initState();
-    controller = widget.controller;
     category = widget.category;
     subIndex = 0;
   }
@@ -53,34 +52,27 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
           FunctionIconButton(
             icon: Icons.shopping_cart,
             onPressed: () {
-              Navigator.pushNamed(context, ShoppingScreen.id);
+              Get.to(ShoppingScreen());
             },
           ),
           FunctionIconButton(
             icon: Icons.receipt_long,
             onPressed: () {
-              Navigator.pushNamed(context, PrescriptionScreen.id);
+              Get.to(PrescriptionScreen());
             },
           ),
           FunctionIconButton(
             icon: Icons.favorite,
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => FavoriteScreen(
-                    myList: favoriteProductsList.where((product) {
-                      return product.isFav == true;
-                    }).toList(),
-                  ),
-                ),
-              );
+              Get.to(FavoriteScreen());
             },
           ),
         ],
       ),
       body: Obx(() {
-        final List<SubCategories> myList = Constant.getSubCategories(category.id, controller);
+        final List<SubCategories> myList = controller.subcategoriesList.where((subcategory) {
+          return subcategory.categoryID == category.id;
+        }).toList();
         final bool isNotEmpty = myList.isNotEmpty;
         if (isNotEmpty) {
           subID = myList.first.id;
@@ -114,7 +106,9 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
                 Expanded(
                   child: Obx(() {
                     final ProductsController controller = Get.put(ProductsController());
-                    final List<Product> myList = Constant.getProductList(subID, controller);
+                    final myList = controller.productsList.where((product) {
+                      return product.subcategoryID == subID;
+                    }).toList();
                     final bool isNotEmpty = myList.isNotEmpty;
                     if (isNotEmpty) {
                       return GridView.builder(
@@ -128,33 +122,30 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
                           return displayProduct(
                             product: product,
                             isFav: isFav,
-                            onTap: () => Get.to(
-                              ProductDetails(
-                                controller: controller,
-                                index: index,
-                                myList: myList,
-                              ),
-                            ),
+                            onTap: () {
+                              Get.to(
+                                ProductDetails(
+                                  index: index,
+                                  myList: myList,
+                                ),
+                              );
+                            },
                             onShopTap: (bool isLiked) async {
-                              setState(() {
-                                if (isClientLogged) {
-                                  onShopProductTap(product, context);
-                                } else {
-                                  Navigator.popAndPushNamed(context, LoginScreen.id);
-                                }
-                                return isLiked;
-                              });
+                              if (isClientLogged) {
+                                onShopProductTap(product, context);
+                              } else {
+                                Navigator.popAndPushNamed(context, LoginScreen.id);
+                              }
+                              return isLiked;
                             },
                             onFavTap: (bool isLiked) async {
-                              setState(() {
-                                if (isClientLogged) {
-                                  onFavProductTap(product);
-                                  isFav = !isFav;
-                                } else {
-                                  Navigator.popAndPushNamed(context, LoginScreen.id);
-                                }
-                                return isFav;
-                              });
+                              if (isClientLogged) {
+                                onFavProductTap(product);
+                                isFav = !isFav;
+                              } else {
+                                Navigator.popAndPushNamed(context, LoginScreen.id);
+                              }
+                              return isFav;
                             },
                           );
                         },

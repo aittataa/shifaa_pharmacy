@@ -27,5 +27,6 @@ class CategoriesController extends GetxController {
     if (categories != null) categoriesList.value = categories;
     if (subcategories != null) subcategoriesList.value = subcategories;
     if (brands != null) brandsList.value = brands;
+    update();
   }
 }

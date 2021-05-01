@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class BottomButton extends StatelessWidget {
   final String title;
-  final String route;
-  const BottomButton({this.title, this.route});
+  final Widget screen;
+  const BottomButton({this.title, this.screen});
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      onPressed: () => Navigator.popAndPushNamed(context, route),
+      onPressed: () => Get.off(screen),
       elevation: 0,
       highlightElevation: 0,
       color: Colors.transparent,

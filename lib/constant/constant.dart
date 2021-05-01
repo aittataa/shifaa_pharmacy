@@ -21,17 +21,25 @@ import '../provider/orders_provider.dart';
 import '../provider/products_provider.dart';
 
 class Constant {
-  static const String SERVER_URL = "http://192.168.1.33/.shifaa_pharmacy";
+  static const String SERVER_URL = "http://192.168.1.40/.shifaa_pharmacy";
 
-  static bool get isClientLogged => signInClient != null;
+  static Client signInClient;
 
-  static getProductList(id, controller) {
+  static bool get isClientLogged => Constant.signInClient != null;
+
+  static getFavoriteProductList(controller) {
+    return controller.favoriteProductsList.where((product) {
+      return product.isFav == true;
+    }).toList();
+  }
+
+  static getSubCategoryProductList(id, controller) {
     return controller.productsList.where((product) {
       return product.subcategoryID == id;
     }).toList();
   }
 
-  static getSubCategories(int id, dynamic controller) {
+  static getSubCategoriesList(id, controller) {
     return controller.subcategoriesList.where((subcategory) {
       return subcategory.categoryID == id;
     }).toList();
@@ -46,7 +54,7 @@ class Constant {
   }
 }
 
-const String URL_SERVER = "http://192.168.1.33/.shifaa_pharmacy";
+const String URL_SERVER = "http://192.168.1.40/.shifaa_pharmacy";
 
 const String appTitle = "Shifaa - شفاء";
 const String appDesc = "Pharmacy Delivery App";
@@ -68,14 +76,14 @@ const Color backColor = Color(0xFFF0F0F0);
 bool isAsyncCall = false;
 
 ///Is Client Logged
-bool get isClientLogged => signInClient != null;
+bool get isClientLogged => Constant.signInClient != null;
 
 ///Device Resolution
 double screenWidth = Device.screenWidth;
 double screenHeight = Device.screenHeight;
 
 ///Animation Jump
-int pageIndex = 1;
+int pageIndex = 2;
 PageController pageController = PageController(initialPage: pageIndex);
 void nextPage(index) {
   pageController.jumpToPage(index);
@@ -170,7 +178,7 @@ void shareApp(BuildContext context, {Settings settings}) {
 void onShopProductTap(Product product, context) async {
   OrdersProvider orderProvider = OrdersProvider();
   ContainsProvider containProvider = ContainsProvider();
-  int id = signInClient.id;
+  int id = Constant.signInClient.id;
   listOfOrders = await orderProvider.getNormalOrder(id);
   Order lastOrder;
   if (listOfOrders.isNotEmpty) {
@@ -242,7 +250,7 @@ bool isProductFavorite(Product product) {
 ///onFavProductTap
 void onFavProductTap(Product product) async {
   ProductsProvider productProvider = ProductsProvider();
-  int clientID = signInClient.id;
+  int clientID = Constant.signInClient.id;
   int productID = product.id;
   bool isFav = favoriteProductsList
       .where((productFav) {
@@ -286,9 +294,9 @@ void onFavProductTap(Product product) async {
   }
 }
 
-enum rememberMode { no }
+//enum rememberMode { no }
 
-Client signInClient;
+//Client signInClient;
 List<Client> myClientsList = [];
 
 List<Product> productsList = [];

@@ -29,12 +29,7 @@ class CategoriesPage extends StatelessWidget {
               return displayCategories(
                 item: category,
                 onTap: () {
-                  Get.to(
-                    SubCategoriesScreen(
-                      controller: controller,
-                      category: category,
-                    ),
-                  );
+                  Get.to(SubCategoriesScreen(category: category));
                 },
               );
             },

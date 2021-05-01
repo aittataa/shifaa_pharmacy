@@ -20,19 +20,26 @@ class ProductsController extends GetxController {
     if (products != null) productsList.value = products;
     bool state = Constant.isClientLogged;
     if (state) {
-      int id = signInClient.id;
+      int id = Constant.signInClient.id;
       var favoriteProducts = await DataBaseProvider.getFavorite(id);
-      if (favoriteProducts) favoriteProductsList.value = favoriteProducts;
+      if (favoriteProducts != null) {
+        favoriteProductsList.value = favoriteProducts;
+      } else {
+        favoriteProductsList.value = null;
+      }
     }
+    update();
   }
 
   addFavorite(Favorite favorite) async {
     bool state = await DataBaseProvider.addFavorite(favorite);
+    update();
     return state;
   }
 
   updateFavorite(Favorite favorite) async {
     bool state = await DataBaseProvider.updateFavorite(favorite);
+    update();
     return state;
   }
 }

@@ -16,5 +16,6 @@ class SettingsController extends GetxController {
     if (settings != null) {
       appSettings.value = settings;
     }
+    update();
   }
 }

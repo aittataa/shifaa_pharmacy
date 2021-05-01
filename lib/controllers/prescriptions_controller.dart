@@ -14,19 +14,22 @@ class PrescriptionsController extends GetxController {
   get loadPrescriptions async {
     bool state = Constant.isClientLogged;
     if (state) {
-      int id = signInClient.id;
+      int id = Constant.signInClient.id;
       var prescriptions = await DataBaseProvider.getPrescription(id);
       if (prescriptions != null) prescriptionList.value = prescriptions;
+      update();
     }
   }
 
   addPrescription(Prescription prescription) async {
     bool state = await DataBaseProvider.addPrescription(prescription);
+    update();
     return state;
   }
 
   updatePrescription(int id) async {
     bool state = await DataBaseProvider.updatePrescription(id);
+    update();
     return state;
   }
 }
