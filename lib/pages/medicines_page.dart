@@ -2,25 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shifaa_pharmacy/classes/medicine.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
+import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/display_function/display_function.dart';
 import 'package:shifaa_pharmacy/screens/product_screen.dart';
 import 'package:shifaa_pharmacy/widget/body_shape.dart';
 import 'package:shifaa_pharmacy/widget/empty_box.dart';
 
 class MedicinesPage extends StatelessWidget {
-  // final CategoriesController categoriesController = Get.put(CategoriesController());
   final controller;
   const MedicinesPage({this.controller});
-
-  //bool isNotEmpty = true;
-  //List<Medicine> myList = [];
-  //TextEditingController controller = TextEditingController();
-  @override
-  //void initState() {
-  //  super.initState();
-  //  //myList = medicinesList;
-  //  //isNotEmpty = myList.isNotEmpty;
-  //}
 
   @override
   Widget build(BuildContext context) {
@@ -29,22 +19,10 @@ class MedicinesPage extends StatelessWidget {
       bool isNotEmpty = myList.isNotEmpty;
       if (isNotEmpty) {
         return BodyShape(
-          //controller: controller,
-          //onPressed: () {
-          //  setState(() {
-          //    controller.clear();
-          //    myList = medicinesList;
-          //  });
-          //},
-          //onChanged: (value) {
-          //  setState(() {
-          //    myList = findCategory(medicinesList, value);
-          //  });
-          //},
           child: GridView.builder(
             padding: EdgeInsets.all(5),
             physics: BouncingScrollPhysics(),
-            gridDelegate: Constant.gridDelegate(3),
+            gridDelegate: SharedFunctions.gridDelegate(3),
             itemCount: myList.length,
             itemBuilder: (context, index) {
               Medicine medicine = myList[index];

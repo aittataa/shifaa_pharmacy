@@ -4,6 +4,7 @@ import 'package:shifaa_pharmacy/classes/categories.dart';
 import 'package:shifaa_pharmacy/classes/product.dart';
 import 'package:shifaa_pharmacy/classes/sub_categories.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
+import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/controllers/categories_controller.dart';
 import 'package:shifaa_pharmacy/controllers/products_controller.dart';
 import 'package:shifaa_pharmacy/display_function/display_function.dart';
@@ -114,7 +115,7 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
                       return GridView.builder(
                         padding: EdgeInsets.only(top: 25, right: 5, left: 5),
                         physics: BouncingScrollPhysics(),
-                        gridDelegate: Constant.gridDelegate(2),
+                        gridDelegate: SharedFunctions.gridDelegate(2),
                         itemCount: myList.length,
                         itemBuilder: (context, index) {
                           Product product = myList[index];

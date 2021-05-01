@@ -20,7 +20,7 @@ class Prescription {
   factory Prescription.fromJson(Map<String, dynamic> data) {
     return Prescription(
       id: int.parse(data["id_prescription"]),
-      picture: "$URL_SERVER/images/prescriptions/${data["prescription_picture"]}",
+      picture: "${Constant.SERVER_URL}/images/prescriptions/${data["prescription_picture"]}",
       description: data["prescription_description"],
       date: DateTime.parse(data["prescription_date"]),
       orderID: int.parse(data["order_id"]),

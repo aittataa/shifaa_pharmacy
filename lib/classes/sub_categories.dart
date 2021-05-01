@@ -19,7 +19,7 @@ class SubCategories {
     return SubCategories(
       id: int.parse(data["id_subcategory"]),
       title: data["subcategory_title"],
-      picture: "$URL_SERVER/images/${data["subcategory_picture"]}",
+      picture: "${Constant.SERVER_URL}/images/${data["subcategory_picture"]}",
       description: data["subcategory_description"],
       categoryID: int.parse(data["category_id"]),
     );

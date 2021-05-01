@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 
 import '../classes/favorite.dart';
 import '../classes/product.dart';
@@ -18,7 +19,7 @@ class ProductsController extends GetxController {
   get loadProducts async {
     var products = await DataBaseProvider.getAllProduct;
     if (products != null) productsList.value = products;
-    bool state = Constant.isClientLogged;
+    bool state = SharedFunctions.isClientLogged;
     if (state) {
       int id = Constant.signInClient.id;
       var favoriteProducts = await DataBaseProvider.getFavorite(id);

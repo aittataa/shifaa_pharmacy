@@ -17,7 +17,7 @@ class Brand {
     return Brand(
       id: int.parse(data["id_brand"]),
       title: data["brand_title"],
-      picture: "$URL_SERVER/images/${data["brand_picture"]}",
+      picture: "${Constant.SERVER_URL}/images/${data["brand_picture"]}",
       description: data["brand_description"],
     );
   }

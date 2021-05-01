@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shifaa_pharmacy/classes/client.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
+import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/provider/database_provider.dart';
 
 class ClientsController extends GetxController {
@@ -24,7 +25,7 @@ class ClientsController extends GetxController {
     final session = await SharedPreferences.getInstance();
     session.clear();
     Constant.signInClient = null;
-    Constant.isClientLogged;
+    SharedFunctions.isClientLogged;
   }
 
   getClientByID(int id) async {

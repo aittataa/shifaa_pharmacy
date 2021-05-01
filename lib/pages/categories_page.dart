@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shifaa_pharmacy/classes/categories.dart';
-import 'package:shifaa_pharmacy/constant/constant.dart';
+import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/controllers/categories_controller.dart';
 import 'package:shifaa_pharmacy/display_function/display_function.dart';
 import 'package:shifaa_pharmacy/screens/subcategories_screen.dart';
@@ -22,7 +22,7 @@ class CategoriesPage extends StatelessWidget {
             padding: EdgeInsets.all(5),
             physics: BouncingScrollPhysics(),
             scrollDirection: Axis.vertical,
-            gridDelegate: Constant.gridDelegate(3),
+            gridDelegate: SharedFunctions.gridDelegate(3),
             itemCount: myList.length,
             itemBuilder: (context, index) {
               Categories category = myList[index];

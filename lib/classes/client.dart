@@ -32,7 +32,7 @@ class Client {
       email: data["email"],
       password: data["password"],
       phone: data["phone"],
-      picture: "$URL_SERVER/images/${data["picture"]}",
+      picture: "${Constant.SERVER_URL}/images/${data["picture"]}",
       address: data["address"],
       zipCode: data["zip_code"] != null ? int.parse(data["zip_code"]) : 0,
       city: data["city"],

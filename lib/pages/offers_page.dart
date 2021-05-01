@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 
 import '../classes/product.dart';
 import '../constant/constant.dart';
@@ -23,7 +24,7 @@ class OffersPage extends StatelessWidget {
           child: GridView.builder(
             padding: EdgeInsets.all(5),
             physics: BouncingScrollPhysics(),
-            gridDelegate: Constant.gridDelegate(2),
+            gridDelegate: SharedFunctions.gridDelegate(2),
             itemCount: myList.length,
             itemBuilder: (context, index) {
               Product product = myList[index];

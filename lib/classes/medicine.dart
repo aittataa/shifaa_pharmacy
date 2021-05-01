@@ -17,7 +17,7 @@ class Medicine {
     return Medicine(
       id: int.parse(data["id_medcategory"]),
       title: data["medcategory_title"],
-      picture: "$URL_SERVER/images/${data["medcategory_picture"]}",
+      picture: "${Constant.SERVER_URL}/images/${data["medcategory_picture"]}",
       description: data["medcategory_description"],
     );
   }

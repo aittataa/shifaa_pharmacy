@@ -60,7 +60,7 @@ class Product {
       dose: data["dose"] ?? null,
       quantity: int.parse(data["quantity"]) ?? 0,
       price: double.parse(data["price"]),
-      picture: "$URL_SERVER/images/${data["picture"]}",
+      picture: "${Constant.SERVER_URL}/images/${data["picture"]}",
       featured: data["featured"] == "1",
       status: data["status"] == "1",
       description: data["description"],

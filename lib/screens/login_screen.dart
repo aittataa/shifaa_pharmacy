@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shifaa_pharmacy/classes/client.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
+import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/controllers/clients_controller.dart';
 import 'package:shifaa_pharmacy/screens/initial_screen.dart';
 import 'package:shifaa_pharmacy/screens/register_screen.dart';
@@ -123,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   password: password.text.trim(),
                                 ),
                               );
-                              bool state = Constant.isClientLogged;
+                              bool state = SharedFunctions.isClientLogged;
                               if (state) {
                                 final session = await SharedPreferences.getInstance();
                                 session.setInt("id", Constant.signInClient.id);

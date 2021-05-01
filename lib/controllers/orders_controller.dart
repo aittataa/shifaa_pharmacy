@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:shifaa_pharmacy/classes/order.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
+import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/provider/database_provider.dart';
 
 class OrdersController extends GetxController {
@@ -17,7 +18,7 @@ class OrdersController extends GetxController {
   }
 
   get loadOrders async {
-    bool state = Constant.isClientLogged;
+    bool state = SharedFunctions.isClientLogged;
     if (state) {
       int id = Constant.signInClient.id;
       var orders = await DataBaseProvider.getNormalOrder(id);

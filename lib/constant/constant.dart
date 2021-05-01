@@ -24,37 +24,9 @@ class Constant {
   static const String SERVER_URL = "http://192.168.1.40/.shifaa_pharmacy";
 
   static Client signInClient;
-
-  static bool get isClientLogged => Constant.signInClient != null;
-
-  static getFavoriteProductList(controller) {
-    return controller.favoriteProductsList.where((product) {
-      return product.isFav == true;
-    }).toList();
-  }
-
-  static getSubCategoryProductList(id, controller) {
-    return controller.productsList.where((product) {
-      return product.subcategoryID == id;
-    }).toList();
-  }
-
-  static getSubCategoriesList(id, controller) {
-    return controller.subcategoriesList.where((subcategory) {
-      return subcategory.categoryID == id;
-    }).toList();
-  }
-
-  static gridDelegate(int crossAxisCount) {
-    return SliverGridDelegateWithFixedCrossAxisCount(
-      crossAxisCount: crossAxisCount,
-      mainAxisSpacing: 5,
-      crossAxisSpacing: 5,
-    );
-  }
 }
 
-const String URL_SERVER = "http://192.168.1.40/.shifaa_pharmacy";
+//const String URL_SERVER = "http://192.168.1.40/.shifaa_pharmacy";
 
 const String appTitle = "Shifaa - شفاء";
 const String appDesc = "Pharmacy Delivery App";

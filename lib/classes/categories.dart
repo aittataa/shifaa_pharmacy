@@ -17,7 +17,7 @@ class Categories {
     return Categories(
       id: int.parse(data["id_category"]),
       title: data["category_title"],
-      picture: "$URL_SERVER/images/${data["category_picture"]}",
+      picture: "${Constant.SERVER_URL}/images/${data["category_picture"]}",
       description: data["category_description"],
     );
   }

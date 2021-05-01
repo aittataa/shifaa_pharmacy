@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shifaa_pharmacy/classes/product.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
+import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/controllers/products_controller.dart';
 import 'package:shifaa_pharmacy/display_function/display_function.dart';
 import 'package:shifaa_pharmacy/screens/prescription_screen.dart';
@@ -11,6 +12,8 @@ import 'package:shifaa_pharmacy/widget/back_icon.dart';
 import 'package:shifaa_pharmacy/widget/body_shape.dart';
 import 'package:shifaa_pharmacy/widget/empty_box.dart';
 import 'package:shifaa_pharmacy/widget/function_button.dart';
+
+import 'login_screen.dart';
 
 class FavoriteScreen extends StatelessWidget {
   static const String id = "FavoriteScreen";
@@ -49,7 +52,7 @@ class FavoriteScreen extends StatelessWidget {
               padding: EdgeInsets.all(5),
               physics: BouncingScrollPhysics(),
               scrollDirection: Axis.vertical,
-              gridDelegate: Constant.gridDelegate(2),
+              gridDelegate: SharedFunctions.gridDelegate(2),
               itemCount: myList.length,
               itemBuilder: (context, index) {
                 Product product = myList[index];
@@ -65,28 +68,23 @@ class FavoriteScreen extends StatelessWidget {
                       ),
                     );
                   },
-                  /*
-                  onShopTap: (value) async {
+                  onShopTap: (bool isLiked) async {
                     if (isClientLogged) {
                       onShopProductTap(product, context);
                     } else {
                       Get.offAll(LoginScreen());
                     }
-                    return value;
+                    return isLiked;
                   },
-                  */
-
-                  /*
-                  onFavTap: (value) async {
+                  onFavTap: (bool isLiked) async {
                     if (isClientLogged) {
                       onFavProductTap(product);
                       isFav = !isFav;
                     } else {
                       Get.offAll(LoginScreen());
                     }
-                    return isFav;
+                    return isLiked;
                   },
-                  */
                 );
               },
             ),
