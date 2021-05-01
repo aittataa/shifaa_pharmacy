@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
+import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/controllers/categories_controller.dart';
 import 'package:shifaa_pharmacy/controllers/clients_controller.dart';
 import 'package:shifaa_pharmacy/controllers/products_controller.dart';
@@ -32,12 +33,12 @@ class _InitialScreenState extends State<InitialScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () => isWillPop(context),
+      onWillPop: () => SharedFunctions.isWillPop(context),
       child: Scaffold(
         appBar: AppBar(
           elevation: 0,
           title: Text(
-            "${listTitles[pageIndex]}",
+            "${Constant.listTitles[SharedFunctions.pageIndex]}",
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           leading: MenuButtonBuilder(),
@@ -66,12 +67,11 @@ class _InitialScreenState extends State<InitialScreen> {
           controller: clientsController,
         ),
         body: PageView(
-          controller: pageController,
+          controller: SharedFunctions.pageController,
           physics: NeverScrollableScrollPhysics(),
           onPageChanged: (index) {
             setState(() {
-              pageIndex = index;
-              nextPage(pageIndex);
+              SharedFunctions.nextPage(index);
             });
           },
           children: [
@@ -92,11 +92,10 @@ class _InitialScreenState extends State<InitialScreen> {
         ),
         floatingActionButton: ActionFloatingButton(),
         bottomNavigationBar: BottomNavigation(
-          index: pageIndex,
+          index: SharedFunctions.pageIndex,
           onTap: (index) {
             setState(() {
-              pageIndex = index;
-              nextPage(pageIndex);
+              SharedFunctions.nextPage(index);
             });
           },
         ),

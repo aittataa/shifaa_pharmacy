@@ -23,6 +23,9 @@ class OrderAddress extends StatefulWidget {
 class _OrderAddressState extends State<OrderAddress> {
   final ClientsController clientsController = Get.put(ClientsController());
   final OrdersController ordersController = Get.put(OrdersController());
+  final TextEditingController address = TextEditingController();
+  final TextEditingController zipCode = TextEditingController();
+  final TextEditingController city = TextEditingController();
   int orderID;
   @override
   void initState() {
@@ -30,9 +33,7 @@ class _OrderAddressState extends State<OrderAddress> {
     orderID = widget.orderID;
   }
 
-  var address = TextEditingController();
-  var zipCode = TextEditingController();
-  var city = TextEditingController();
+  bool isAsyncCall = false;
 
   @override
   Widget build(BuildContext context) {

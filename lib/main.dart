@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
+import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/controllers/clients_controller.dart';
 import 'package:shifaa_pharmacy/provider/categories_provider.dart';
 import 'package:shifaa_pharmacy/provider/clients_provider.dart';
@@ -51,7 +51,7 @@ class ShifaaPharmacy extends StatelessWidget {
       builder: (context, child) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          title: "$appTitle",
+          title: "${Constant.appTitle}",
           color: mainColor,
           themeMode: ThemeMode.dark,
           theme: ThemeData.dark().copyWith(
@@ -59,28 +59,7 @@ class ShifaaPharmacy extends StatelessWidget {
             scaffoldBackgroundColor: backColor,
           ),
           home: AnimatedSplashScreen.withScreenFunction(
-            screenFunction: () async {
-              final session = await SharedPreferences.getInstance();
-              int id = session.getInt("id");
-              if (id != null) {
-                Constant.signInClient = await controller.getClientByID(id);
-                bool state = session.getBool("state");
-                if (state == false) {
-                  return LoginScreen(
-                    state: true,
-                  );
-                } else {
-                  return InitialScreen();
-                }
-              } else {
-                bool skip = session.getBool("skip");
-                if (skip == true) {
-                  return InitialScreen();
-                } else {
-                  return LoginScreen();
-                }
-              }
-            },
+            screenFunction: () async => await SharedFunctions.nextScreen(controller),
             splash: SplashScreen(),
             curve: Curves.linearToEaseOut,
             backgroundColor: backColor,

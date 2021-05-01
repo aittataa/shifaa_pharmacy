@@ -20,17 +20,17 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  var controller = Get.put(ClientsController());
+  final ClientsController controller = Get.put(ClientsController());
   bool obscureText = true;
+  bool isAsyncCall = false;
 
-  var username = TextEditingController();
-  var password = TextEditingController();
-  var phone = TextEditingController();
+  final TextEditingController username = TextEditingController();
+  final TextEditingController password = TextEditingController();
+  final TextEditingController phone = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    Constant.signInClient = controller.signInClient.value;
     username.text = Constant.signInClient.username;
     password.text = Constant.signInClient.password;
     phone.text = Constant.signInClient.phone;

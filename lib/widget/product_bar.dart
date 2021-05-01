@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shifaa_pharmacy/classes/product.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
+import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/display_function/display_function.dart';
-import 'package:shifaa_pharmacy/screens/login_screen.dart';
 import 'package:shifaa_pharmacy/screens/product_details.dart';
 import 'package:shifaa_pharmacy/screens/product_screen.dart';
 import 'package:shifaa_pharmacy/widget/split_title.dart';
@@ -44,7 +44,7 @@ class ProductBar extends StatelessWidget {
               itemCount: myList.length,
               itemBuilder: (context, index) {
                 Product product = myList[index];
-                bool isFav = isProductFavorite(product);
+                bool isFav = SharedFunctions.isProductFavorite(product);
                 return displayProduct(
                   product: product,
                   isFav: isFav,
@@ -60,20 +60,20 @@ class ProductBar extends StatelessWidget {
                     );
                   },
                   onShopTap: (bool isLiked) async {
-                    if (isClientLogged) {
-                      onShopProductTap(product, context);
-                    } else {
-                      Navigator.popAndPushNamed(context, LoginScreen.id);
-                    }
+                    //if (isClientLogged) {
+                    //  onShopProductTap(product, context);
+                    //} else {
+                    //  Navigator.popAndPushNamed(context, LoginScreen.id);
+                    //}
                     return isLiked;
                   },
                   onFavTap: (bool isLiked) async {
-                    if (isClientLogged) {
-                      onFavProductTap(product);
-                      isFav = !isFav;
-                    } else {
-                      Navigator.popAndPushNamed(context, LoginScreen.id);
-                    }
+                    //if (isClientLogged) {
+                    //  onFavProductTap(product);
+                    //  isFav = !isFav;
+                    //} else {
+                    //  Navigator.popAndPushNamed(context, LoginScreen.id);
+                    //}
                     return isFav;
                   },
                 );

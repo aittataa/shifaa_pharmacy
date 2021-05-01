@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
-import 'package:shifaa_pharmacy/provider/categories_provider.dart';
-import 'package:shifaa_pharmacy/provider/products_provider.dart';
+import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/widget/brands_bar.dart';
 import 'package:shifaa_pharmacy/widget/categories_bar.dart';
 import 'package:shifaa_pharmacy/widget/medicine_bar.dart';
@@ -25,61 +23,52 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer2<CategoriesProvider, ProductsProvider>(
-      builder: (context, categoryProvider, productProvider, child) {
-        categoryProvider.loadCategories;
-        productProvider.loadProducts;
-        return ListView(
-          physics: BouncingScrollPhysics(),
-          children: [
-            SliderBar(
-              slideIndex: slideIndex,
-              myList: productsList.where((product) {
-                return product.featured == true;
-              }).toList(),
-              onPageChanged: (index) {
-                setState(() => {slideIndex = index});
-              },
-            ),
-            MedicineBar(
-              myList: medicinesList,
-              onPressed: () {
-                setState(() {
-                  pageIndex = 0;
-                  nextPage(pageIndex);
-                });
-              },
-            ),
-            ProductBar(
-              title: "Latest",
-              myList: productsList,
-            ),
-            CategoriesBar(
-              myList: categoriesList,
-              onPressed: () {
-                setState(() {
-                  pageIndex = 1;
-                  nextPage(pageIndex);
-                });
-              },
-            ),
-            ProductBar(
-              title: "Popular",
-              myList: productsList.where((product) => product.isShop > 0).toList()
-                ..sort((a, b) => b.isShop.compareTo(a.isShop)),
-            ),
-            BrandsBar(
-              myBrandList: brandsList,
-              onPressed: () {
-                setState(() {
-                  pageIndex = 3;
-                  nextPage(pageIndex);
-                });
-              },
-            ),
-          ],
-        );
-      },
+    return ListView(
+      physics: BouncingScrollPhysics(),
+      children: [
+        SliderBar(
+          slideIndex: slideIndex,
+          myList: productsList.where((product) {
+            return product.featured == true;
+          }).toList(),
+          onPageChanged: (index) {
+            setState(() => {slideIndex = index});
+          },
+        ),
+        MedicineBar(
+          myList: medicinesList,
+          onPressed: () {
+            setState(() {
+              SharedFunctions.nextPage(0);
+            });
+          },
+        ),
+        ProductBar(
+          title: "Latest",
+          myList: productsList,
+        ),
+        CategoriesBar(
+          myList: categoriesList,
+          onPressed: () {
+            setState(() {
+              SharedFunctions.nextPage(1);
+            });
+          },
+        ),
+        ProductBar(
+          title: "Popular",
+          myList: productsList.where((product) => product.isShop > 0).toList()
+            ..sort((a, b) => b.isShop.compareTo(a.isShop)),
+        ),
+        BrandsBar(
+          myBrandList: brandsList,
+          onPressed: () {
+            setState(() {
+              SharedFunctions.nextPage(3);
+            });
+          },
+        ),
+      ],
     );
   }
 }

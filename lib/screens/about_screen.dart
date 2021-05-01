@@ -5,6 +5,7 @@ import 'package:flutter_html/style.dart';
 import 'package:get/get.dart';
 import 'package:shifaa_pharmacy/classes/settings.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
+import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/controllers/settings_controller.dart';
 import 'package:shifaa_pharmacy/widget/back_icon.dart';
 import 'package:shifaa_pharmacy/widget/container_details.dart';
@@ -55,7 +56,7 @@ class AboutScreen extends StatelessWidget {
                   child: ListTile(
                     dense: true,
                     title: Text(
-                      "$appTitle",
+                      "${Constant.appTitle}",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
@@ -64,7 +65,7 @@ class AboutScreen extends StatelessWidget {
                       ),
                     ),
                     subtitle: Text(
-                      "$appDesc",
+                      "${Constant.appDesc}",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black54,
@@ -87,7 +88,7 @@ class AboutScreen extends StatelessWidget {
               icon: Icons.share,
               text: "Share App",
               onTap: () {
-                shareApp(context, settings: appSettings);
+                SharedFunctions.shareApp(context, settings: appSettings);
               },
             ),
             ContainerDetails(
@@ -130,7 +131,7 @@ class AboutScreen extends StatelessWidget {
                 text: "${appSettings.email}",
                 onTap: () {
                   String email = appSettings.email.toString();
-                  launchURL("mailto: $email");
+                  SharedFunctions.launchURL("mailto: $email");
                 },
               ),
             if (appSettings.website != null)
@@ -139,7 +140,7 @@ class AboutScreen extends StatelessWidget {
                 text: "${appSettings.website}",
                 onTap: () {
                   String website = appSettings.website.toString();
-                  launchURL("https://$website");
+                  SharedFunctions.launchURL("https://$website");
                 },
               ),
             if (appSettings.contact != null)
@@ -148,7 +149,7 @@ class AboutScreen extends StatelessWidget {
                 text: "${appSettings.contact}",
                 onTap: () {
                   String contact = appSettings.contact.toString();
-                  launchURL("tel: $contact");
+                  SharedFunctions.launchURL("tel: $contact");
                 },
               ),
             if (appSettings.address != null)

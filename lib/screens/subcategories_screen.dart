@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:shifaa_pharmacy/classes/categories.dart';
 import 'package:shifaa_pharmacy/classes/product.dart';
 import 'package:shifaa_pharmacy/classes/sub_categories.dart';
-import 'package:shifaa_pharmacy/constant/constant.dart';
 import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/controllers/categories_controller.dart';
 import 'package:shifaa_pharmacy/controllers/products_controller.dart';
@@ -17,8 +16,6 @@ import 'package:shifaa_pharmacy/widget/body_shape.dart';
 import 'package:shifaa_pharmacy/widget/divider_line.dart';
 import 'package:shifaa_pharmacy/widget/empty_box.dart';
 import 'package:shifaa_pharmacy/widget/function_button.dart';
-
-import 'login_screen.dart';
 
 class SubCategoriesScreen extends StatefulWidget {
   static const String id = "SubCategoriesScreen";
@@ -119,7 +116,7 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
                         itemCount: myList.length,
                         itemBuilder: (context, index) {
                           Product product = myList[index];
-                          bool isFav = isProductFavorite(product);
+                          bool isFav = SharedFunctions.isProductFavorite(product);
                           return displayProduct(
                             product: product,
                             isFav: isFav,
@@ -132,20 +129,20 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
                               );
                             },
                             onShopTap: (bool isLiked) async {
-                              if (isClientLogged) {
-                                onShopProductTap(product, context);
-                              } else {
-                                Navigator.popAndPushNamed(context, LoginScreen.id);
-                              }
+                              //if (isClientLogged) {
+                              //  onShopProductTap(product, context);
+                              //} else {
+                              //  Navigator.popAndPushNamed(context, LoginScreen.id);
+                              //}
                               return isLiked;
                             },
                             onFavTap: (bool isLiked) async {
-                              if (isClientLogged) {
-                                onFavProductTap(product);
-                                isFav = !isFav;
-                              } else {
-                                Navigator.popAndPushNamed(context, LoginScreen.id);
-                              }
+                              // if (isClientLogged) {
+                              //   onFavProductTap(product);
+                              //   isFav = !isFav;
+                              // } else {
+                              //   Navigator.popAndPushNamed(context, LoginScreen.id);
+                              // }
                               return isFav;
                             },
                           );

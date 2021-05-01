@@ -31,7 +31,7 @@ class SplashScreen extends StatelessWidget {
             contentPadding: EdgeInsets.zero,
             minVerticalPadding: 0,
             title: Text(
-              "$appTitle",
+              "${Constant.appTitle}",
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: mainColor,
@@ -40,7 +40,7 @@ class SplashScreen extends StatelessWidget {
               ),
             ),
             subtitle: Text(
-              "$appDesc",
+              "${Constant.appDesc}",
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.black54,

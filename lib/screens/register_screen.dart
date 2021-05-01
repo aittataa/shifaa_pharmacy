@@ -37,6 +37,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   bool obscureText = false;
+  bool isAsyncCall = false;
 
   @override
   Widget build(BuildContext context) {

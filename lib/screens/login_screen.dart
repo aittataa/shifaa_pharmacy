@@ -40,6 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   bool rememberMe = true;
   bool obscureText = true;
+  bool isAsyncCall = false;
 
   @override
   Widget build(BuildContext context) {

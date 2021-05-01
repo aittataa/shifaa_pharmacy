@@ -50,6 +50,8 @@ class _PrescriptionManagerState extends State<PrescriptionManager> {
     });
   }
 
+  bool isAsyncCall = false;
+
   @override
   Widget build(BuildContext context) {
     return ModalProgressIndicator(
