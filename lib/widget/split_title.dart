@@ -10,8 +10,8 @@ class SplitTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      tileColor: Colors.blue,
-      dense: true,
+      // tileColor: Colors.red,
+      // dense: true,
       contentPadding: EdgeInsets.symmetric(horizontal: 10),
       leading: Container(
         width: 5,
@@ -24,7 +24,7 @@ class SplitTitle extends StatelessWidget {
         "$title",
         style: TextStyle(
           color: Colors.black54,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w900,
         ),
       ),
       trailing: TextButton(
