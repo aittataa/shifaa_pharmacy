@@ -70,20 +70,23 @@ class _InitialScreenState extends State<InitialScreen> {
           controller: SharedFunctions.pageController,
           physics: NeverScrollableScrollPhysics(),
           onPageChanged: (index) {
-            setState(() {
-              SharedFunctions.nextPage(index);
-            });
+            setState(() => {SharedFunctions.nextPage(index)});
           },
           children: [
             MedicinesPage(
-              controller: categoriesController,
+              categoriesController: categoriesController,
+              productsController: productsController,
             ),
             CategoriesPage(
               controller: categoriesController,
             ),
-            HomePage(),
+            HomePage(
+              categoriesController: categoriesController,
+              productsController: productsController,
+            ),
             BrandsPage(
-              controller: categoriesController,
+              categoriesController: categoriesController,
+              productsController: productsController,
             ),
             OffersPage(
               controller: productsController,

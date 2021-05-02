@@ -1,53 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shifaa_pharmacy/classes/brand.dart';
-import 'package:shifaa_pharmacy/constant/constant.dart';
+import 'package:shifaa_pharmacy/constant/shared_functions.dart';
+import 'package:shifaa_pharmacy/controllers/categories_controller.dart';
+import 'package:shifaa_pharmacy/controllers/products_controller.dart';
 import 'package:shifaa_pharmacy/display_function/display_function.dart';
 import 'package:shifaa_pharmacy/screens/product_screen.dart';
 import 'package:shifaa_pharmacy/widget/body_shape.dart';
 import 'package:shifaa_pharmacy/widget/empty_box.dart';
 
 class BrandsPage extends StatelessWidget {
-  final controller;
-  const BrandsPage({this.controller});
-  //bool isNotEmpty;
-  //List<Brand> myList = [];
-  //TextEditingController controller = TextEditingController();
-  //@override
-  //void initState() {
-  //  super.initState();
-  //  myList = brandsList;
-  //  isNotEmpty = myList.isNotEmpty;
-  //}
+  final CategoriesController categoriesController;
+  final ProductsController productsController;
+  const BrandsPage({this.categoriesController, this.productsController});
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      List<Brand> myList = controller.brandsList;
+      List<Brand> myList = categoriesController.brandsList;
       bool isNotEmpty = myList.isNotEmpty;
       if (isNotEmpty) {
         return BodyShape(
-          //controller: controller,
-          //onPressed: () {
-          //  setState(() {
-          //    controller.clear();
-          //    myList = brandsList;
-          //  });
-          //},
-          //onChanged: (value) {
-          //  setState(() {
-          //    myList = findCategory(brandsList, value);
-          //  });
-          //},
           child: GridView.builder(
             padding: EdgeInsets.all(5),
             physics: BouncingScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              crossAxisSpacing: 5,
-              mainAxisSpacing: 5,
-              childAspectRatio: 1,
-            ),
+            gridDelegate: SharedFunctions.gridDelegate(3),
             itemCount: myList.length,
             itemBuilder: (context, index) {
               Brand brand = myList[index];
@@ -60,7 +37,7 @@ class BrandsPage extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (context) => ProductScreen(
                         title: brand.title,
-                        myList: productsList.where((product) {
+                        myList: productsController.productsList.where((product) {
                           return product.brandTitle == brand.title;
                         }).toList(),
                       ),

@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:shifaa_pharmacy/classes/medicine.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
-import 'package:shifaa_pharmacy/display_function/display_function.dart';
+import 'package:shifaa_pharmacy/constant/shared_functions.dart';
+import 'package:shifaa_pharmacy/controllers/products_controller.dart';
+import 'package:shifaa_pharmacy/display_function/category_shape.dart';
 import 'package:shifaa_pharmacy/screens/product_screen.dart';
 import 'package:shifaa_pharmacy/widget/split_title.dart';
 
 class MedicineBar extends StatelessWidget {
-  final List<dynamic> myList;
+  final ProductsController controller;
+  final myList;
   final Function onPressed;
   MedicineBar({
+    this.controller,
     this.myList,
     this.onPressed,
   });
@@ -22,32 +27,27 @@ class MedicineBar extends StatelessWidget {
             onPressed: onPressed,
           ),
           SizedBox(
-            height: screenHeight * 0.175,
+            height: screenHeight * 0.2,
             child: GridView.builder(
               padding: EdgeInsets.all(5),
               physics: BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 1,
-                mainAxisSpacing: 5,
-              ),
+              gridDelegate: SharedFunctions.gridDelegate(1),
               itemCount: myList.length,
               itemBuilder: (context, index) {
                 Medicine medicine = myList[index];
-                return displayCategories(
+                return CategoryShape(
                   item: medicine,
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ProductScreen(
-                          title: medicine.title,
-                          myList: productsList.where((product) {
-                            return product.medicineID == medicine.id;
-                          }).toList(),
-                        ),
+                  fit: BoxFit.contain,
+                  onTap: () => {
+                    Get.to(
+                      () => ProductScreen(
+                        title: medicine.title,
+                        myList: controller.productsList.where((product) {
+                          return product.medicineID == medicine.id;
+                        }).toList(),
                       ),
-                    );
+                    ),
                   },
                 );
               },

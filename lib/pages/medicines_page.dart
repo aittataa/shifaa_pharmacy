@@ -3,19 +3,22 @@ import 'package:get/get.dart';
 import 'package:shifaa_pharmacy/classes/medicine.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
 import 'package:shifaa_pharmacy/constant/shared_functions.dart';
+import 'package:shifaa_pharmacy/controllers/categories_controller.dart';
+import 'package:shifaa_pharmacy/controllers/products_controller.dart';
 import 'package:shifaa_pharmacy/display_function/display_function.dart';
 import 'package:shifaa_pharmacy/screens/product_screen.dart';
 import 'package:shifaa_pharmacy/widget/body_shape.dart';
 import 'package:shifaa_pharmacy/widget/empty_box.dart';
 
 class MedicinesPage extends StatelessWidget {
-  final controller;
-  const MedicinesPage({this.controller});
+  final CategoriesController categoriesController;
+  final ProductsController productsController;
+  const MedicinesPage({this.categoriesController, this.productsController});
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      List<Medicine> myList = controller.medicinesList;
+      List<Medicine> myList = categoriesController.medicinesList;
       bool isNotEmpty = myList.isNotEmpty;
       if (isNotEmpty) {
         return BodyShape(

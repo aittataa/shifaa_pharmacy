@@ -10,10 +10,11 @@ class SplitTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      tileColor: Colors.blue,
+      dense: true,
       contentPadding: EdgeInsets.symmetric(horizontal: 10),
       leading: Container(
         width: 5,
-        height: 50,
         decoration: BoxDecoration(
           color: mainColor,
           borderRadius: BorderRadius.circular(5),

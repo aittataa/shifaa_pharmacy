@@ -346,6 +346,7 @@ displayProductDetails({
   );
 }
 
+/*
 displayProductsForSliderBar({
   Product product,
   bool state,
@@ -460,6 +461,7 @@ displayProductsForSliderBar({
     ),
   );
 }
+*/
 
 displayCategories({
   var item,

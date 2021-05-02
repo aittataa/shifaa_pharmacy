@@ -7,9 +7,10 @@ class DividerLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Divider(
+      height: 5,
+      thickness: 1,
       indent: value,
       endIndent: value,
-      height: 5,
       color: Colors.white,
     );
   }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shifaa_pharmacy/classes/product.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
 import 'package:shifaa_pharmacy/constant/shared_functions.dart';
-import 'package:shifaa_pharmacy/display_function/display_function.dart';
+import 'package:shifaa_pharmacy/display_function/slider_shape.dart';
 import 'package:shifaa_pharmacy/screens/product_details.dart';
 
 class SliderBar extends StatelessWidget {
@@ -14,18 +14,19 @@ class SliderBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (myList.isNotEmpty) {
-      return SizedBox(
-        height: screenWidth * 0.75,
+      return Container(
+        color: Colors.red,
+        height: screenWidth,
         child: PageView.builder(
           onPageChanged: onPageChanged,
-          controller: PageController(viewportFraction: 0.95, initialPage: slideIndex),
+          controller: PageController(viewportFraction: 0.75, initialPage: slideIndex),
           physics: BouncingScrollPhysics(),
           itemCount: myList.length,
           itemBuilder: (context, index) {
             Product product = myList[index];
             bool state = slideIndex == index;
             bool isFav = SharedFunctions.isProductFavorite(product);
-            return displayProductsForSliderBar(
+            return SliderShape(
               product: product,
               state: state,
               isFav: isFav,

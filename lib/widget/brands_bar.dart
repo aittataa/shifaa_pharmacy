@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:shifaa_pharmacy/classes/brand.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
-import 'package:shifaa_pharmacy/display_function/display_function.dart';
+import 'package:shifaa_pharmacy/constant/shared_functions.dart';
+import 'package:shifaa_pharmacy/controllers/products_controller.dart';
+import 'package:shifaa_pharmacy/display_function/category_shape.dart';
 import 'package:shifaa_pharmacy/screens/product_screen.dart';
 import 'package:shifaa_pharmacy/widget/split_title.dart';
 
 class BrandsBar extends StatelessWidget {
-  final List<Brand> myBrandList;
+  final ProductsController controller;
+  final List<Brand> myList;
   final Function onPressed;
-  BrandsBar({this.myBrandList, this.onPressed});
+  BrandsBar({
+    this.controller,
+    this.myList,
+    this.onPressed,
+  });
   @override
   Widget build(BuildContext context) {
-    if (myBrandList.isNotEmpty) {
+    if (myList.isNotEmpty) {
       return Column(
         children: [
           SplitTitle(
@@ -24,14 +31,11 @@ class BrandsBar extends StatelessWidget {
               padding: EdgeInsets.all(5),
               physics: BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 1,
-                mainAxisSpacing: 5,
-              ),
-              itemCount: myBrandList.length,
+              gridDelegate: SharedFunctions.gridDelegate(1),
+              itemCount: myList.length,
               itemBuilder: (context, index) {
-                Brand brand = myBrandList[index];
-                return displayCategories(
+                Brand brand = myList[index];
+                return CategoryShape(
                   item: brand,
                   fit: BoxFit.fill,
                   onTap: () {
@@ -40,7 +44,7 @@ class BrandsBar extends StatelessWidget {
                       MaterialPageRoute(
                         builder: (context) => ProductScreen(
                           title: brand.title,
-                          myList: productsList.where((product) {
+                          myList: controller.productsList.where((product) {
                             return product.brandID == brand.id;
                           }).toList(),
                         ),

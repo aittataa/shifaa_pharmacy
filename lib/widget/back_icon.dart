@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class BackIconButton extends StatelessWidget {
   final Color color;
@@ -8,7 +8,7 @@ class BackIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () => Navigator.pop(context),
+      onPressed: () => Get.back(),
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
       icon: Image.asset(

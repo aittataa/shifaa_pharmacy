@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:shifaa_pharmacy/classes/categories.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
-import 'package:shifaa_pharmacy/display_function/display_function.dart';
+import 'package:shifaa_pharmacy/constant/shared_functions.dart';
+import 'package:shifaa_pharmacy/display_function/category_shape.dart';
 import 'package:shifaa_pharmacy/screens/subcategories_screen.dart';
 import 'package:shifaa_pharmacy/widget/split_title.dart';
 
@@ -24,28 +26,13 @@ class CategoriesBar extends StatelessWidget {
               padding: EdgeInsets.all(5),
               physics: BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 1,
-                mainAxisSpacing: 5,
-              ),
+              gridDelegate: SharedFunctions.gridDelegate(1),
               itemCount: myList.length,
               itemBuilder: (context, index) {
                 Categories category = myList[index];
-                return displayCategories(
+                return CategoryShape(
                   item: category,
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SubCategoriesScreen(
-                          category: category,
-                          //myList: subcategoriesList.where((subcategory) {
-                          //  return subcategory.categoryID == category.id;
-                          //}).toList(),
-                        ),
-                      ),
-                    );
-                  },
+                  onTap: () => Get.to(() => SubCategoriesScreen(category: category)),
                 );
               },
             ),
