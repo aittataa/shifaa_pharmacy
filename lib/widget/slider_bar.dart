@@ -14,11 +14,12 @@ class SliderBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (myList.isNotEmpty) {
-      return SizedBox(
-        height: screenWidth,
+      return Container(
+        //color: Colors.red,
+        height: screenWidth * 0.8,
         child: PageView.builder(
           onPageChanged: onPageChanged,
-          controller: PageController(viewportFraction: 0.75, initialPage: slideIndex),
+          controller: PageController(viewportFraction: 0.95, initialPage: slideIndex),
           physics: BouncingScrollPhysics(),
           itemCount: myList.length,
           itemBuilder: (context, index) {

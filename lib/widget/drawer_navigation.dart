@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/controllers/clients_controller.dart';
 
 import '../constant/constant.dart';
@@ -16,7 +17,10 @@ import 'vertical_button.dart';
 
 class DrawerNavigation extends StatelessWidget {
   final ClientsController controller;
-  const DrawerNavigation({this.controller});
+  DrawerNavigation({this.controller});
+
+  final bool state = SharedFunctions.isClientLogged;
+
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
@@ -38,7 +42,7 @@ class DrawerNavigation extends StatelessWidget {
                     shape: BoxShape.circle,
                     image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: isClientLogged
+                      image: state
                           ? NetworkImage("${Constant.signInClient.picture}")
                           : AssetImage("icons/icon_round.png"),
                     ),
@@ -58,7 +62,7 @@ class DrawerNavigation extends StatelessWidget {
                   horizontalTitleGap: 0,
                   contentPadding: EdgeInsets.zero.copyWith(left: 10),
                   title: Text(
-                    isClientLogged ? "${Constant.signInClient.username}" : Constant.appTitle,
+                    state ? "${Constant.signInClient.username}" : Constant.appTitle,
                     softWrap: false,
                     style: TextStyle(
                       color: Colors.white,
@@ -67,7 +71,7 @@ class DrawerNavigation extends StatelessWidget {
                     ),
                   ),
                   subtitle: Text(
-                    isClientLogged ? "${Constant.signInClient.email}" : Constant.appDesc,
+                    state ? "${Constant.signInClient.email}" : Constant.appDesc,
                     softWrap: false,
                     style: TextStyle(
                       color: Colors.black54,
@@ -76,10 +80,12 @@ class DrawerNavigation extends StatelessWidget {
                     ),
                   ),
                   trailing: IconButton(
-                    onPressed: () => Navigator.popAndPushNamed(
-                      context,
-                      isClientLogged ? ProfileScreen.id : LoginScreen.id,
-                    ),
+                    onPressed: () {
+                      if (state)
+                        Get.to(ProfileScreen());
+                      else
+                        Get.offAll(LoginScreen());
+                    },
                     icon: Icon(Icons.edit, color: Colors.white, size: 30),
                   ),
                 ),

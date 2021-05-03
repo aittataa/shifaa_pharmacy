@@ -96,7 +96,7 @@ class SliderShape extends StatelessWidget {
                       softWrap: false,
                       style: TextStyle(
                         color: Colors.white,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w900,
                       ),
                     ),
                   ),
