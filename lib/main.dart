@@ -2,17 +2,10 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:provider/provider.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
 import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/controllers/clients_controller.dart';
-import 'package:shifaa_pharmacy/provider/categories_provider.dart';
-import 'package:shifaa_pharmacy/provider/clients_provider.dart';
-import 'package:shifaa_pharmacy/provider/contains_provider.dart';
-import 'package:shifaa_pharmacy/provider/database_provider.dart';
-import 'package:shifaa_pharmacy/provider/orders_provider.dart';
-import 'package:shifaa_pharmacy/provider/prescriptions_provider.dart';
-import 'package:shifaa_pharmacy/provider/products_provider.dart';
+import 'package:shifaa_pharmacy/controllers/products_controller.dart';
 import 'package:shifaa_pharmacy/screens/about_screen.dart';
 import 'package:shifaa_pharmacy/screens/favorite_screen.dart';
 import 'package:shifaa_pharmacy/screens/initial_screen.dart';
@@ -35,54 +28,42 @@ void main() {
 }
 
 class ShifaaPharmacy extends StatelessWidget {
-  final ClientsController controller = Get.put(ClientsController());
+  final ClientsController clients = Get.put(ClientsController());
+  final ProductsController products = Get.put(ProductsController());
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider.value(value: DataBaseProvider()),
-        ChangeNotifierProvider.value(value: ClientsProvider()),
-        ChangeNotifierProvider.value(value: CategoriesProvider()),
-        ChangeNotifierProvider.value(value: ProductsProvider()),
-        ChangeNotifierProvider.value(value: OrdersProvider()),
-        ChangeNotifierProvider.value(value: ContainsProvider()),
-        ChangeNotifierProvider.value(value: PrescriptionsProvider()),
-      ],
-      builder: (context, child) {
-        return GetMaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: "${Constant.appTitle}",
-          color: mainColor,
-          themeMode: ThemeMode.dark,
-          theme: ThemeData.dark().copyWith(
-            primaryColor: mainColor,
-            scaffoldBackgroundColor: backColor,
-          ),
-          home: AnimatedSplashScreen.withScreenFunction(
-            screenFunction: () async => await SharedFunctions.nextScreen(controller),
-            splash: SplashScreen(),
-            curve: Curves.linearToEaseOut,
-            backgroundColor: backColor,
-            splashTransition: SplashTransition.fadeTransition,
-            animationDuration: Duration(milliseconds: 1500),
-            splashIconSize: double.infinity,
-          ),
-          routes: {
-            LoginScreen.id: (context) => LoginScreen(),
-            RegisterScreen.id: (context) => RegisterScreen(),
-            InitialScreen.id: (context) => InitialScreen(),
-            ProductScreen.id: (context) => ProductScreen(),
-            ProductDetails.id: (context) => ProductDetails(),
-            SubCategoriesScreen.id: (context) => SubCategoriesScreen(),
-            ShoppingScreen.id: (context) => ShoppingScreen(),
-            PrescriptionScreen.id: (context) => PrescriptionScreen(),
-            OrderAddress.id: (context) => OrderAddress(),
-            PrescriptionManager.id: (context) => PrescriptionManager(),
-            FavoriteScreen.id: (context) => FavoriteScreen(),
-            AboutScreen.id: (context) => AboutScreen(),
-            ProfileScreen.id: (context) => ProfileScreen(),
-          },
-        );
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: "${Constant.appTitle}",
+      color: mainColor,
+      themeMode: ThemeMode.dark,
+      theme: ThemeData.dark().copyWith(
+        primaryColor: mainColor,
+        scaffoldBackgroundColor: backColor,
+      ),
+      home: AnimatedSplashScreen.withScreenFunction(
+        screenFunction: () async => await SharedFunctions.nextScreen(clients),
+        splash: SplashScreen(),
+        curve: Curves.linearToEaseOut,
+        backgroundColor: backColor,
+        splashTransition: SplashTransition.fadeTransition,
+        animationDuration: Duration(milliseconds: 1500),
+        splashIconSize: double.infinity,
+      ),
+      routes: {
+        LoginScreen.id: (context) => LoginScreen(),
+        RegisterScreen.id: (context) => RegisterScreen(),
+        InitialScreen.id: (context) => InitialScreen(),
+        ProductScreen.id: (context) => ProductScreen(),
+        ProductDetails.id: (context) => ProductDetails(),
+        SubCategoriesScreen.id: (context) => SubCategoriesScreen(),
+        ShoppingScreen.id: (context) => ShoppingScreen(),
+        PrescriptionScreen.id: (context) => PrescriptionScreen(),
+        OrderAddress.id: (context) => OrderAddress(),
+        PrescriptionManager.id: (context) => PrescriptionManager(),
+        FavoriteScreen.id: (context) => FavoriteScreen(),
+        AboutScreen.id: (context) => AboutScreen(),
+        ProfileScreen.id: (context) => ProfileScreen(),
       },
     );
   }

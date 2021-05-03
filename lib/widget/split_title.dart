@@ -11,7 +11,7 @@ class SplitTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       // tileColor: Colors.red,
-      // dense: true,
+      dense: true,
       contentPadding: EdgeInsets.symmetric(horizontal: 10),
       leading: Container(
         width: 5,
