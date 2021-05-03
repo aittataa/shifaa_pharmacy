@@ -6,7 +6,8 @@ import 'package:shifaa_pharmacy/classes/sub_categories.dart';
 import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/controllers/categories_controller.dart';
 import 'package:shifaa_pharmacy/controllers/products_controller.dart';
-import 'package:shifaa_pharmacy/display_function/display_function.dart';
+import 'package:shifaa_pharmacy/display_function/product_shape.dart';
+import 'package:shifaa_pharmacy/display_function/subcategory_shape.dart';
 import 'package:shifaa_pharmacy/screens/favorite_screen.dart';
 import 'package:shifaa_pharmacy/screens/prescription_screen.dart';
 import 'package:shifaa_pharmacy/screens/product_details.dart';
@@ -28,7 +29,6 @@ class SubCategoriesScreen extends StatefulWidget {
 class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
   final CategoriesController controller = Get.put(CategoriesController());
   Categories category;
-
   @override
   void initState() {
     super.initState();
@@ -87,7 +87,7 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
                     itemBuilder: (context, index) {
                       SubCategories subCategory = myList[index];
                       subID = subCategory.id;
-                      return displaySubCategories(
+                      return SubCategoryShape(
                         subCategory: subCategory,
                         option: subIndex == index,
                         onTap: () {
@@ -117,7 +117,7 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
                         itemBuilder: (context, index) {
                           Product product = myList[index];
                           bool isFav = SharedFunctions.isProductFavorite(product);
-                          return displayProduct(
+                          return ProductShape(
                             product: product,
                             isFav: isFav,
                             onTap: () {
@@ -127,23 +127,6 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
                                   myList: myList,
                                 ),
                               );
-                            },
-                            onShopTap: (bool isLiked) async {
-                              //if (isClientLogged) {
-                              //  onShopProductTap(product, context);
-                              //} else {
-                              //  Navigator.popAndPushNamed(context, LoginScreen.id);
-                              //}
-                              return isLiked;
-                            },
-                            onFavTap: (bool isLiked) async {
-                              // if (isClientLogged) {
-                              //   onFavProductTap(product);
-                              //   isFav = !isFav;
-                              // } else {
-                              //   Navigator.popAndPushNamed(context, LoginScreen.id);
-                              // }
-                              return isFav;
                             },
                           );
                         },

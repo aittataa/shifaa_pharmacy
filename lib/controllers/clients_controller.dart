@@ -25,7 +25,7 @@ class ClientsController extends GetxController {
     final session = await SharedPreferences.getInstance();
     session.clear();
     Constant.signInClient = null;
-    SharedFunctions.isClientLogged;
+    bool state = SharedFunctions.isClientLogged;
   }
 
   getClientByID(int id) async {

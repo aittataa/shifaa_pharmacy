@@ -1,17 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_html/style.dart';
-import 'package:intl/intl.dart';
 import 'package:shifaa_pharmacy/classes/contain.dart';
 import 'package:shifaa_pharmacy/classes/order.dart';
 import 'package:shifaa_pharmacy/classes/prescription.dart';
-import 'package:shifaa_pharmacy/classes/product.dart';
-import 'package:shifaa_pharmacy/classes/sub_categories.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
-import 'package:shifaa_pharmacy/widget/action_button.dart';
-import 'package:shifaa_pharmacy/widget/divider_line.dart';
+import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 
+/*
 displayProduct({
   Product product,
   bool isFav,
@@ -105,7 +100,9 @@ displayProduct({
     ),
   );
 }
+*/
 
+/*
 displayProductDetails({
   Product product,
   bool isFav,
@@ -345,6 +342,7 @@ displayProductDetails({
     ),
   );
 }
+*/
 
 /*
 displayProductsForSliderBar({
@@ -463,6 +461,7 @@ displayProductsForSliderBar({
 }
 */
 
+/*
 displayCategories({
   var item,
   BoxFit fit,
@@ -503,7 +502,9 @@ displayCategories({
     ),
   );
 }
+*/
 
+/*
 displaySubCategories({
   SubCategories subCategory,
   bool option,
@@ -530,8 +531,7 @@ displaySubCategories({
     ),
   );
 }
-
-dateShape(DateTime date) => DateFormat("MMM dd, HH:mm:ss").format(date);
+*/
 
 displayShippingList({
   Order order,
@@ -547,7 +547,7 @@ displayShippingList({
       children: [
         Expanded(
           child: Text(
-            "Order : ${dateShape(order.dateOrder)}",
+            "Order : ${SharedFunctions.dateShape(order.dateOrder)}",
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -705,7 +705,7 @@ displayPrescription({
           ),
           Expanded(
             child: Text(
-              "${dateShape(prescription.date)}",
+              "${SharedFunctions.dateShape(prescription.date)}",
               textAlign: TextAlign.end,
               softWrap: false,
               style: TextStyle(

@@ -45,11 +45,6 @@ const Color mainColor = Color(0xFF0EBE60);
 ///Back Color
 const Color backColor = Color(0xFFF0F0F0);
 
-//bool isAsyncCall = false;
-
-///Is Client Logged
-bool get isClientLogged => Constant.signInClient != null;
-
 ///Device Resolution
 double screenWidth = Get.width;
 double screenHeight = Get.height;

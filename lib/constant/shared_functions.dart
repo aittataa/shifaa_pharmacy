@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:share/share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shifaa_pharmacy/classes/contain.dart';
@@ -51,19 +52,22 @@ class SharedFunctions {
   }
 
   ///Find Product By Value
-  static findProduct(List<Product> myList, String value) {
-    return myList.where((product) {
-      return product.name.toLowerCase().contains(value.toLowerCase()) ||
-          product.price.toString().toLowerCase().contains(value.toLowerCase());
-    }).toList();
-  }
+  static dateShape(DateTime date) => DateFormat("MMM dd, HH:mm:ss").format(date);
+
+  ///Find Product By Value
+  // static findProduct(List<Product> myList, String value) {
+  //   return myList.where((product) {
+  //     return product.name.toLowerCase().contains(value.toLowerCase()) ||
+  //         product.price.toString().toLowerCase().contains(value.toLowerCase());
+  //   }).toList();
+  // }
 
   ///Find Category By Value
-  static findCategory(List<dynamic> myList, String value) {
-    return myList.where((item) {
-      return item.title.toLowerCase().contains(value.toLowerCase());
-    }).toList();
-  }
+  // static findCategory(List<dynamic> myList, String value) {
+  //   return myList.where((item) {
+  //     return item.title.toLowerCase().contains(value.toLowerCase());
+  //   }).toList();
+  // }
 
   ///is Product in Favorite List
   static bool isProductFavorite(Product product) {

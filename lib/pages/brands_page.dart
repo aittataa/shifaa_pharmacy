@@ -4,7 +4,7 @@ import 'package:shifaa_pharmacy/classes/brand.dart';
 import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/controllers/categories_controller.dart';
 import 'package:shifaa_pharmacy/controllers/products_controller.dart';
-import 'package:shifaa_pharmacy/display_function/display_function.dart';
+import 'package:shifaa_pharmacy/display_function/category_shape.dart';
 import 'package:shifaa_pharmacy/screens/product_screen.dart';
 import 'package:shifaa_pharmacy/widget/body_shape.dart';
 import 'package:shifaa_pharmacy/widget/empty_box.dart';
@@ -28,7 +28,7 @@ class BrandsPage extends StatelessWidget {
             itemCount: myList.length,
             itemBuilder: (context, index) {
               Brand brand = myList[index];
-              return displayCategories(
+              return CategoryShape(
                 item: brand,
                 fit: BoxFit.fill,
                 onTap: () {

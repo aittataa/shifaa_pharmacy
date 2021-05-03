@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:shifaa_pharmacy/classes/product.dart';
 import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/controllers/products_controller.dart';
-import 'package:shifaa_pharmacy/display_function/display_function.dart';
+import 'package:shifaa_pharmacy/display_function/product_shape.dart';
 import 'package:shifaa_pharmacy/screens/prescription_screen.dart';
 import 'package:shifaa_pharmacy/screens/product_details.dart';
 import 'package:shifaa_pharmacy/screens/shopping_screen.dart';
@@ -54,7 +54,7 @@ class FavoriteScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 Product product = myList[index];
                 bool isFav = SharedFunctions.isProductFavorite(product);
-                return displayProduct(
+                return ProductShape(
                   product: product,
                   isFav: isFav,
                   onTap: () {
@@ -64,23 +64,6 @@ class FavoriteScreen extends StatelessWidget {
                         index: index,
                       ),
                     );
-                  },
-                  onShopTap: (bool isLiked) async {
-                    //if (isClientLogged) {
-                    //  onShopProductTap(product, context);
-                    //} else {
-                    //  Get.offAll(LoginScreen());
-                    //}
-                    return isLiked;
-                  },
-                  onFavTap: (bool isLiked) async {
-                    //if (isClientLogged) {
-                    //  onFavProductTap(product);
-                    //  isFav = !isFav;
-                    //} else {
-                    //  Get.offAll(LoginScreen());
-                    //}
-                    return isLiked;
                   },
                 );
               },

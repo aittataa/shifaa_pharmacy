@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
+import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/screens/prescription_manager.dart';
 
 class ActionFloatingButton extends StatelessWidget {
+  final bool state = SharedFunctions.isClientLogged;
   @override
   Widget build(BuildContext context) {
     return SpeedDial(
-      visible: isClientLogged,
+      visible: state,
       backgroundColor: mainColor,
       foregroundColor: Colors.white,
       elevation: 1,

@@ -28,7 +28,7 @@ class ShoppingScreen extends StatelessWidget {
           FunctionIconButton(
             icon: Icons.receipt_long,
             onPressed: () {
-              Get.to(PrescriptionScreen());
+              Get.off(PrescriptionScreen());
             },
           ),
           FunctionIconButton(

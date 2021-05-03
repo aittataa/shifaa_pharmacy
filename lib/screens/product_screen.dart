@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/controllers/products_controller.dart';
+import 'package:shifaa_pharmacy/display_function/product_shape.dart';
 import 'package:shifaa_pharmacy/widget/empty_box.dart';
 
 import '../classes/product.dart';
-import '../display_function/display_function.dart';
 import '../screens/favorite_screen.dart';
 import '../screens/prescription_screen.dart';
 import '../screens/product_details.dart';
@@ -61,7 +61,7 @@ class ProductScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   Product product = myList[index];
                   bool isFav = SharedFunctions.isProductFavorite(product);
-                  return displayProduct(
+                  return ProductShape(
                     product: product,
                     isFav: isFav,
                     onTap: () {
