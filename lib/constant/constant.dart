@@ -15,7 +15,7 @@ import '../classes/sub_categories.dart';
 
 class Constant {
   /// TODO : REST API
-  static const String SERVER_URL = "http://192.168.1.40/.shifaa_pharmacy";
+  static const String SERVER_URL = "http://192.168.1.33/.shifaa_pharmacy";
 
   /// TODO : Sign In Client
   static Client signInClient;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shifaa_pharmacy/constant/messages.dart';
 import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/controllers/categories_controller.dart';
 import 'package:shifaa_pharmacy/controllers/products_controller.dart';
@@ -56,7 +57,7 @@ class _HomePageState extends State<HomePage> {
           },
         ),
         ProductBar(
-          title: "Latest",
+          title: Messages.TITLE_LATEST,
           myList: productsController.productsList,
         ),
         CategoriesBar(
@@ -68,7 +69,7 @@ class _HomePageState extends State<HomePage> {
           },
         ),
         ProductBar(
-          title: "Popular",
+          title: Messages.TITLE_POPULAR,
           myList: productsController.productsList.where((product) => product.isShop > 0).toList()
             ..sort((a, b) => b.isShop.compareTo(a.isShop)),
         ),

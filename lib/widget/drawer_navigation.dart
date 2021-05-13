@@ -45,7 +45,7 @@ class DrawerNavigation extends StatelessWidget {
                         fit: BoxFit.cover,
                         image: state
                             ? NetworkImage("${Constant.signInClient.picture}")
-                            : AssetImage("icons/icon_round.png"),
+                            : AssetImage("icons/app_icon_round.png"),
                       ),
                       boxShadow: [
                         BoxShadow(

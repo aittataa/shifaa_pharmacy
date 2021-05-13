@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shifaa_pharmacy/constant/messages.dart';
 
 import '../classes/product.dart';
 import '../widget/empty_box.dart';
@@ -16,7 +17,7 @@ class OffersPage extends StatelessWidget {
       if (isNotEmpty) {
         return Center(
           child: Text(
-            "Offers",
+            Messages.LABEL_OFFERS,
             style: TextStyle(
               color: Colors.black54,
               fontWeight: FontWeight.bold,

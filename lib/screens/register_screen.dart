@@ -52,7 +52,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               children: [
                 Expanded(
                   child: Image.asset(
-                    "icons/app_icon.png",
+                    "icons/icon.png",
                     color: mainColor,
                     fit: BoxFit.fill,
                   ),

@@ -15,7 +15,7 @@ class SplashScreen extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
-                image: AssetImage("icons/icon_round.png"),
+                image: AssetImage("icons/app_icon_round.png"),
               ),
               boxShadow: [
                 BoxShadow(

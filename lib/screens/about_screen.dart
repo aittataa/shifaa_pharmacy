@@ -5,10 +5,11 @@ import 'package:flutter_html/style.dart';
 import 'package:get/get.dart';
 import 'package:shifaa_pharmacy/classes/settings.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
+import 'package:shifaa_pharmacy/constant/messages.dart';
 import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/controllers/settings_controller.dart';
 import 'package:shifaa_pharmacy/widget/back_icon.dart';
-import 'package:shifaa_pharmacy/widget/container_details.dart';
+import 'package:shifaa_pharmacy/widget/horizontal_button.dart';
 import 'package:shifaa_pharmacy/widget/list_tile_details.dart';
 
 class AboutScreen extends StatelessWidget {
@@ -19,13 +20,16 @@ class AboutScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
-        title: Text("About Us", style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text(
+          Messages.ABOUT_SCREEN_TITLE,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         leading: BackIconButton(),
       ),
       body: Obx(() {
         final Settings appSettings = settingsController.appSettings.value;
         return ListView(
-          padding: EdgeInsets.symmetric(horizontal: 5),
+          padding: EdgeInsets.all(10),
           physics: BouncingScrollPhysics(),
           children: [
             Column(
@@ -36,7 +40,7 @@ class AboutScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
-                      image: AssetImage("icons/icon_round.png"),
+                      image: AssetImage(Messages.APP_ICON_ROUND),
                     ),
                     boxShadow: [
                       BoxShadow(
@@ -56,7 +60,7 @@ class AboutScreen extends StatelessWidget {
                   child: ListTile(
                     dense: true,
                     title: Text(
-                      "${Constant.appTitle}",
+                      Messages.APP_TITLE,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
@@ -65,7 +69,7 @@ class AboutScreen extends StatelessWidget {
                       ),
                     ),
                     subtitle: Text(
-                      "${Constant.appDesc}",
+                      Messages.APP_DESC,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black54,
@@ -77,36 +81,45 @@ class AboutScreen extends StatelessWidget {
                 ),
               ],
             ),
-            ContainerDetails(
-              icon: CupertinoIcons.heart_fill,
-              text: "Rate App",
-              onTap: () {
-                print("Rate App");
-              },
-            ),
-            ContainerDetails(
-              icon: Icons.share,
-              text: "Share App",
-              onTap: () {
-                SharedFunctions.shareApp(context, settings: appSettings);
-              },
-            ),
-            ContainerDetails(
-              icon: CupertinoIcons.folder_fill,
-              text: "Privacy Policy",
-              onTap: () {
-                print("Privacy Policy");
-              },
-            ),
             Container(
+              padding: EdgeInsets.all(5),
               decoration: BoxDecoration(
                 color: mainColor,
                 borderRadius: BorderRadius.circular(5),
               ),
-              margin: EdgeInsets.only(top: 5, bottom: 2.5),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: HorizontalButton(
+                      icon: CupertinoIcons.heart_fill,
+                      title: Messages.RATE_APP,
+                    ),
+                  ),
+                  Expanded(
+                    child: HorizontalButton(
+                      icon: Icons.share,
+                      title: Messages.SHARE_APP,
+                      onPressed: () => SharedFunctions.shareApp(context, settings: appSettings),
+                    ),
+                  ),
+                  Expanded(
+                    child: HorizontalButton(
+                      icon: CupertinoIcons.folder_fill,
+                      title: Messages.POLICY_APP,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 5),
               padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: mainColor,
+                borderRadius: BorderRadius.circular(5),
+              ),
               child: Text(
-                "About Us",
+                Messages.ABOUT_SCREEN_TITLE,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
@@ -159,7 +172,6 @@ class AboutScreen extends StatelessWidget {
               ),
             if (appSettings.description != null)
               Container(
-                width: double.infinity,
                 decoration: BoxDecoration(
                   color: mainColor,
                   borderRadius: BorderRadius.circular(5),
@@ -168,7 +180,7 @@ class AboutScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      "About App",
+                      Messages.ABOUT_APP,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
