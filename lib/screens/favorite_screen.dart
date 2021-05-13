@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shifaa_pharmacy/classes/product.dart';
+import 'package:shifaa_pharmacy/constant/messages.dart';
 import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/controllers/products_controller.dart';
 import 'package:shifaa_pharmacy/display_function/product_shape.dart';
@@ -21,7 +22,10 @@ class FavoriteScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text("WishList", style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text(
+          Messages.FAVORITE_SCREEN_TITLE,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         leading: BackIconButton(),
         actions: [
           FunctionIconButton(

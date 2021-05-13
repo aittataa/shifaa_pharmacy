@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shifaa_pharmacy/constant/messages.dart';
 
 import '../classes/order.dart';
 import '../classes/prescription.dart';
@@ -59,7 +60,10 @@ class _PrescriptionManagerState extends State<PrescriptionManager> {
       child: Scaffold(
         appBar: AppBar(
           elevation: 1,
-          title: Text("Send Prescription", style: TextStyle(fontWeight: FontWeight.bold)),
+          title: Text(
+            Messages.PRESCRIPTION_MANAGER_TITLE,
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
           leading: BackIconButton(),
           actions: [
             FunctionIconButton(

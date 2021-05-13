@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shifaa_pharmacy/classes/client.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
+import 'package:shifaa_pharmacy/constant/messages.dart';
 import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/controllers/clients_controller.dart';
 import 'package:shifaa_pharmacy/screens/initial_screen.dart';
@@ -54,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 Expanded(
                   child: Image.asset(
-                    "icons/icon.png",
+                    Messages.ICON,
                     color: mainColor,
                     fit: BoxFit.fill,
                   ),
@@ -63,14 +64,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     TextBox(
                       controller: email,
-                      hintText: "Email",
+                      hintText: Messages.HINT_EMAIL,
                       icon: CupertinoIcons.mail_solid,
                       textInputType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next,
                     ),
                     TextBox(
                       controller: password,
-                      hintText: "Password",
+                      hintText: Messages.HINT_PASSWORD,
                       icon: CupertinoIcons.lock_shield_fill,
                       obscureText: obscureText,
                       textInputAction: TextInputAction.done,
@@ -96,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                   ),
                   title: Text(
-                    "Remember Me",
+                    Messages.REMEMBER_MESSAGE,
                     style: TextStyle(
                       color: rememberMe ? Colors.black54 : Colors.red,
                       fontWeight: FontWeight.bold,
@@ -108,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Expanded(
                       flex: 10,
                       child: RegistrationButton(
-                        text: "Login",
+                        text: Messages.LOGIN_BUTTON,
                         textColor: Colors.white,
                         backColor: mainColor,
                         onPressed: () async {
@@ -155,7 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Expanded(
                       flex: 10,
                       child: RegistrationButton(
-                        text: "Skip",
+                        text: Messages.SKIP_BUTTON,
                         textColor: mainColor,
                         backColor: Colors.white,
                         onPressed: () async {
@@ -170,7 +171,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Padding(
                   padding: EdgeInsets.only(top: 5),
                   child: Text(
-                    "- OR -",
+                    Messages.OR_MESSAGE,
                     style: TextStyle(
                       color: Colors.black54,
                       fontWeight: FontWeight.bold,
@@ -178,7 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 BottomButton(
-                  title: "Create New Account",
+                  title: Messages.REGISTER_ACCOUNT_TITLE,
                   screen: RegisterScreen(),
                 ),
               ],
