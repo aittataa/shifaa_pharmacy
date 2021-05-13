@@ -236,6 +236,7 @@ class DetailsShape extends StatelessWidget {
                   child: ActionButton(
                     isLiked: isFav,
                     onTap: onFavTap,
+                    absorbing: false,
                     iconBuilder: (isLiked) {
                       return Icon(
                         Icons.favorite,

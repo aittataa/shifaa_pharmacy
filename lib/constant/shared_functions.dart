@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:share/share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -89,13 +90,9 @@ class SharedFunctions {
     if (listOfOrders.isNotEmpty) {
       lastOrder = listOfOrders.first;
       if (!lastOrder.isValid) {
-        bool state = await contains.addContain(
-          Contain(
-            orderID: lastOrder.id,
-            productID: product.id,
-          ),
+        return await contains.addContain(
+          Contain(orderID: lastOrder.id, productID: product.id),
         );
-        print(state);
       } else {
         bool state = await orders.addOrder(
           Order(type: "NORMAL", clientID: id),
@@ -103,13 +100,9 @@ class SharedFunctions {
         if (state) {
           listOfOrders = await orders.getNormalOrder(id);
           if (listOfOrders.isNotEmpty) {
-            bool state = await contains.addContain(
-              Contain(
-                orderID: listOfOrders.first.id,
-                productID: product.id,
-              ),
+            return await contains.addContain(
+              Contain(orderID: listOfOrders.first.id, productID: product.id),
             );
-            print(state);
           }
         }
       }
@@ -120,13 +113,9 @@ class SharedFunctions {
       if (state) {
         listOfOrders = await orders.getNormalOrder(id);
         if (listOfOrders.isNotEmpty) {
-          bool state = await contains.addContain(
-            Contain(
-              orderID: listOfOrders.first.id,
-              productID: product.id,
-            ),
+          return await contains.addContain(
+            Contain(orderID: listOfOrders.first.id, productID: product.id),
           );
-          print(state);
         }
       }
     }
@@ -218,6 +207,20 @@ class SharedFunctions {
       mainAxisSpacing: 5,
       crossAxisSpacing: 5,
       childAspectRatio: 1,
+    );
+  }
+
+  ///Error Snack Bar
+  static snackBar({String title, String message}) {
+    return Get.snackbar(
+      title,
+      message,
+      backgroundColor: Colors.red,
+      titleText: Text(title, style: TextStyle(fontWeight: FontWeight.w900)),
+      messageText: Text(message, style: TextStyle(fontWeight: FontWeight.bold)),
+      icon: Icon(Icons.error, color: Colors.red.shade900, size: 36),
+      margin: EdgeInsets.all(10),
+      snackStyle: SnackStyle.FLOATING,
     );
   }
 }

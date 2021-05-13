@@ -11,6 +11,9 @@ import 'package:shifaa_pharmacy/pages/categories_page.dart';
 import 'package:shifaa_pharmacy/pages/home_page.dart';
 import 'package:shifaa_pharmacy/pages/medicines_page.dart';
 import 'package:shifaa_pharmacy/pages/offers_page.dart';
+import 'package:shifaa_pharmacy/screens/favorite_screen.dart';
+import 'package:shifaa_pharmacy/screens/prescription_screen.dart';
+import 'package:shifaa_pharmacy/screens/shopping_screen.dart';
 import 'package:shifaa_pharmacy/widget/bottom_navigation.dart';
 import 'package:shifaa_pharmacy/widget/drawer_navigation.dart';
 import 'package:shifaa_pharmacy/widget/floating_button.dart';
@@ -41,28 +44,22 @@ class _InitialScreenState extends State<InitialScreen> {
           ),
           leading: MenuButtonBuilder(),
           actions: [
-            // FunctionIconButton(
-            //   icon: Icons.shopping_cart,
-            //   onPressed: () {
-            //     Get.to(ShoppingScreen());
-            //   },
-            // ),
-            // FunctionIconButton(
-            //   icon: Icons.receipt_long,
-            //   onPressed: () {
-            //     Get.to(PrescriptionScreen());
-            //   },
-            // ),
-            // FunctionIconButton(
-            //   icon: Icons.favorite,
-            //   onPressed: () {
-            //     Get.to(FavoriteScreen());
-            //   },
-            // ),
             FunctionIconButton(
-              icon: Icons.search,
+              icon: Icons.shopping_cart,
               onPressed: () {
-                //Get.to(ShoppingScreen());
+                Get.to(ShoppingScreen());
+              },
+            ),
+            FunctionIconButton(
+              icon: Icons.receipt_long,
+              onPressed: () {
+                Get.to(PrescriptionScreen());
+              },
+            ),
+            FunctionIconButton(
+              icon: Icons.favorite,
+              onPressed: () {
+                Get.to(FavoriteScreen());
               },
             ),
           ],
