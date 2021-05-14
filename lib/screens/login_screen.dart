@@ -15,6 +15,8 @@ import 'package:shifaa_pharmacy/widget/modal_progress_indicator.dart';
 import 'package:shifaa_pharmacy/widget/registration_button.dart';
 import 'package:shifaa_pharmacy/widget/text_box.dart';
 
+import '../constant/messages.dart';
+
 class LoginScreen extends StatefulWidget {
   static const String id = "LoginScreen";
   final bool state;
@@ -27,6 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final ClientsController controller = Get.put(ClientsController());
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
+
   bool state;
 
   @override
@@ -64,17 +67,18 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     TextBox(
                       controller: email,
-                      hintText: Messages.HINT_EMAIL,
                       icon: CupertinoIcons.mail_solid,
+                      hintText: Messages.HINT_EMAIL,
                       textInputType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next,
                     ),
                     TextBox(
                       controller: password,
-                      hintText: Messages.HINT_PASSWORD,
                       icon: CupertinoIcons.lock_shield_fill,
-                      obscureText: obscureText,
+                      hintText: Messages.HINT_PASSWORD,
+                      textInputType: TextInputType.visiblePassword,
                       textInputAction: TextInputAction.done,
+                      obscureText: obscureText,
                       suffixIcon: IconButton(
                         onPressed: () => setState(() => obscureText = !obscureText),
                         icon: Icon(
@@ -87,6 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 ListTile(
                   contentPadding: EdgeInsets.zero,
+                  horizontalTitleGap: 0,
                   leading: Checkbox(
                     value: rememberMe,
                     activeColor: mainColor,
@@ -135,14 +140,14 @@ class _LoginScreenState extends State<LoginScreen> {
                               }
                             } catch (e) {
                               SharedFunctions.snackBar(
-                                title: "Identification Incorrect",
-                                message: "Email or Password is Incorrect, Please Try Again",
+                                title: Messages.INVALID_ERROR_TITLE,
+                                message: Messages.INVALID_ERROR_MESSAGE,
                               );
                             }
                           } else {
                             SharedFunctions.snackBar(
-                              title: "Identification Incorrect",
-                              message: "Check Your Email or Password",
+                              title: Messages.INVALID_ERROR_TITLE,
+                              message: Messages.EMPTY_ERROR_MESSAGE,
                             );
                           }
 
@@ -167,7 +172,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 5),
+                  padding: EdgeInsets.symmetric(vertical: 5),
                   child: Text(
                     Messages.OR_MESSAGE,
                     style: TextStyle(

@@ -71,4 +71,16 @@ class Messages {
   static const String PRESCRIPTION_SCREEN_TITLE = "Prescription List";
   static const String PROFILE_SCREEN_TITLE = "Update Account";
   static const String SHOPPING_SCREEN_TITLE = "Shopping List";
+
+  /// TODO :  Snack Bar
+  static const String INVALID_ERROR_TITLE = "Identification Incorrect";
+  static const String INVALID_ERROR_MESSAGE = "Email or Password is Incorrect, Please Try Again";
+  static const String EMPTY_ERROR_MESSAGE = "Check Your Email or Password";
+
+  static const String REGISTER_ERROR_TITLE = "Registration Error";
+  static const String REGISTER_ERROR_MESSAGE = "Something Wrong !! Please Try Again";
+  static const String INTERNET_ERROR_TITLE = "Internet Error";
+  static const String INTERNET_ERROR_MESSAGE = "Connection Error !! Please Try Again";
+  static const String VALIDATION_ERROR_TITLE = "Validation Error";
+  static const String VALIDATION_ERROR_MESSAGE = "This Email is Already Used";
 }

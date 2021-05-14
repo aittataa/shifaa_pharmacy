@@ -12,9 +12,8 @@ class RegistrationButton extends StatelessWidget {
     return MaterialButton(
       onPressed: onPressed,
       height: 45,
-      minWidth: double.infinity,
-      elevation: 3,
-      highlightElevation: 3,
+      elevation: 1,
+      highlightElevation: 1,
       color: backColor,
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,

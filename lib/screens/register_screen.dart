@@ -47,7 +47,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         inAsyncCall: isAsyncCall,
         child: SafeArea(
           child: Padding(
-            padding: EdgeInsets.only(left: 10, right: 10),
+            padding: EdgeInsets.symmetric(horizontal: 10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -62,30 +62,28 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   children: [
                     TextBox(
                       controller: username,
-                      hintText: Messages.HINT_USERNAME,
                       icon: CupertinoIcons.person_crop_circle,
+                      hintText: Messages.HINT_USERNAME,
                       textInputType: TextInputType.name,
                       textInputAction: TextInputAction.next,
                     ),
                     TextBox(
                       controller: email,
-                      hintText: Messages.HINT_EMAIL,
                       icon: CupertinoIcons.mail_solid,
+                      hintText: Messages.HINT_EMAIL,
                       textInputType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next,
                     ),
                     TextBox(
-                      hintText: Messages.HINT_PASSWORD,
                       controller: password,
+                      icon: CupertinoIcons.lock_shield_fill,
+                      hintText: Messages.HINT_PASSWORD,
                       textInputType: TextInputType.visiblePassword,
                       textInputAction: TextInputAction.next,
-                      icon: CupertinoIcons.lock_shield_fill,
                       obscureText: obscureText,
                       suffixIcon: IconButton(
                         onPressed: () {
-                          setState(() {
-                            obscureText = !obscureText;
-                          });
+                          setState(() => obscureText = !obscureText);
                         },
                         icon: Icon(
                           Icons.remove_red_eye,
@@ -94,9 +92,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ),
                     TextBox(
-                      hintText: Messages.HINT_PHONE,
                       controller: phone,
                       icon: CupertinoIcons.phone_fill,
+                      hintText: Messages.HINT_PHONE,
                       textInputType: TextInputType.number,
                       textInputAction: TextInputAction.done,
                     ),
@@ -148,20 +146,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     Get.off(InitialScreen());
                                   } else {
                                     SharedFunctions.snackBar(
-                                      title: "Registration Error",
-                                      message: "Something Wrong !! Please Try Again",
+                                      title: Messages.REGISTER_ERROR_TITLE,
+                                      message: Messages.REGISTER_ERROR_MESSAGE,
                                     );
                                   }
                                 } else {
                                   SharedFunctions.snackBar(
-                                    title: "Internet Error",
-                                    message: "Connection Error !! Please Try Again",
+                                    title: Messages.INTERNET_ERROR_TITLE,
+                                    message: Messages.INTERNET_ERROR_MESSAGE,
                                   );
                                 }
                               } else {
                                 SharedFunctions.snackBar(
-                                  title: "Validation Error",
-                                  message: "This Email is Already Used",
+                                  title: Messages.VALIDATION_ERROR_TITLE,
+                                  message: Messages.VALIDATION_ERROR_MESSAGE,
                                 );
                               }
                             } else {
