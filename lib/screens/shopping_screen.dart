@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shifaa_pharmacy/classes/contain.dart';
 import 'package:shifaa_pharmacy/classes/order.dart';
+import 'package:shifaa_pharmacy/constant/messages.dart';
 import 'package:shifaa_pharmacy/controllers/contains_controller.dart';
 import 'package:shifaa_pharmacy/controllers/orders_controller.dart';
 import 'package:shifaa_pharmacy/display_function/display_function.dart';
@@ -22,7 +23,10 @@ class ShoppingScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
-        title: Text("Shopping List", style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text(
+          Messages.SHOPPING_SCREEN_TITLE,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         leading: BackIconButton(),
         actions: [
           FunctionIconButton(

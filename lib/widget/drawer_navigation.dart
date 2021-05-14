@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shifaa_pharmacy/constant/messages.dart';
 import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/controllers/clients_controller.dart';
 import 'package:shifaa_pharmacy/screens/profile_screen.dart';
@@ -45,7 +46,7 @@ class DrawerNavigation extends StatelessWidget {
                         fit: BoxFit.cover,
                         image: state
                             ? NetworkImage("${Constant.signInClient.picture}")
-                            : AssetImage("icons/app_icon_round.png"),
+                            : AssetImage(Messages.APP_ICON_ROUND),
                       ),
                       boxShadow: [
                         BoxShadow(
@@ -58,21 +59,18 @@ class DrawerNavigation extends StatelessWidget {
                   ),
                   ListTile(
                     dense: true,
-                    minLeadingWidth: 0,
-                    minVerticalPadding: 0,
-                    horizontalTitleGap: 0,
                     contentPadding: EdgeInsets.zero.copyWith(left: 10),
                     title: Text(
-                      state ? "${Constant.signInClient.username}" : Constant.appTitle,
+                      state ? "${Constant.signInClient.username}" : Messages.APP_TITLE,
                       softWrap: false,
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w900,
-                        fontSize: 20,
+                        fontSize: 18,
                       ),
                     ),
                     subtitle: Text(
-                      state ? "${Constant.signInClient.email}" : Constant.appDesc,
+                      state ? "${Constant.signInClient.email}" : Messages.APP_DESC,
                       softWrap: false,
                       style: TextStyle(
                         color: Colors.black54,
@@ -89,7 +87,11 @@ class DrawerNavigation extends StatelessWidget {
                           Get.offAll(LoginScreen());
                         }
                       },
-                      icon: Icon(Icons.edit, color: Colors.white, size: 30),
+                      icon: Icon(
+                        Icons.edit,
+                        color: Colors.white,
+                        size: 27,
+                      ),
                     ),
                   ),
                 ],
@@ -100,7 +102,7 @@ class DrawerNavigation extends StatelessWidget {
                 children: [
                   HorizontalButton(
                     icon: Icons.shopping_cart,
-                    title: "Shopping",
+                    title: Messages.LABEL_SHOPPING,
                     onPressed: () {
                       Navigator.pop(context);
                       Get.to(ShoppingScreen());
@@ -108,7 +110,7 @@ class DrawerNavigation extends StatelessWidget {
                   ),
                   HorizontalButton(
                     icon: Icons.receipt_long,
-                    title: "Prescription",
+                    title: Messages.LABEL_PRESCRIPTION,
                     onPressed: () {
                       Navigator.pop(context);
                       Get.to(PrescriptionScreen());
@@ -116,7 +118,7 @@ class DrawerNavigation extends StatelessWidget {
                   ),
                   HorizontalButton(
                     icon: Icons.favorite,
-                    title: "WishList",
+                    title: Messages.LABEL_WISH_LIST,
                     onPressed: () {
                       Navigator.pop(context);
                       Get.to(FavoriteScreen());
@@ -130,14 +132,14 @@ class DrawerNavigation extends StatelessWidget {
                   children: [
                     VerticalButton(
                       icon: CupertinoIcons.house_alt_fill,
-                      title: "Home",
+                      title: Messages.LABEL_HOME,
                       onTap: () {
                         Navigator.pop(context);
                       },
                     ),
                     VerticalButton(
                       icon: CupertinoIcons.gear_alt_fill,
-                      title: "Settings",
+                      title: Messages.LABEL_SETTINGS,
                       onTap: () {
                         Navigator.pop(context);
                       },
@@ -151,7 +153,7 @@ class DrawerNavigation extends StatelessWidget {
                 children: [
                   HorizontalButton(
                     icon: Icons.info,
-                    title: "About Us",
+                    title: Messages.LABEL_ABOUT,
                     onPressed: () {
                       Navigator.pop(context);
                       Get.to(AboutScreen());
@@ -159,7 +161,7 @@ class DrawerNavigation extends StatelessWidget {
                   ),
                   HorizontalButton(
                     icon: CupertinoIcons.escape,
-                    title: state ? "Sign Out" : "Sign In",
+                    title: state ? Messages.LABEL_SIGN_OUT : Messages.LABEL_SIGN_IN,
                     onPressed: () {
                       controller.clear;
                       Get.offAll(LoginScreen());

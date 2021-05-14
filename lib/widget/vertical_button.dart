@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shifaa_pharmacy/constant/messages.dart';
 
 class VerticalButton extends StatelessWidget {
   final String title;
@@ -11,7 +12,7 @@ class VerticalButton extends StatelessWidget {
     return ListTile(
       onTap: onTap,
       dense: true,
-      tileColor: title.contains("Home") ? Colors.black12 : Colors.transparent,
+      tileColor: title.contains(Messages.LABEL_HOME) ? Colors.black12 : Colors.transparent,
       leading: Icon(icon),
       title: Text(
         "$title",

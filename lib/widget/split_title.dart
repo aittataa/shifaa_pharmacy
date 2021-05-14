@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
+import 'package:shifaa_pharmacy/constant/messages.dart';
 
 class SplitTitle extends StatelessWidget {
   final String title;
@@ -10,7 +11,6 @@ class SplitTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      // tileColor: Colors.red,
       dense: true,
       contentPadding: EdgeInsets.symmetric(horizontal: 10),
       leading: Container(
@@ -35,7 +35,10 @@ class SplitTitle extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           minimumSize: Size(0, 0),
         ),
-        child: Text("More", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        child: Text(
+          Messages.MORE_MESSAGE,
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
       ),
     );
   }

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shifaa_pharmacy/constant/messages.dart';
+import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 
 import '../classes/order.dart';
 import '../classes/prescription.dart';
@@ -45,8 +46,6 @@ class _PrescriptionManagerState extends State<PrescriptionManager> {
       if (pickedFile.path != null) {
         imageFile = File(pickedFile.path);
         imageString = base64Encode(imageFile.readAsBytesSync());
-      } else {
-        print("No image selected.");
       }
     });
   }
@@ -95,7 +94,7 @@ class _PrescriptionManagerState extends State<PrescriptionManager> {
                     child: imageFile != null
                         ? Image.file(imageFile)
                         : Text(
-                            "Pick Prescription!",
+                            Messages.ERROR_MESSAGE,
                             style: TextStyle(
                               color: Colors.black54,
                               fontWeight: FontWeight.bold,
@@ -132,7 +131,7 @@ class _PrescriptionManagerState extends State<PrescriptionManager> {
                         color: mainColor,
                       ),
                     ),
-                    hintText: "Type Something...",
+                    hintText: Messages.HINT_TEXT,
                     hintStyle: TextStyle(
                       color: Colors.black38,
                       fontWeight: FontWeight.bold,
@@ -154,7 +153,8 @@ class _PrescriptionManagerState extends State<PrescriptionManager> {
                       int id = Constant.signInClient.id;
                       String number = "${id}_${Random().nextInt(999999)}";
                       String picture = "${number}_${imageFile.path.split('/').last}";
-                      listOfPrescriptions = await ordersController.getPrescriptionOrder(id);
+                      List<Order> listOfPrescriptions =
+                          await ordersController.getPrescriptionOrder(id);
                       Order lastOrder;
                       if (listOfPrescriptions.isNotEmpty) {
                         lastOrder = listOfPrescriptions.first;
@@ -172,8 +172,7 @@ class _PrescriptionManagerState extends State<PrescriptionManager> {
                             Navigator.popAndPushNamed(context, PrescriptionScreen.id);
                           } else {
                             setState(() => isAsyncCall = false);
-                            errorSnackBar(
-                              context,
+                            SharedFunctions.snackBar(
                               title: "Prescription Error",
                               message: "Something Wrong, Try Again",
                             );
@@ -199,8 +198,7 @@ class _PrescriptionManagerState extends State<PrescriptionManager> {
                                 Navigator.popAndPushNamed(context, PrescriptionScreen.id);
                               } else {
                                 setState(() => isAsyncCall = false);
-                                errorSnackBar(
-                                  context,
+                                SharedFunctions.snackBar(
                                   title: "Prescription Error",
                                   message: "Something Wrong, Try Again",
                                 );
@@ -229,8 +227,7 @@ class _PrescriptionManagerState extends State<PrescriptionManager> {
                               Navigator.popAndPushNamed(context, PrescriptionScreen.id);
                             } else {
                               setState(() => isAsyncCall = false);
-                              errorSnackBar(
-                                context,
+                              SharedFunctions.snackBar(
                                 title: "Prescription Error",
                                 message: "Something Wrong, Try Again",
                               );
@@ -240,8 +237,7 @@ class _PrescriptionManagerState extends State<PrescriptionManager> {
                       }
                     } catch (e) {
                       setState(() => isAsyncCall = false);
-                      errorSnackBar(
-                        context,
+                      SharedFunctions.snackBar(
                         title: "Prescription Error",
                         message: "Pick Prescription To Send",
                       );

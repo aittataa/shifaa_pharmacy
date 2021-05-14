@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shifaa_pharmacy/classes/brand.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
+import 'package:shifaa_pharmacy/constant/messages.dart';
 import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/controllers/products_controller.dart';
 import 'package:shifaa_pharmacy/display_function/category_shape.dart';
@@ -22,7 +23,7 @@ class BrandsBar extends StatelessWidget {
       return Column(
         children: [
           SplitTitle(
-            title: "Brands",
+            title: Messages.LABEL_BRANDS,
             onPressed: onPressed,
           ),
           SizedBox(

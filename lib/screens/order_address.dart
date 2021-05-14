@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:shifaa_pharmacy/classes/client.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
 import 'package:shifaa_pharmacy/constant/messages.dart';
+import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/controllers/clients_controller.dart';
 import 'package:shifaa_pharmacy/controllers/orders_controller.dart';
 import 'package:shifaa_pharmacy/widget/back_icon.dart';
@@ -148,7 +149,7 @@ class _OrderAddressState extends State<OrderAddress> {
                             title = "City Empty";
                             message = "Input City Name";
                           }
-                          errorSnackBar(context, title: title, message: message);
+                          SharedFunctions.snackBar(title: title, message: message);
                         }
                       },
                     ),

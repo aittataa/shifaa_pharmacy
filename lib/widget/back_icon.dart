@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shifaa_pharmacy/constant/messages.dart';
 
 class BackIconButton extends StatelessWidget {
   final Color color;
@@ -11,7 +12,7 @@ class BackIconButton extends StatelessWidget {
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
       icon: Image.asset(
-        "images/left.png",
+        Messages.IMAGE_LEFT,
         color: color,
         height: 20,
         width: 20,

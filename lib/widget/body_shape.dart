@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
+import 'package:shifaa_pharmacy/constant/messages.dart';
 
 class BodyShape extends StatelessWidget {
   final Widget child;
@@ -58,7 +59,7 @@ class BodyShape extends StatelessWidget {
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.zero,
                     border: InputBorder.none,
-                    hintText: "Search...",
+                    hintText: Messages.HINT_SEARCH,
                     hintStyle: TextStyle(color: Colors.black38, fontWeight: FontWeight.bold),
                   ),
                 ),

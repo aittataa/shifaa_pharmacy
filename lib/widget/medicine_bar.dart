@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shifaa_pharmacy/classes/medicine.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
+import 'package:shifaa_pharmacy/constant/messages.dart';
 import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/controllers/products_controller.dart';
 import 'package:shifaa_pharmacy/display_function/category_shape.dart';
@@ -23,7 +24,7 @@ class MedicineBar extends StatelessWidget {
       return Column(
         children: [
           SplitTitle(
-            title: "Medicine",
+            title: Messages.LABEL_MEDICINES,
             onPressed: onPressed,
           ),
           SizedBox(

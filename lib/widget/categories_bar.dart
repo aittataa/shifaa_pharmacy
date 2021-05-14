@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shifaa_pharmacy/classes/categories.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
+import 'package:shifaa_pharmacy/constant/messages.dart';
 import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/display_function/category_shape.dart';
 import 'package:shifaa_pharmacy/screens/subcategories_screen.dart';
@@ -17,7 +18,7 @@ class CategoriesBar extends StatelessWidget {
       return Column(
         children: [
           SplitTitle(
-            title: "Categories",
+            title: Messages.LABEL_CATEGORIES,
             onPressed: onPressed,
           ),
           SizedBox(

@@ -57,7 +57,7 @@ class FavoriteScreen extends StatelessWidget {
               itemCount: myList.length,
               itemBuilder: (context, index) {
                 Product product = myList[index];
-                bool isFav = SharedFunctions.isProductFavorite(product);
+                bool isFav = SharedFunctions.isProductFavorite(product, controller);
                 return ProductShape(
                   product: product,
                   isFav: isFav,

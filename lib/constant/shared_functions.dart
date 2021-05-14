@@ -9,6 +9,7 @@ import 'package:shifaa_pharmacy/classes/favorite.dart';
 import 'package:shifaa_pharmacy/classes/order.dart';
 import 'package:shifaa_pharmacy/classes/product.dart';
 import 'package:shifaa_pharmacy/classes/settings.dart';
+import 'package:shifaa_pharmacy/constant/messages.dart';
 import 'package:shifaa_pharmacy/controllers/clients_controller.dart';
 import 'package:shifaa_pharmacy/controllers/contains_controller.dart';
 import 'package:shifaa_pharmacy/controllers/orders_controller.dart';
@@ -71,11 +72,13 @@ class SharedFunctions {
   // }
 
   ///is Product in Favorite List
-  static bool isProductFavorite(Product product) {
-    var myProduct = favoriteProductsList.where((productFav) {
-      return productFav.isFav == true && productFav.id == product.id;
-    }).toList();
-    return myProduct.isNotEmpty;
+  static bool isProductFavorite(Product product, ProductsController controller) {
+    return controller.favoriteProductsList
+        .where((productFav) {
+          return productFav.isFav == true && productFav.id == product.id;
+        })
+        .toList()
+        .isNotEmpty;
   }
 
   ///onShopProductTap
@@ -85,7 +88,7 @@ class SharedFunctions {
     ContainsController contains,
   ) async {
     int id = Constant.signInClient.id;
-    listOfOrders = await orders.getNormalOrder(id);
+    List<Order> listOfOrders = await orders.getNormalOrder(id);
     Order lastOrder;
     if (listOfOrders.isNotEmpty) {
       lastOrder = listOfOrders.first;
@@ -125,7 +128,7 @@ class SharedFunctions {
   static onFavProductTap(Product product, ProductsController controller) async {
     int clientID = Constant.signInClient.id;
     int productID = product.id;
-    bool isFav = favoriteProductsList
+    bool isFav = controller.favoriteProductsList
         .where((productFav) {
           return productFav.id == product.id;
         })
@@ -165,7 +168,7 @@ class SharedFunctions {
     final String subject = settings.website;
     Share.share(
       subject,
-      subject: Constant.appTitle,
+      subject: Messages.APP_TITLE,
       sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size,
     );
   }
@@ -178,7 +181,7 @@ class SharedFunctions {
         insetAnimationDuration: Duration(milliseconds: 1000),
         insetAnimationCurve: Curves.linearToEaseOut,
         title: Text(
-          "${Constant.appTitle}",
+          Messages.APP_TITLE,
           style: TextStyle(color: mainColor, fontWeight: FontWeight.w900, fontSize: 20),
         ),
         content: Text(

@@ -134,15 +134,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                 Get.off(InitialScreen());
                               }
                             } catch (e) {
-                              errorSnackBar(
-                                context,
+                              SharedFunctions.snackBar(
                                 title: "Identification Incorrect",
                                 message: "Email or Password is Incorrect, Please Try Again",
                               );
                             }
                           } else {
-                            errorSnackBar(
-                              context,
+                            SharedFunctions.snackBar(
                               title: "Identification Incorrect",
                               message: "Check Your Email or Password",
                             );

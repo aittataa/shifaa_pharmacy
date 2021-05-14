@@ -5,6 +5,7 @@ import 'package:shifaa_pharmacy/constant/constant.dart';
 import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/controllers/contains_controller.dart';
 import 'package:shifaa_pharmacy/controllers/orders_controller.dart';
+import 'package:shifaa_pharmacy/controllers/products_controller.dart';
 import 'package:shifaa_pharmacy/display_function/details_shape.dart';
 import 'package:shifaa_pharmacy/screens/favorite_screen.dart';
 import 'package:shifaa_pharmacy/screens/login_screen.dart';
@@ -16,6 +17,7 @@ class ProductDetails extends StatelessWidget {
   static const String id = "ProductDetailsScreen";
   final OrdersController orders = Get.put(OrdersController());
   final ContainsController contains = Get.put(ContainsController());
+  final ProductsController products = Get.put(ProductsController());
 
   final int index;
   final List<Product> myList;
@@ -52,7 +54,7 @@ class ProductDetails extends StatelessWidget {
         itemCount: myList.length,
         itemBuilder: (context, index) {
           Product product = myList[index];
-          bool isFav = SharedFunctions.isProductFavorite(product);
+          bool isFav = SharedFunctions.isProductFavorite(product, products);
           return DetailsShape(
             product: product,
             isFav: isFav,

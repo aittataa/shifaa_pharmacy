@@ -3,15 +3,17 @@ import 'package:get/get.dart';
 import 'package:shifaa_pharmacy/classes/product.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
 import 'package:shifaa_pharmacy/constant/shared_functions.dart';
+import 'package:shifaa_pharmacy/controllers/products_controller.dart';
 import 'package:shifaa_pharmacy/display_function/product_shape.dart';
 import 'package:shifaa_pharmacy/screens/product_details.dart';
 import 'package:shifaa_pharmacy/screens/product_screen.dart';
 import 'package:shifaa_pharmacy/widget/split_title.dart';
 
 class ProductBar extends StatelessWidget {
+  final ProductsController controller;
   final String title;
   final List<Product> myList;
-  ProductBar({this.title, this.myList});
+  ProductBar({this.controller, this.title, this.myList});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class ProductBar extends StatelessWidget {
               itemCount: myList.length,
               itemBuilder: (context, index) {
                 Product product = myList[index];
-                bool isFav = SharedFunctions.isProductFavorite(product);
+                bool isFav = SharedFunctions.isProductFavorite(product, controller);
                 return ProductShape(
                   product: product,
                   isFav: isFav,

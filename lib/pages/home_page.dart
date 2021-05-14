@@ -39,6 +39,7 @@ class _HomePageState extends State<HomePage> {
       physics: BouncingScrollPhysics(),
       children: [
         SliderBar(
+          controller: productsController,
           slideIndex: slideIndex,
           myList: productsController.productsList.where((product) {
             return product.featured == true;
@@ -57,6 +58,7 @@ class _HomePageState extends State<HomePage> {
           },
         ),
         ProductBar(
+          controller: productsController,
           title: Messages.TITLE_LATEST,
           myList: productsController.productsList,
         ),
@@ -69,6 +71,7 @@ class _HomePageState extends State<HomePage> {
           },
         ),
         ProductBar(
+          controller: productsController,
           title: Messages.TITLE_POPULAR,
           myList: productsController.productsList.where((product) => product.isShop > 0).toList()
             ..sort((a, b) => b.isShop.compareTo(a.isShop)),

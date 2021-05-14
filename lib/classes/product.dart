@@ -1,10 +1,8 @@
-import 'dart:convert';
-
 import 'package:shifaa_pharmacy/constant/constant.dart';
 
-List<Product> productFromJson(String str) {
-  return List<Product>.from(json.decode(str).map((x) => Product.fromJson(x)));
-}
+// List<Product> productFromJson(String str) {
+//   return List<Product>.from(json.decode(str).map((x) => Product.fromJson(x)));
+// }
 
 class Product {
   final int id;

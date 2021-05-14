@@ -28,6 +28,8 @@ class SubCategoriesScreen extends StatefulWidget {
 
 class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
   final CategoriesController controller = Get.put(CategoriesController());
+  final ProductsController products = Get.put(ProductsController());
+
   Categories category;
   @override
   void initState() {
@@ -116,7 +118,7 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
                         itemCount: myList.length,
                         itemBuilder: (context, index) {
                           Product product = myList[index];
-                          bool isFav = SharedFunctions.isProductFavorite(product);
+                          bool isFav = SharedFunctions.isProductFavorite(product, products);
                           return ProductShape(
                             product: product,
                             isFav: isFav,

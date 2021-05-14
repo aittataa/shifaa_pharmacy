@@ -7,6 +7,8 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shifaa_pharmacy/classes/client.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
+import 'package:shifaa_pharmacy/constant/messages.dart';
+import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/controllers/clients_controller.dart';
 import 'package:shifaa_pharmacy/widget/back_icon.dart';
 import 'package:shifaa_pharmacy/widget/modal_progress_indicator.dart';
@@ -61,7 +63,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
-        title: Text("Update Account", style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text(
+          Messages.PROFILE_SCREEN_TITLE,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         leading: BackIconButton(),
       ),
       body: ModalProgressIndicator(
@@ -117,13 +122,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               TextBox(
                 controller: username,
-                hintText: "Name",
+                hintText: Messages.HINT_USERNAME,
                 icon: CupertinoIcons.person_crop_circle,
                 textInputType: TextInputType.name,
                 textInputAction: TextInputAction.next,
               ),
               TextBox(
-                hintText: "Password",
+                hintText: Messages.HINT_PASSWORD,
                 controller: password,
                 textInputType: TextInputType.visiblePassword,
                 textInputAction: TextInputAction.next,
@@ -142,7 +147,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
               TextBox(
-                hintText: "Phone",
+                hintText: Messages.HINT_PHONE,
                 controller: phone,
                 icon: CupertinoIcons.phone_fill,
                 textInputType: TextInputType.phone,
@@ -151,7 +156,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Padding(
                 padding: EdgeInsets.only(top: 10),
                 child: RegistrationButton(
-                  text: "Update",
+                  text: Messages.UPDATE_BUTTON,
                   textColor: Colors.white,
                   backColor: mainColor,
                   onPressed: () async {
@@ -199,8 +204,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         title = "Phone Number Invalid";
                         message = "Check Your Phone Number";
                       }
-                      errorSnackBar(
-                        context,
+                      SharedFunctions.snackBar(
                         title: title,
                         message: message,
                       );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shifaa_pharmacy/classes/order.dart';
 import 'package:shifaa_pharmacy/classes/prescription.dart';
+import 'package:shifaa_pharmacy/constant/messages.dart';
 import 'package:shifaa_pharmacy/controllers/orders_controller.dart';
 import 'package:shifaa_pharmacy/controllers/prescriptions_controller.dart';
 import 'package:shifaa_pharmacy/display_function/display_function.dart';
@@ -22,7 +23,10 @@ class PrescriptionScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
-        title: Text("Prescription", style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text(
+          Messages.PRESCRIPTION_SCREEN_TITLE,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         leading: BackIconButton(),
         actions: [
           FunctionIconButton(

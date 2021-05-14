@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
+import 'package:shifaa_pharmacy/constant/messages.dart';
 import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/controllers/clients_controller.dart';
 import 'package:shifaa_pharmacy/controllers/products_controller.dart';
@@ -34,7 +35,7 @@ class ShifaaPharmacy extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "${Constant.appTitle}",
+      title: Messages.APP_TITLE,
       color: mainColor,
       themeMode: ThemeMode.dark,
       theme: ThemeData.dark().copyWith(

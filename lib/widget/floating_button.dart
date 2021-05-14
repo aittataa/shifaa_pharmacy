@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
+import 'package:shifaa_pharmacy/constant/messages.dart';
 import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/screens/prescription_manager.dart';
 
@@ -17,7 +18,7 @@ class ActionFloatingButton extends StatelessWidget {
       elevation: 1,
       overlayOpacity: 0.5,
       overlayColor: backColor,
-      tooltip: "Send Prescription",
+      tooltip: Messages.PICK_MESSAGE,
       icon: CupertinoIcons.add,
       activeIcon: CupertinoIcons.xmark,
       marginBottom: 10,
@@ -27,7 +28,7 @@ class ActionFloatingButton extends StatelessWidget {
       animationSpeed: 250,
       children: [
         SpeedDialChild(
-          label: "Camera",
+          label: Messages.LABEL_CAMERA,
           labelStyle: TextStyle(color: mainColor, fontWeight: FontWeight.bold),
           child: Icon(CupertinoIcons.camera_fill),
           backgroundColor: Colors.white,
@@ -44,7 +45,7 @@ class ActionFloatingButton extends StatelessWidget {
           },
         ),
         SpeedDialChild(
-          label: "Gallery",
+          label: Messages.LABEL_GALLERY,
           labelStyle: TextStyle(color: mainColor, fontWeight: FontWeight.bold),
           child: Icon(CupertinoIcons.photo_fill_on_rectangle_fill),
           backgroundColor: Colors.white,

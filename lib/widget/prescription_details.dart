@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shifaa_pharmacy/classes/prescription.dart';
+import 'package:shifaa_pharmacy/constant/messages.dart';
 
 class PrescriptionDetails extends StatelessWidget {
   final Prescription prescription;
@@ -15,7 +16,7 @@ class PrescriptionDetails extends StatelessWidget {
             padding: EdgeInsets.all(5),
             child: Center(
               child: FadeInImage.assetNetwork(
-                placeholder: "assets/twirl.gif",
+                placeholder: Messages.IMAGE_ASSET,
                 image: "${prescription.picture}",
               ),
             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
+import 'package:shifaa_pharmacy/constant/messages.dart';
 import 'package:shifaa_pharmacy/widget/spin_indicator.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -15,7 +16,7 @@ class SplashScreen extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
-                image: AssetImage("icons/app_icon_round.png"),
+                image: AssetImage(Messages.APP_ICON_ROUND),
               ),
               boxShadow: [
                 BoxShadow(
@@ -31,7 +32,7 @@ class SplashScreen extends StatelessWidget {
             contentPadding: EdgeInsets.zero,
             minVerticalPadding: 0,
             title: Text(
-              "${Constant.appTitle}",
+              Messages.APP_TITLE,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: mainColor,
@@ -40,7 +41,7 @@ class SplashScreen extends StatelessWidget {
               ),
             ),
             subtitle: Text(
-              "${Constant.appDesc}",
+              Messages.APP_DESC,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.black54,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shifaa_pharmacy/classes/medicine.dart';
-import 'package:shifaa_pharmacy/constant/constant.dart';
+import 'package:shifaa_pharmacy/classes/product.dart';
 import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/controllers/categories_controller.dart';
 import 'package:shifaa_pharmacy/controllers/products_controller.dart';
@@ -19,6 +19,7 @@ class MedicinesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       List<Medicine> myList = categoriesController.medicinesList;
+      List<Product> productsList = productsController.productsList;
       bool isNotEmpty = myList.isNotEmpty;
       if (isNotEmpty) {
         return BodyShape(

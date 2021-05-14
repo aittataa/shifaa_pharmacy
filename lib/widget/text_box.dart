@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shifaa_pharmacy/constant/constant.dart';
+import 'package:shifaa_pharmacy/constant/messages.dart';
 
 class TextBox extends StatelessWidget {
   final TextInputType textInputType;
@@ -35,7 +36,7 @@ class TextBox extends StatelessWidget {
         controller: controller,
         keyboardType: textInputType,
         cursorColor: Colors.white,
-        obscureText: hintText.contains("Password") ? obscureText : false,
+        obscureText: hintText.contains(Messages.HINT_PASSWORD) ? obscureText : false,
         style: TextStyle(color: Colors.black54, fontWeight: FontWeight.bold),
         decoration: InputDecoration(
           border: InputBorder.none,
