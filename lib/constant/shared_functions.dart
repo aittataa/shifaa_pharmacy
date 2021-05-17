@@ -23,11 +23,9 @@ import 'constant.dart';
 class SharedFunctions {
   static bool get isClientLogged => Constant.signInClient != null;
 
-  static int pageIndex = 2;
-  static PageController pageController = PageController(initialPage: pageIndex);
   static nextPage(index) {
-    pageIndex = index;
-    pageController.jumpToPage(index);
+    Constant.pageIndex = index;
+    Constant.pageController.jumpToPage(index);
   }
 
   static nextScreen(ClientsController controller) async {
@@ -37,9 +35,7 @@ class SharedFunctions {
       Constant.signInClient = await controller.getClientByID(id);
       bool state = session.getBool("state");
       if (state == false) {
-        return LoginScreen(
-          state: true,
-        );
+        return LoginScreen(state: true);
       } else {
         return InitialScreen();
       }
@@ -53,7 +49,7 @@ class SharedFunctions {
     }
   }
 
-  ///Find Product By Value
+  ///Date Shape
   static dateShape(DateTime date) => DateFormat("MMM dd, HH:mm:ss").format(date);
 
   ///Find Product By Value
@@ -178,15 +174,15 @@ class SharedFunctions {
     return showCupertinoModalPopup(
       context: context,
       builder: (context) => CupertinoAlertDialog(
-        insetAnimationDuration: Duration(milliseconds: 1000),
-        insetAnimationCurve: Curves.linearToEaseOut,
+        insetAnimationDuration: Constant.durationCupertinoAlertDialog,
+        insetAnimationCurve: Constant.curve,
         title: Text(
           Messages.APP_TITLE,
           style: TextStyle(color: mainColor, fontWeight: FontWeight.w900, fontSize: 20),
         ),
         content: Text(
           "Are You Sure You Want To Exit ?",
-          style: TextStyle(color: Colors.white60, fontWeight: FontWeight.bold, fontSize: 15),
+          style: TextStyle(color: Colors.white54, fontWeight: FontWeight.bold, fontSize: 15),
         ),
         actions: <Widget>[
           CupertinoDialogAction(

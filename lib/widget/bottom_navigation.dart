@@ -37,8 +37,8 @@ class BottomNavigation extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           label: Messages.LABEL_BRANDS,
-          icon: Icon(CupertinoIcons.shield_lefthalf_fill),
-          activeIcon: Icon(CupertinoIcons.shield_fill),
+          icon: Icon(CupertinoIcons.shield),
+          activeIcon: Icon(CupertinoIcons.shield_lefthalf_fill),
         ),
         BottomNavigationBarItem(
           label: Messages.LABEL_OFFERS,

@@ -28,6 +28,7 @@ class Messages {
   static const String SAVE_BUTTON = "Save Address";
   static const String UPDATE_BUTTON = "Update";
   static const String REMEMBER_MESSAGE = "Remember me";
+  static const String FORGET_PASSWORD = "Forget Password";
   static const String OR_MESSAGE = "- OR -";
   static const String MORE_MESSAGE = "More";
   static const String HINT_USERNAME = "Name";

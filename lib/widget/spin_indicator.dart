@@ -8,7 +8,7 @@ class SpinIndicator extends StatelessWidget {
     return SpinKitThreeBounce(
       size: 64,
       color: mainColor,
-      duration: Duration(milliseconds: 1500),
+      duration: Constant.duration,
     );
   }
 }

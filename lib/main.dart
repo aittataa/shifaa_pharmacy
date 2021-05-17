@@ -43,10 +43,10 @@ class ShifaaPharmacy extends StatelessWidget {
       home: AnimatedSplashScreen.withScreenFunction(
         screenFunction: () async => await SharedFunctions.nextScreen(clients),
         splash: SplashScreen(),
-        curve: Curves.linearToEaseOut,
+        curve: Constant.curve,
         backgroundColor: backColor,
         splashTransition: SplashTransition.fadeTransition,
-        animationDuration: Duration(milliseconds: 1500),
+        animationDuration: Constant.duration,
         splashIconSize: double.infinity,
       ),
       routes: {

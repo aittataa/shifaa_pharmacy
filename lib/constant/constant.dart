@@ -2,9 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-
-import '../classes/client.dart';
-import '../constant/messages.dart';
+import 'package:shifaa_pharmacy/classes/client.dart';
+import 'package:shifaa_pharmacy/constant/messages.dart';
 
 class Constant {
   /// TODO : REST API
@@ -12,6 +11,15 @@ class Constant {
 
   /// TODO : Sign In Client
   static Client signInClient;
+
+  /// TODO : Page Index
+  static int pageIndex = 2;
+  static PageController pageController = PageController();
+
+  /// TODO : Duration
+  static const Curve curve = Curves.linearToEaseOut;
+  static const Duration duration = Duration(milliseconds: 1500);
+  static const Duration durationCupertinoAlertDialog = Duration(milliseconds: 1500);
 
   /// TODO : Constant Titles
   static const List<String> listTitles = [
@@ -21,6 +29,12 @@ class Constant {
     Messages.LABEL_BRANDS,
     Messages.LABEL_OFFERS,
   ];
+
+  static const boxShadow = BoxShadow(
+    color: Colors.black12,
+    blurRadius: 90,
+    spreadRadius: -15,
+  );
 }
 
 ///Main Color
@@ -39,35 +53,3 @@ const Color backColor = Color(0xFFF0F0F0);
 ///Device Resolution
 double screenWidth = Get.width;
 double screenHeight = Get.height;
-
-///Error Snack Bar
-// errorSnackBar(BuildContext context, {String title, String message}) {
-//   return Get.snackbar(
-//     title,
-//     message,
-//     backgroundColor: Colors.red,
-//     titleText: Text(title, style: TextStyle(fontWeight: FontWeight.w900)),
-//     messageText: Text(message, style: TextStyle(fontWeight: FontWeight.bold)),
-//     icon: Icon(Icons.error, color: Colors.red.shade900, size: 36),
-//     margin: EdgeInsets.all(10),
-//     snackStyle: SnackStyle.FLOATING,
-//   );
-// }
-
-//List<Client> myClientsList = [];
-
-//List<Product> productsList = [];
-//List<Product> favoriteProductsList = [];
-
-//List<Medicine> medicinesList = [];
-//List<Categories> categoriesList = [];
-//List<SubCategories> subcategoriesList = [];
-//List<Brand> brandsList = [];
-
-//List<Order> listOfOrders = [];
-//List<Order> myShoppingList = [];
-//List<Contain> containList = [];
-
-//List<Order> listOfPrescriptions = [];
-//List<Order> myPrescriptionList = [];
-//List<Prescription> prescriptionList = [];

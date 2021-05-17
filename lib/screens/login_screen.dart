@@ -90,19 +90,24 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
                 ListTile(
-                  contentPadding: EdgeInsets.zero,
+                  contentPadding: EdgeInsets.zero.copyWith(right: 10),
                   horizontalTitleGap: 0,
                   leading: Checkbox(
                     value: rememberMe,
                     activeColor: mainColor,
                     onChanged: (value) {
-                      setState(() {
-                        rememberMe = value;
-                      });
+                      setState(() => rememberMe = value);
                     },
                   ),
                   title: Text(
                     Messages.REMEMBER_MESSAGE,
+                    style: TextStyle(
+                      color: rememberMe ? Colors.black54 : Colors.red,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  trailing: Text(
+                    Messages.FORGET_PASSWORD,
                     style: TextStyle(
                       color: rememberMe ? Colors.black54 : Colors.red,
                       fontWeight: FontWeight.bold,

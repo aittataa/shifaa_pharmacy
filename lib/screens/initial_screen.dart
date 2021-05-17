@@ -30,6 +30,11 @@ class _InitialScreenState extends State<InitialScreen> {
   final ClientsController clientsController = Get.put(ClientsController());
   final CategoriesController categoriesController = Get.put(CategoriesController());
   final ProductsController productsController = Get.put(ProductsController());
+  @override
+  void initState() {
+    super.initState();
+    Constant.pageController = PageController(initialPage: Constant.pageIndex);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +44,7 @@ class _InitialScreenState extends State<InitialScreen> {
         appBar: AppBar(
           elevation: 0,
           title: Text(
-            "${Constant.listTitles[SharedFunctions.pageIndex]}",
+            Constant.listTitles[Constant.pageIndex],
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           leading: MenuButtonBuilder(),
@@ -68,7 +73,7 @@ class _InitialScreenState extends State<InitialScreen> {
           controller: clientsController,
         ),
         body: PageView(
-          controller: SharedFunctions.pageController,
+          controller: Constant.pageController,
           physics: NeverScrollableScrollPhysics(),
           onPageChanged: (index) {
             setState(() => {SharedFunctions.nextPage(index)});
@@ -96,7 +101,7 @@ class _InitialScreenState extends State<InitialScreen> {
         ),
         floatingActionButton: ActionFloatingButton(),
         bottomNavigationBar: BottomNavigation(
-          index: SharedFunctions.pageIndex,
+          index: Constant.pageIndex,
           onTap: (index) {
             setState(() {
               SharedFunctions.nextPage(index);
