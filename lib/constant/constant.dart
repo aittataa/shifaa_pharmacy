@@ -13,7 +13,7 @@ class Constant {
   static Client signInClient;
 
   /// TODO : Page Index
-  static int pageIndex = 2;
+  static int pageIndex = 4;
   static PageController pageController = PageController();
 
   /// TODO : Duration
