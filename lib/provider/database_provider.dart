@@ -392,7 +392,7 @@ class DataBaseProvider extends ChangeNotifier {
     var response = await http.post(_api, body: action);
     if (response.statusCode == 200) {
       var myList = json.decode(response.body);
-      return List.generate(myList.length, (index) => Product.fromJson(myList[index]));
+      return List.generate(myList.length, (index) => Favorite.fromJson(myList[index]));
     } else {
       throw Exception("No Data Found");
     }

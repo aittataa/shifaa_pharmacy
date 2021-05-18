@@ -43,9 +43,10 @@ class FavoriteScreen extends StatelessWidget {
         ],
       ),
       body: Obx(() {
-        final List<Product> myList = controller.favoriteProductsList.where((product) {
-          return product.isFav == true;
-        }).toList();
+        final List<Product> myList = [];
+        //controller.favoriteProductsList.where((product) {
+        //return product.isFav == true;
+        //}).toList();
         final bool isNotEmpty = myList.isNotEmpty;
         if (isNotEmpty) {
           return BodyShape(

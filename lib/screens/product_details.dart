@@ -23,7 +23,7 @@ class ProductDetails extends StatelessWidget {
   final List<Product> myList;
   ProductDetails({this.index, this.myList});
 
-  final state = SharedFunctions.isClientLogged;
+  final bool state = SharedFunctions.isClientLogged;
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +75,6 @@ class ProductDetails extends StatelessWidget {
             onBuyTap: () async {
               if (state) {
                 bool status = await SharedFunctions.onShopProductTap(product, orders, contains);
-                //print(status);
                 if (status) {
                   Get.to(() => ShoppingScreen());
                 } else {

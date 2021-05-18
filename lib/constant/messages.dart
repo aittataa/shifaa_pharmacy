@@ -74,6 +74,10 @@ class Messages {
   static const String SHOPPING_SCREEN_TITLE = "Shopping List";
 
   /// TODO :  Snack Bar
+  static const String WRONG_ERROR_TITLE = "Something Wrong";
+  static const String COMMAND_ERROR_TITLE = "Enable To Add This Command";
+  static const String WISH_LIST_ERROR_TITLE = "Enable To Add WishList";
+
   static const String INVALID_ERROR_TITLE = "Identification Incorrect";
   static const String INVALID_ERROR_MESSAGE = "Email or Password is Incorrect, Please Try Again";
   static const String EMPTY_ERROR_MESSAGE = "Check Your Email or Password";

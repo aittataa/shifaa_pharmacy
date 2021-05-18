@@ -48,13 +48,7 @@ class DrawerNavigation extends StatelessWidget {
                             ? NetworkImage("${Constant.signInClient.picture}")
                             : AssetImage(Messages.APP_ICON_ROUND),
                       ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius: 90,
-                          spreadRadius: -15,
-                        ),
-                      ],
+                      boxShadow: [Constant.boxShadow],
                     ),
                   ),
                   ListTile(
@@ -75,7 +69,7 @@ class DrawerNavigation extends StatelessWidget {
                       style: TextStyle(
                         color: Colors.black54,
                         fontWeight: FontWeight.bold,
-                        fontSize: 15,
+                        fontSize: 14,
                       ),
                     ),
                     trailing: IconButton(
@@ -90,7 +84,6 @@ class DrawerNavigation extends StatelessWidget {
                       icon: Icon(
                         Icons.edit,
                         color: Colors.white,
-                        size: 27,
                       ),
                     ),
                   ),

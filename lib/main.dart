@@ -6,6 +6,7 @@ import 'package:shifaa_pharmacy/constant/constant.dart';
 import 'package:shifaa_pharmacy/constant/messages.dart';
 import 'package:shifaa_pharmacy/constant/shared_functions.dart';
 import 'package:shifaa_pharmacy/controllers/clients_controller.dart';
+import 'package:shifaa_pharmacy/controllers/products_controller.dart';
 import 'package:shifaa_pharmacy/screens/about_screen.dart';
 import 'package:shifaa_pharmacy/screens/favorite_screen.dart';
 import 'package:shifaa_pharmacy/screens/initial_screen.dart';
@@ -29,6 +30,7 @@ void main() {
 
 class ShifaaPharmacy extends StatelessWidget {
   final ClientsController clients = Get.put(ClientsController());
+  final ProductsController products = Get.put(ProductsController());
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(

@@ -23,7 +23,7 @@ class Product {
   final String subcategoryTitle;
   final int brandID;
   final String brandTitle;
-  final bool isFav;
+  //final bool isFav;
   final int isShop;
 
   Product({
@@ -45,7 +45,7 @@ class Product {
     this.subcategoryTitle,
     this.brandID,
     this.brandTitle,
-    this.isFav,
+    //this.isFav,
     this.isShop,
   });
 
@@ -69,7 +69,7 @@ class Product {
       subcategoryTitle: data["subcategory_title"] ?? null,
       brandID: data["id_subcategory"] != null ? int.parse(data["id_brand"]) : 0,
       brandTitle: data["brand_title"] ?? null,
-      isFav: data["favorite_status"] == "1" ?? false,
+      //isFav: data["favorite_status"] == "1" ?? false,
       isShop: int.parse(data["shop"]),
     );
   }

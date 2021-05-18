@@ -2,13 +2,16 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shifaa_pharmacy/constant/messages.dart';
 import 'package:shifaa_pharmacy/constant/shared_functions.dart';
+import 'package:shifaa_pharmacy/controllers/contains_controller.dart';
+import 'package:shifaa_pharmacy/controllers/orders_controller.dart';
 import 'package:shifaa_pharmacy/controllers/products_controller.dart';
 import 'package:shifaa_pharmacy/display_function/product_shape.dart';
+import 'package:shifaa_pharmacy/screens/login_screen.dart';
 import 'package:shifaa_pharmacy/widget/empty_box.dart';
 
 import '../classes/product.dart';
-import '../screens/favorite_screen.dart';
 import '../screens/prescription_screen.dart';
 import '../screens/product_details.dart';
 import '../screens/shopping_screen.dart';
@@ -18,10 +21,14 @@ import '../widget/function_button.dart';
 
 class ProductScreen extends StatelessWidget {
   static const String id = "ProductScreen";
-  final ProductsController controller = Get.put(ProductsController());
+  final ProductsController products = Get.put(ProductsController());
+  final OrdersController orders = Get.put(OrdersController());
+  final ContainsController contains = Get.put(ContainsController());
   final String title;
   final List<Product> myList;
   ProductScreen({this.title, this.myList});
+
+  final bool state = SharedFunctions.isClientLogged;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +53,8 @@ class ProductScreen extends StatelessWidget {
           FunctionIconButton(
             icon: Icons.favorite,
             onPressed: () {
-              Get.to(FavoriteScreen());
+              print(products.favoriteProductsList.length);
+              //Get.to(FavoriteScreen());
             },
           ),
         ],
@@ -60,7 +68,7 @@ class ProductScreen extends StatelessWidget {
                 itemCount: myList.length,
                 itemBuilder: (context, index) {
                   Product product = myList[index];
-                  bool isFav = SharedFunctions.isProductFavorite(product, controller);
+                  bool isFav = SharedFunctions.isProductFavorite(product, products);
                   return ProductShape(
                     product: product,
                     isFav: isFav,
@@ -76,20 +84,33 @@ class ProductScreen extends StatelessWidget {
                       );
                     },
                     onShopTap: (bool isLiked) async {
-                      // if (isClientLogged) {
-                      //   onShopProductTap(product, context);
-                      // } else {
-                      //   Navigator.popAndPushNamed(context, LoginScreen.id);
-                      // }
+                      if (state) {
+                        bool status =
+                            await SharedFunctions.onShopProductTap(product, orders, contains);
+                        if (!status) {
+                          SharedFunctions.snackBar(
+                            title: Messages.WRONG_ERROR_TITLE,
+                            message: Messages.COMMAND_ERROR_TITLE,
+                          );
+                        }
+                      } else {
+                        Get.offAll(LoginScreen());
+                      }
                       return isLiked;
                     },
                     onFavTap: (bool isLiked) async {
-                      // if (isClientLogged) {
-                      //   onFavProductTap(product);
-                      //   isFav = !isFav;
-                      // } else {
-                      //   Navigator.popAndPushNamed(context, LoginScreen.id);
-                      // }
+                      if (state) {
+                        bool status = await SharedFunctions.onFavProductTap(product, products);
+                        isFav = !isFav;
+                        if (!status) {
+                          SharedFunctions.snackBar(
+                            title: Messages.WRONG_ERROR_TITLE,
+                            message: Messages.WISH_LIST_ERROR_TITLE,
+                          );
+                        }
+                      } else {
+                        Get.offAll(LoginScreen());
+                      }
                       return isFav;
                     },
                   );

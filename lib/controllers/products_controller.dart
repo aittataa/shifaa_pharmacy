@@ -8,7 +8,7 @@ import '../provider/database_provider.dart';
 
 class ProductsController extends GetxController {
   var productsList = <Product>[].obs;
-  var favoriteProductsList = <Product>[].obs;
+  var favoriteProductsList = <Favorite>[].obs;
 
   @override
   void onInit() {
@@ -29,18 +29,15 @@ class ProductsController extends GetxController {
         favoriteProductsList.value = null;
       }
     }
-    update();
   }
 
   addFavorite(Favorite favorite) async {
     bool state = await DataBaseProvider.addFavorite(favorite);
-    update();
     return state;
   }
 
   updateFavorite(Favorite favorite) async {
     bool state = await DataBaseProvider.updateFavorite(favorite);
-    update();
     return state;
   }
 }

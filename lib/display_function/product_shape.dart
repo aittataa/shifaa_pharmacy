@@ -81,7 +81,8 @@ class ProductShape extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    "${product.name}",
+                    "$isFav",
+                    //"${product.name}",
                     softWrap: false,
                     style: TextStyle(
                       color: Colors.white,

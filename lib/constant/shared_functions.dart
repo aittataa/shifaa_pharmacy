@@ -67,16 +67,6 @@ class SharedFunctions {
   //   }).toList();
   // }
 
-  ///is Product in Favorite List
-  static bool isProductFavorite(Product product, ProductsController controller) {
-    return controller.favoriteProductsList
-        .where((productFav) {
-          return productFav.isFav == true && productFav.id == product.id;
-        })
-        .toList()
-        .isNotEmpty;
-  }
-
   ///onShopProductTap
   static onShopProductTap(
     Product product,
@@ -120,6 +110,17 @@ class SharedFunctions {
     }
   }
 
+  ///is Product in Favorite List
+  static bool isProductFavorite(Product product, ProductsController controller) {
+    return controller.favoriteProductsList
+        .where((favorite) {
+          return favorite.productID == product.id;
+          // && favorite.status == 1;
+        })
+        .toList()
+        .isNotEmpty;
+  }
+
   ///onFavProductTap
   static onFavProductTap(Product product, ProductsController controller) async {
     int clientID = Constant.signInClient.id;
@@ -132,21 +133,21 @@ class SharedFunctions {
         .isNotEmpty;
 
     if (isFav == false) {
-      bool state = await controller.addFavorite(
+      return await controller.addFavorite(
         Favorite(clientID: clientID, productID: productID),
       );
-      print(state);
-    } else if (product.isFav) {
-      bool state = await controller.updateFavorite(
+    }
+    /*
+    else if (product.isFav) {
+      return await controller.updateFavorite(
         Favorite(clientID: clientID, productID: productID, status: 0),
       );
-      print(state);
     } else {
-      bool state = await controller.updateFavorite(
+      return await controller.updateFavorite(
         Favorite(clientID: clientID, productID: productID, status: 1),
       );
-      print(state);
     }
+    */
   }
 
   ///Web Launcher
@@ -200,6 +201,7 @@ class SharedFunctions {
     );
   }
 
+  ///For GRidView
   static gridDelegate(int crossAxisCount) {
     return SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: crossAxisCount,

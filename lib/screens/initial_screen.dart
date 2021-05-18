@@ -76,7 +76,7 @@ class _InitialScreenState extends State<InitialScreen> {
           controller: Constant.pageController,
           physics: NeverScrollableScrollPhysics(),
           onPageChanged: (index) {
-            setState(() => {SharedFunctions.nextPage(index)});
+            setState(() => SharedFunctions.nextPage(index));
           },
           children: [
             MedicinesPage(
@@ -103,9 +103,7 @@ class _InitialScreenState extends State<InitialScreen> {
         bottomNavigationBar: BottomNavigation(
           index: Constant.pageIndex,
           onTap: (index) {
-            setState(() {
-              SharedFunctions.nextPage(index);
-            });
+            setState(() => SharedFunctions.nextPage(index));
           },
         ),
       ),
