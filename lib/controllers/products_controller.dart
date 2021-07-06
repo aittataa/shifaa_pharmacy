@@ -22,22 +22,16 @@ class ProductsController extends GetxController {
     bool state = SharedFunctions.isClientLogged;
     if (state) {
       int id = Constant.signInClient.id;
-      var favoriteProducts = await DataBaseProvider.getFavorite(id);
-      if (favoriteProducts != null) {
-        favoriteProductsList.value = favoriteProducts;
-      } else {
-        favoriteProductsList.value = null;
-      }
+      var favorites = await DataBaseProvider.getFavorite(id);
+      if (favorites != null) favoriteProductsList.value = favorites;
     }
   }
 
   addFavorite(Favorite favorite) async {
-    bool state = await DataBaseProvider.addFavorite(favorite);
-    return state;
+    return await DataBaseProvider.addFavorite(favorite);
   }
 
   updateFavorite(Favorite favorite) async {
-    bool state = await DataBaseProvider.updateFavorite(favorite);
-    return state;
+    return await DataBaseProvider.updateFavorite(favorite);
   }
 }

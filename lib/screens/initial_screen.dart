@@ -51,10 +51,11 @@ class _InitialScreenState extends State<InitialScreen> {
             FunctionIconButton(
               icon: Icons.shopping_cart,
               onPressed: () async {
-                print("hello world");
+                //print("hello world");
                 //print(Constant.signInClient.id);
+                productsController.loadProducts;
                 //print(productsController.favoriteProductsList.toList().length);
-                //Get.to(ShoppingScreen());
+                //Get.to(() => ShoppingScreen());
               },
             ),
             FunctionIconButton(

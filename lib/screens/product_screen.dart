@@ -8,6 +8,7 @@ import 'package:shifaa_pharmacy/controllers/contains_controller.dart';
 import 'package:shifaa_pharmacy/controllers/orders_controller.dart';
 import 'package:shifaa_pharmacy/controllers/products_controller.dart';
 import 'package:shifaa_pharmacy/display_function/product_shape.dart';
+import 'package:shifaa_pharmacy/screens/favorite_screen.dart';
 import 'package:shifaa_pharmacy/screens/login_screen.dart';
 import 'package:shifaa_pharmacy/widget/empty_box.dart';
 
@@ -21,9 +22,9 @@ import '../widget/function_button.dart';
 
 class ProductScreen extends StatelessWidget {
   static const String id = "ProductScreen";
-  final ProductsController products = Get.put(ProductsController());
   final OrdersController orders = Get.put(OrdersController());
   final ContainsController contains = Get.put(ContainsController());
+
   final String title;
   final List<Product> myList;
   ProductScreen({this.title, this.myList});
@@ -41,83 +42,84 @@ class ProductScreen extends StatelessWidget {
           FunctionIconButton(
             icon: Icons.shopping_cart,
             onPressed: () {
-              Get.to(ShoppingScreen());
+              Get.to(() => ShoppingScreen());
             },
           ),
           FunctionIconButton(
             icon: Icons.receipt_long,
             onPressed: () {
-              Get.to(PrescriptionScreen());
+              Get.to(() => PrescriptionScreen());
             },
           ),
           FunctionIconButton(
             icon: Icons.favorite,
             onPressed: () {
-              print(products.favoriteProductsList.length);
-              //Get.to(FavoriteScreen());
+              Get.to(() => FavoriteScreen());
             },
           ),
         ],
       ),
-      body: myList.isNotEmpty
-          ? BodyShape(
-              child: GridView.builder(
-                padding: EdgeInsets.all(5),
-                physics: BouncingScrollPhysics(),
-                gridDelegate: SharedFunctions.gridDelegate(2),
-                itemCount: myList.length,
-                itemBuilder: (context, index) {
-                  Product product = myList[index];
-                  bool isFav = SharedFunctions.isProductFavorite(product, products);
-                  return ProductShape(
-                    product: product,
-                    isFav: isFav,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ProductDetails(
-                            myList: myList,
-                            index: index,
-                          ),
-                        ),
+      body: Obx(() {
+        final ProductsController products = Get.put(ProductsController());
+        if (myList.isNotEmpty) {
+          return BodyShape(
+            child: GridView.builder(
+              padding: EdgeInsets.all(5),
+              physics: BouncingScrollPhysics(),
+              gridDelegate: SharedFunctions.gridDelegate(2),
+              itemCount: myList.length,
+              itemBuilder: (context, index) {
+                Product product = myList[index];
+                bool isFav = SharedFunctions.isProductFavorite(product, products);
+                return ProductShape(
+                  product: product,
+                  isFav: isFav,
+                  onTap: () {
+                    Get.to(() {
+                      return ProductDetails(
+                        myList: myList,
+                        index: index,
                       );
-                    },
-                    onShopTap: (bool isLiked) async {
-                      if (state) {
-                        bool status =
-                            await SharedFunctions.onShopProductTap(product, orders, contains);
-                        if (!status) {
-                          SharedFunctions.snackBar(
-                            title: Messages.WRONG_ERROR_TITLE,
-                            message: Messages.COMMAND_ERROR_TITLE,
-                          );
-                        }
-                      } else {
-                        Get.offAll(LoginScreen());
+                    });
+                  },
+                  onShopTap: (bool isLiked) async {
+                    if (state) {
+                      bool status =
+                          await SharedFunctions.onShopProductTap(product, orders, contains);
+                      if (!status) {
+                        SharedFunctions.snackBar(
+                          title: Messages.WRONG_ERROR_TITLE,
+                          message: Messages.COMMAND_ERROR_TITLE,
+                        );
                       }
-                      return isLiked;
-                    },
-                    onFavTap: (bool isLiked) async {
-                      if (state) {
-                        bool status = await SharedFunctions.onFavProductTap(product, products);
-                        isFav = !isFav;
-                        if (!status) {
-                          SharedFunctions.snackBar(
-                            title: Messages.WRONG_ERROR_TITLE,
-                            message: Messages.WISH_LIST_ERROR_TITLE,
-                          );
-                        }
-                      } else {
-                        Get.offAll(LoginScreen());
+                    } else {
+                      Get.offAll(() => LoginScreen());
+                    }
+                    return isLiked;
+                  },
+                  onFavTap: (bool isLiked) async {
+                    if (state) {
+                      bool status = await SharedFunctions.onFavProductTap(product, products);
+                      isFav = !isFav;
+                      if (!status) {
+                        SharedFunctions.snackBar(
+                          title: Messages.WRONG_ERROR_TITLE,
+                          message: Messages.WISH_LIST_ERROR_TITLE,
+                        );
                       }
-                      return isFav;
-                    },
-                  );
-                },
-              ),
-            )
-          : EmptyBox(),
+                    } else {
+                      Get.offAll(() => LoginScreen());
+                    }
+                    return isFav;
+                  },
+                );
+              },
+            ),
+          );
+        } else {
+          return EmptyBox();
+        }
+      }),
     );
   }
 }

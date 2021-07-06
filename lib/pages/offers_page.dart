@@ -15,13 +15,16 @@ class OffersPage extends StatelessWidget {
       List<Favorite> myList = controller.favoriteProductsList;
       bool isNotEmpty = myList.isNotEmpty;
       if (isNotEmpty) {
-        return ListView.builder(itemBuilder: (context, index) {
-          Favorite favorite = myList[index];
-          return ListTile(
-            leading: Text("${favorite.id}"),
-            title: Text("${favorite.clientID} ${favorite.productID}"),
-          );
-        });
+        return ListView.builder(
+          itemCount: myList.length,
+          itemBuilder: (context, index) {
+            Favorite favorite = myList[index];
+            return ListTile(
+              leading: Text("${favorite.id}"),
+              title: Text("${favorite.clientID} ${favorite.productID}"),
+            );
+          },
+        );
         // return Center(
         //   child: Text(
         //     Messages.LABEL_OFFERS,

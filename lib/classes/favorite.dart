@@ -16,8 +16,8 @@ class Favorite {
   factory Favorite.fromJson(Map<String, dynamic> data) {
     return Favorite(
       id: int.parse(data["id_favorite"]),
-      clientID: data["client_id"] ?? null,
-      productID: data["product_id"] ?? null,
+      clientID: int.parse(data["client_id"]),
+      productID: int.parse(data["product_id"]),
       dateCreation: DateTime.parse(data["date_creation"]),
       status: int.parse(data["favorite_status"]),
     );
