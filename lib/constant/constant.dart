@@ -7,7 +7,7 @@ import 'package:shifaa_pharmacy/constant/messages.dart';
 
 class Constant {
   /// TODO : REST API
-  static const String SERVER_URL = "http://192.168.1.27/.shifaa_pharmacy";
+  static const String SERVER_URL = "http://192.168.1.39/.shifaa_pharmacy";
 
   /// TODO : Sign In Client
   static Client signInClient;

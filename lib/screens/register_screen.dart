@@ -52,10 +52,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
-                  child: Image.asset(
-                    Messages.ICON,
-                    color: mainColor,
-                    fit: BoxFit.fill,
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 10.0),
+                    child: Image.asset(
+                      Messages.ICON,
+                      color: mainColor,
+                      fit: BoxFit.fill,
+                    ),
                   ),
                 ),
                 Column(
