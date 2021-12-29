@@ -2,7 +2,7 @@
 
 Online Pharmacy.
 
-## Screen Shots
+## Screen Shots :
 
 ![item](https://user-images.githubusercontent.com/39503536/128385594-6c9f325e-aeaa-4422-a4e9-2e76dfb7fb04.png)
 ![Screenshot_1628178442](https://user-images.githubusercontent.com/39503536/128385836-972ca31f-afbd-431d-ac48-1a9a92f7b37d.png)
