@@ -1,6 +1,6 @@
 # shifaa_pharmacy
 
-Your Pharmacy Online
+Online Pharmacy.
 
 ## Screen Shots
 
